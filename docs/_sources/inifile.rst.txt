@@ -2,58 +2,96 @@
 Customize ini file
 ==================
 
-- ``[Custom]``
- See `ini file quickstart <intro.html#ini-file>`_.
+The ``ini file`` to ``SimpleMC`` configuration must have a module ``[custom]`` and according to the selected analyzer can have several modules: ``[mcmc]``, ``[nested]``, ``[neural]``, ``[neuralike]``, ``[MaxLikeAnalyzer]``, ``[emcee]``, ``[genetic]``, ``[ga_deap]``. In this section, we explain each of them. 
+
+- ``[custom]``
+    - Requiered keys: 
+        
+        - ``model`` : LCDM, LCDMasslessnu, nuLCDM, NeffLCDM, noradLCDM, nuoLCDM, nuwLCDM, oLCDM, wCDM, waCDM, owCDM, owaCDM, JordiCDM, WeirdCDM, TLight, StepCDM, Spline, PolyCDM, fPolyCDM, Decay, Decay01, Decay05, EarlyDE, EarlyDE_rd_DE, SlowRDE, sline.
+        
+        - ``datasets`` : HD, BBAO, GBAO, GBAO_no6dF, CMASS, LBAO, LaBAO, LxBAO, MGS, Planck, WMAP, PlRd, WRd, PlDa, PlRdx10, CMBW, SN, SNx10, UnionSN, RiessH0, 6dFGS, dline. 
+        
+        You can combine any of the datasets, eg. HD+GBAO+LBAO.
+
+    - Other keys: 
+
+        -  ``analyzer``: mcmc, nested, genetic, MaxLikeAnalyzer, ga_deap. By default: mcmc.
+
+        - ``chainsdir``: directory to save the outputs. By default ``simplemc/chain``.
+
+    **Example:**
+
+    .. code-block::
+
+            [custom]
+
+            chainsdir = chains
+            
+            model = LCDM
+            
+            datasets = BBAO+HD+SN
+
+            analyzer = mcmc
 
 
 - ``[mcmc]``
+    - Keys:
+        - nsamp:
+        - skip:
+        - temp:
+        - chainno
+        - addderived:
 
-.. code-block::
+    **Example:**
+    
+    .. code-block::
 
-      [mcmc]
-      nsamp   = 4000
-      skip    = 100
-      temp    = 2
+          [mcmc]
+          nsamp   = 4000
+          skip    = 100
+          temp    = 2
 
-      ;if single cpu, otherwise use mpi -np #
-      chainno = 1
+          ;if single cpu, otherwise use mpi -np #
+          chainno = 1
 
-      ;add derived parameters (True/False) ,
-      ;i.e. Omega_Lambda, H0, Age of the Universe
-      addderived = False
+          ;add derived parameters (True/False) ,
+          ;i.e. Omega_Lambda, H0, Age of the Universe
+          addderived = False
 
 
 - ``[nested]``
+    
+    **Example**
 
-.. code-block::
+    .. code-block::
 
-        dynamic = no
-        neuralNetwork = no
+            dynamic = no
+            neuralNetwork = no
 
-        ;type: for dynesty -> {'single','multi', 'balls', 'cubes'}
-        ;type for nestle -> {'single', 'multi'}
-        nestedType = multi
+            ;type: for dynesty -> {'single','multi', 'balls', 'cubes'}
+            ;type for nestle -> {'single', 'multi'}
+            nestedType = multi
 
-        ;it is recommended around nlivepoints=50*ndim, recommended 1024
-        nlivepoints = 500
+            ;it is recommended around nlivepoints=50*ndim, recommended 1024
+            nlivepoints = 500
 
 
-        ;recommended 0.5
-        accuracy = 0.01
+            ;recommended 0.5
+            accuracy = 0.01
 
-        ;u for flat(uniform) or g for gaussian prior
-        priortype = u
+            ;u for flat(uniform) or g for gaussian prior
+            priortype = u
 
-        ;nproc = mp.cpu_count()//2 by default, you can set with another positive integer
-        nproc = 0
+            ;nproc = mp.cpu_count()//2 by default, you can set with another positive integer
+            nproc = 0
 
-        ;if neuralNetwork = yes, then you can set:
+            ;if neuralNetwork = yes, then you can set:
 
-        [neural]
-        split = 0.8
+            [neural]
+            split = 0.8
 
-        ;numNeurons of hidden layer
-        numNeurons = 50
+            ;numNeurons of hidden layer
+            numNeurons = 50
 
 
 

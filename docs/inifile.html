@@ -170,15 +170,58 @@
             
   <div class="section" id="customize-ini-file">
 <h1>Customize ini file<a class="headerlink" href="#customize-ini-file" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[Custom]</span></code></p></li>
-</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> to <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> configuration must have a module <code class="docutils literal notranslate"><span class="pre">[custom]</span></code> and according to the selected analyzer can have several modules: <code class="docutils literal notranslate"><span class="pre">[mcmc]</span></code>, <code class="docutils literal notranslate"><span class="pre">[nested]</span></code>, <code class="docutils literal notranslate"><span class="pre">[neural]</span></code>, <code class="docutils literal notranslate"><span class="pre">[neuralike]</span></code>, <code class="docutils literal notranslate"><span class="pre">[MaxLikeAnalyzer]</span></code>, <code class="docutils literal notranslate"><span class="pre">[emcee]</span></code>, <code class="docutils literal notranslate"><span class="pre">[genetic]</span></code>, <code class="docutils literal notranslate"><span class="pre">[ga_deap]</span></code>. In this section, we explain each of them.</p>
+<ul>
+<li><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">[custom]</span></code></dt><dd><ul>
+<li><p>Requiered keys:</p>
 <blockquote>
-<div><p>See <a class="reference external" href="intro.html#ini-file">ini file quickstart</a>.</p>
-</div></blockquote>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[mcmc]</span></code></p></li>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model</span></code> : LCDM, LCDMasslessnu, nuLCDM, NeffLCDM, noradLCDM, nuoLCDM, nuwLCDM, oLCDM, wCDM, waCDM, owCDM, owaCDM, JordiCDM, WeirdCDM, TLight, StepCDM, Spline, PolyCDM, fPolyCDM, Decay, Decay01, Decay05, EarlyDE, EarlyDE_rd_DE, SlowRDE, sline.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">datasets</span></code> : HD, BBAO, GBAO, GBAO_no6dF, CMASS, LBAO, LaBAO, LxBAO, MGS, Planck, WMAP, PlRd, WRd, PlDa, PlRdx10, CMBW, SN, SNx10, UnionSN, RiessH0, 6dFGS, dline.</p></li>
 </ul>
+<p>You can combine any of the datasets, eg. HD+GBAO+LBAO.</p>
+</div></blockquote>
+</li>
+<li><p>Other keys:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">analyzer</span></code>: mcmc, nested, genetic, MaxLikeAnalyzer, ga_deap. By default: mcmc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chainsdir</span></code>: directory to save the outputs. By default <code class="docutils literal notranslate"><span class="pre">simplemc/chain</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">custom</span><span class="p">]</span>
+
+<span class="n">chainsdir</span> <span class="o">=</span> <span class="n">chains</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">LCDM</span>
+
+<span class="n">datasets</span> <span class="o">=</span> <span class="n">BBAO</span><span class="o">+</span><span class="n">HD</span><span class="o">+</span><span class="n">SN</span>
+
+<span class="n">analyzer</span> <span class="o">=</span> <span class="n">mcmc</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">[mcmc]</span></code></dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>Keys:</dt><dd><ul>
+<li><p>nsamp:</p></li>
+<li><p>skip:</p></li>
+<li><p>temp:</p></li>
+<li><p>chainno</p></li>
+<li><p>addderived:</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p><strong>Example:</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">mcmc</span><span class="p">]</span>
 <span class="n">nsamp</span>   <span class="o">=</span> <span class="mi">4000</span>
 <span class="n">skip</span>    <span class="o">=</span> <span class="mi">100</span>
@@ -192,9 +235,12 @@
 <span class="n">addderived</span> <span class="o">=</span> <span class="kc">False</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[nested]</span></code></p></li>
-</ul>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[nested]</span></code></p>
+<blockquote>
+<div><p><strong>Example</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dynamic</span> <span class="o">=</span> <span class="n">no</span>
 <span class="n">neuralNetwork</span> <span class="o">=</span> <span class="n">no</span>
 
@@ -224,6 +270,9 @@
 <span class="n">numNeurons</span> <span class="o">=</span> <span class="mi">50</span>
 </pre></div>
 </div>
+</div></blockquote>
+</li>
+</ul>
 <div class="section" id="baseconfig-ini">
 <span id="baseconfig"></span><h2>baseConfig.ini<a class="headerlink" href="#baseconfig-ini" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">custom</span><span class="p">]</span>
