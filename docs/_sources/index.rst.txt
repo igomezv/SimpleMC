@@ -24,13 +24,15 @@ Index:
 
    intro
    
-   data
-
    inifile    
 
-   plotters
+   data
+
+   models
 
    analyzers
+
+   plotters
 
    examples
 

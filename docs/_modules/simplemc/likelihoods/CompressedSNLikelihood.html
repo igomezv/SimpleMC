@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>simplemc.likelihoods.CompressedSNLikelihood &mdash; SimpleMC latest documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> SimpleMC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                latest
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../inifile.html">Customize ini file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data.html"><strong>Data</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../models.html"><strong>Models</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../analyzers.html"><strong>Analyzers</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plotters.html"><strong>Plotters</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Citation.html">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../API.html">API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SimpleMC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>simplemc.likelihoods.CompressedSNLikelihood</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for simplemc.likelihoods.CompressedSNLikelihood</h1><div class="highlight"><pre>
+<span></span>
+
+<span class="kn">from</span> <span class="nn">simplemc.likelihoods.BaseLikelihood</span> <span class="kn">import</span> <span class="n">BaseLikelihood</span>
+<span class="kn">import</span> <span class="nn">scipy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
+
+
+<div class="viewcode-block" id="CompressedSNLikelihood"><a class="viewcode-back" href="../../../API.html#simplemc.likelihoods.CompressedSNLikelihood.CompressedSNLikelihood">[docs]</a><span class="k">class</span> <span class="nc">CompressedSNLikelihood</span><span class="p">(</span><span class="n">BaseLikelihood</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            This module calculates likelihood for the compressed SN.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            name : str</span>
+<span class="sd">                Name of the dataset</span>
+<span class="sd">            values_filename : str</span>
+<span class="sd">                File text with the observational data.</span>
+<span class="sd">            cov_filename : str</span>
+<span class="sd">                File text with the covariance matrix of the observational data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">values_filename</span><span class="p">,</span> <span class="n">cov_filename</span><span class="p">):</span>
+        <span class="n">BaseLikelihood</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loading &quot;</span><span class="p">,</span> <span class="n">values_filename</span><span class="p">)</span>
+        <span class="n">da</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">values_filename</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zs</span>  <span class="o">=</span> <span class="n">da</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mus</span> <span class="o">=</span> <span class="n">da</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loading &quot;</span><span class="p">,</span> <span class="n">cov_filename</span><span class="p">)</span>
+        <span class="n">cov</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">cov_filename</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">assert</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zs</span><span class="p">))</span>
+        <span class="n">vals</span><span class="p">,</span> <span class="n">vecs</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">vals</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Eigenvalues of cov matrix:&quot;</span><span class="p">,</span> <span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;...&#39;</span><span class="p">,</span> <span class="n">vals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Adding marginalising constant&quot;</span><span class="p">)</span>
+        <span class="n">cov</span> <span class="o">+=</span> <span class="mi">3</span><span class="o">**</span><span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">icov</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span>
+
+
+
+    <span class="k">def</span> <span class="nf">loglike</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">tvec</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">theory_</span><span class="o">.</span><span class="n">distance_modulus</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">zs</span><span class="p">])</span>
+        <span class="c1"># This is the factor that we need to correct</span>
+        <span class="c1"># note that in principle this shouldn&#39;t matter too much, we will marginalise over this</span>
+        <span class="n">tvec</span> <span class="o">+=</span> <span class="mi">43</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="n">tvec</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">mus</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">icov</span><span class="p">,</span> <span class="n">delta</span><span class="p">))</span><span class="o">/</span><span class="mf">2.0</span></div>
+
+
+<div class="viewcode-block" id="BetouleSN"><a class="viewcode-back" href="../../../API.html#simplemc.likelihoods.CompressedSNLikelihood.BetouleSN">[docs]</a><span class="k">class</span> <span class="nc">BetouleSN</span><span class="p">(</span><span class="n">CompressedSNLikelihood</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Likelihood to binned JLA dataset.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">CompressedSNLikelihood</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;BetouleSN&quot;</span><span class="p">,</span> <span class="s2">&quot;simplemc/data/jla_binned_distances_31nodes_v1.txt&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;simplemc/data/cov_jla_binned_distances_31nodes_v1.txt&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="UnionSN"><a class="viewcode-back" href="../../../API.html#simplemc.likelihoods.CompressedSNLikelihood.UnionSN">[docs]</a><span class="k">class</span> <span class="nc">UnionSN</span><span class="p">(</span><span class="n">CompressedSNLikelihood</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Likelihood to binned Union 2.1 dataset</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">CompressedSNLikelihood</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;UnionSNV2&quot;</span><span class="p">,</span> <span class="s2">&quot;simplemc/data/binned-sne-union21-v2.txt&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;simplemc/data/binned-covariance-sne-union21-v2.txt&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BinnedPantheon"><a class="viewcode-back" href="../../../API.html#simplemc.likelihoods.CompressedSNLikelihood.BinnedPantheon">[docs]</a><span class="k">class</span> <span class="nc">BinnedPantheon</span><span class="p">(</span><span class="n">CompressedSNLikelihood</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Likelihood to binned Pantheon dataset.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">CompressedSNLikelihood</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;BinnedPantheon&quot;</span><span class="p">,</span> <span class="s2">&quot;simplemc/data/binned_pantheon_15.txt&quot;</span><span class="p">,</span>
+                                        <span class="s2">&quot;simplemc/data/binned_cov_pantheon_15.txt&quot;</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, A Slosar, JA Vazquez, I Gomez-Vargas.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -39,8 +39,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Plotters" href="plotters.html" />
-    <link rel="prev" title="Data" href="data.html" /> 
+    <link rel="next" title="Data" href="data.html" />
+    <link rel="prev" title="Introduction" href="intro.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,13 +91,14 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data.html"><strong>Data</strong></a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Customize ini file</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#baseconfig-ini">baseConfig.ini</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="plotters.html"><strong>Plotters</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html"><strong>Data</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html"><strong>Models</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="analyzers.html"><strong>Analyzers</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotters.html"><strong>Plotters</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Citation.html">Citation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="API.html">API</a></li>
@@ -170,17 +171,16 @@
             
   <div class="section" id="customize-ini-file">
 <h1>Customize ini file<a class="headerlink" href="#customize-ini-file" title="Permalink to this headline">¶</a></h1>
-<p>The <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> to <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> configuration must have a module <code class="docutils literal notranslate"><span class="pre">[custom]</span></code> and according to the selected analyzer can have several modules: <code class="docutils literal notranslate"><span class="pre">[mcmc]</span></code>, <code class="docutils literal notranslate"><span class="pre">[nested]</span></code>, <code class="docutils literal notranslate"><span class="pre">[neural]</span></code>, <code class="docutils literal notranslate"><span class="pre">[neuralike]</span></code>, <code class="docutils literal notranslate"><span class="pre">[MaxLikeAnalyzer]</span></code>, <code class="docutils literal notranslate"><span class="pre">[emcee]</span></code>, <code class="docutils literal notranslate"><span class="pre">[genetic]</span></code>, <code class="docutils literal notranslate"><span class="pre">[ga_deap]</span></code>. In this section, we explain each of them.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> to <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> configuration must have a module <code class="docutils literal notranslate"><span class="pre">[custom]</span></code> and according to the selected analyzer can have several modules: <code class="docutils literal notranslate"><span class="pre">[mcmc]</span></code>, <code class="docutils literal notranslate"><span class="pre">[nested]</span></code>, <code class="docutils literal notranslate"><span class="pre">[neural]</span></code>, <code class="docutils literal notranslate"><span class="pre">[neuralike]</span></code>, <code class="docutils literal notranslate"><span class="pre">[MaxLikeAnalyzer]</span></code>, <code class="docutils literal notranslate"><span class="pre">[emcee]</span></code>, <code class="docutils literal notranslate"><span class="pre">[genetic]</span></code>, <code class="docutils literal notranslate"><span class="pre">[ga_deap]</span></code>. In this section, we explain each of them. To more details about analyzers, pleas visit the <a class="reference external" href="analyzers.html">Analyzer sections</a>.</p>
 <ul>
 <li><dl>
 <dt><code class="docutils literal notranslate"><span class="pre">[custom]</span></code></dt><dd><ul>
 <li><p>Requiered keys:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">model</span></code> : LCDM, LCDMasslessnu, nuLCDM, NeffLCDM, noradLCDM, nuoLCDM, nuwLCDM, oLCDM, wCDM, waCDM, owCDM, owaCDM, JordiCDM, WeirdCDM, TLight, StepCDM, Spline, PolyCDM, fPolyCDM, Decay, Decay01, Decay05, EarlyDE, EarlyDE_rd_DE, SlowRDE, sline.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">datasets</span></code> : HD, BBAO, GBAO, GBAO_no6dF, CMASS, LBAO, LaBAO, LxBAO, MGS, Planck, WMAP, PlRd, WRd, PlDa, PlRdx10, CMBW, SN, SNx10, UnionSN, RiessH0, 6dFGS, dline.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">model</span></code> : visit <a class="reference external" href="models.html">Models section</a> to see the options.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">datasets</span></code> : visit <a class="reference external" href="data.html">Data section</a> to see all the datasets options.</p></li>
 </ul>
-<p>You can combine any of the datasets, eg. HD+GBAO+LBAO.</p>
 </div></blockquote>
 </li>
 <li><p>Other keys:</p>
@@ -211,11 +211,11 @@
 <dt><code class="docutils literal notranslate"><span class="pre">[mcmc]</span></code></dt><dd><ul class="simple">
 <li><dl class="simple">
 <dt>Keys:</dt><dd><ul>
-<li><p>nsamp:</p></li>
-<li><p>skip:</p></li>
-<li><p>temp:</p></li>
-<li><p>chainno</p></li>
-<li><p>addderived:</p></li>
+<li><p>nsamp: number of steps.</p></li>
+<li><p>skip: burn-in samples.</p></li>
+<li><p>temp: temperature.</p></li>
+<li><p>chainno: number of chains.</p></li>
+<li><p>addderived: If you want to add derived parameters such as the age of the Universe.</p></li>
 </ul>
 </dd>
 </dl>
@@ -226,158 +226,289 @@
 <span class="n">nsamp</span>   <span class="o">=</span> <span class="mi">4000</span>
 <span class="n">skip</span>    <span class="o">=</span> <span class="mi">100</span>
 <span class="n">temp</span>    <span class="o">=</span> <span class="mi">2</span>
-
-<span class="p">;</span><span class="k">if</span> <span class="n">single</span> <span class="n">cpu</span><span class="p">,</span> <span class="n">otherwise</span> <span class="n">use</span> <span class="n">mpi</span> <span class="o">-</span><span class="n">np</span> <span class="c1">#</span>
 <span class="n">chainno</span> <span class="o">=</span> <span class="mi">1</span>
-
-<span class="p">;</span><span class="n">add</span> <span class="n">derived</span> <span class="n">parameters</span> <span class="p">(</span><span class="kc">True</span><span class="o">/</span><span class="kc">False</span><span class="p">)</span> <span class="p">,</span>
-<span class="p">;</span><span class="n">i</span><span class="o">.</span><span class="n">e</span><span class="o">.</span> <span class="n">Omega_Lambda</span><span class="p">,</span> <span class="n">H0</span><span class="p">,</span> <span class="n">Age</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Universe</span>
 <span class="n">addderived</span> <span class="o">=</span> <span class="kc">False</span>
 </pre></div>
 </div>
 </dd>
 </dl>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[nested]</span></code></p>
-<blockquote>
-<div><p><strong>Example</strong></p>
+<li><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">[nested]</span></code></dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>Keys:</dt><dd><ul>
+<li><p>dynamic: If you want dynamic nested sampling.</p></li>
+<li><p>neuralNetwork: if you can to use neural network to speed-up the process. Currently only works for one processor.</p></li>
+<li><p>nestedType: nested sampling algorithm, can be {‘single’,’multi’, ‘balls’, ‘cubes’}.</p></li>
+<li><p>nlivepoints: number of live points.</p></li>
+<li><p>accuracy: difference of Bayesian evidence between two iterations that indicates the stopping criterion.</p></li>
+<li><p>priortype: u-&gt;uniform, g-&gt;gaussian.</p></li>
+<li><p>nproc: number of processors.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p><strong>Example</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dynamic</span> <span class="o">=</span> <span class="n">no</span>
 <span class="n">neuralNetwork</span> <span class="o">=</span> <span class="n">no</span>
-
-<span class="p">;</span><span class="nb">type</span><span class="p">:</span> <span class="k">for</span> <span class="n">dynesty</span> <span class="o">-&gt;</span> <span class="p">{</span><span class="s1">&#39;single&#39;</span><span class="p">,</span><span class="s1">&#39;multi&#39;</span><span class="p">,</span> <span class="s1">&#39;balls&#39;</span><span class="p">,</span> <span class="s1">&#39;cubes&#39;</span><span class="p">}</span>
-<span class="p">;</span><span class="nb">type</span> <span class="k">for</span> <span class="n">nestle</span> <span class="o">-&gt;</span> <span class="p">{</span><span class="s1">&#39;single&#39;</span><span class="p">,</span> <span class="s1">&#39;multi&#39;</span><span class="p">}</span>
 <span class="n">nestedType</span> <span class="o">=</span> <span class="n">multi</span>
-
-<span class="p">;</span><span class="n">it</span> <span class="ow">is</span> <span class="n">recommended</span> <span class="n">around</span> <span class="n">nlivepoints</span><span class="o">=</span><span class="mi">50</span><span class="o">*</span><span class="n">ndim</span><span class="p">,</span> <span class="n">recommended</span> <span class="mi">1024</span>
 <span class="n">nlivepoints</span> <span class="o">=</span> <span class="mi">500</span>
-
-
-<span class="p">;</span><span class="n">recommended</span> <span class="mf">0.5</span>
 <span class="n">accuracy</span> <span class="o">=</span> <span class="mf">0.01</span>
 
-<span class="p">;</span><span class="n">u</span> <span class="k">for</span> <span class="n">flat</span><span class="p">(</span><span class="n">uniform</span><span class="p">)</span> <span class="ow">or</span> <span class="n">g</span> <span class="k">for</span> <span class="n">gaussian</span> <span class="n">prior</span>
 <span class="n">priortype</span> <span class="o">=</span> <span class="n">u</span>
 
-<span class="p">;</span><span class="n">nproc</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span><span class="o">//</span><span class="mi">2</span> <span class="n">by</span> <span class="n">default</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="nb">set</span> <span class="k">with</span> <span class="n">another</span> <span class="n">positive</span> <span class="n">integer</span>
 <span class="n">nproc</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="p">;</span><span class="k">if</span> <span class="n">neuralNetwork</span> <span class="o">=</span> <span class="n">yes</span><span class="p">,</span> <span class="n">then</span> <span class="n">you</span> <span class="n">can</span> <span class="nb">set</span><span class="p">:</span>
-
-<span class="p">[</span><span class="n">neural</span><span class="p">]</span>
-<span class="n">split</span> <span class="o">=</span> <span class="mf">0.8</span>
-
-<span class="p">;</span><span class="n">numNeurons</span> <span class="n">of</span> <span class="n">hidden</span> <span class="n">layer</span>
-<span class="n">numNeurons</span> <span class="o">=</span> <span class="mi">50</span>
 </pre></div>
 </div>
-</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">[neural]</span></code></dt><dd><p>At the current time, this block only have sense if analyzer is nested and if nproc=1.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Keys:</dt><dd><ul>
+<li><p>numNeurons: number of neurons of the three hidden layers.</p></li>
+<li><p>epochs: number of epochs.</p></li>
+<li><p>dlogz_start: value of dlogz to start to train the neural net.</p></li>
+<li><p>it_to_start_net: iterations to start the trainning.</p></li>
+<li><p>updInt: number of iterations to re-train the neural net.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">neural</span><span class="p">]</span>
+<span class="n">numNeurons</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">dlogz_start</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">it_to_start_net</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">updInt</span> <span class="o">=</span> <span class="mi">500</span>
+</pre></div>
+</div>
+</dd>
+</dl>
 </li>
 </ul>
 <div class="section" id="baseconfig-ini">
 <span id="baseconfig"></span><h2>baseConfig.ini<a class="headerlink" href="#baseconfig-ini" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">custom</span><span class="p">]</span>
-<span class="c1"># custom -&gt; for all analyzers : samplers and optimizers</span>
-<span class="n">chainsdir</span> <span class="o">=</span> <span class="n">chains</span>
+<span class="p">;</span><span class="n">directory</span> <span class="k">for</span> <span class="n">chains</span><span class="o">/</span><span class="n">output</span>
+<span class="n">chainsdir</span> <span class="o">=</span> <span class="n">simplemc</span><span class="o">/</span><span class="n">chains</span>
 
 <span class="p">;</span><span class="nb">set</span> <span class="n">model</span>
 <span class="p">;</span><span class="n">model</span> <span class="n">options</span><span class="p">:</span> <span class="n">LCDM</span><span class="p">,</span> <span class="n">LCDMasslessnu</span><span class="p">,</span> <span class="n">nuLCDM</span><span class="p">,</span> <span class="n">NeffLCDM</span><span class="p">,</span> <span class="n">noradLCDM</span><span class="p">,</span> <span class="n">nuoLCDM</span><span class="p">,</span>
 <span class="p">;</span><span class="n">nuwLCDM</span><span class="p">,</span> <span class="n">oLCDM</span><span class="p">,</span> <span class="n">wCDM</span><span class="p">,</span> <span class="n">waCDM</span><span class="p">,</span> <span class="n">owCDM</span><span class="p">,</span> <span class="n">owaCDM</span><span class="p">,</span> <span class="n">JordiCDM</span><span class="p">,</span> <span class="n">WeirdCDM</span><span class="p">,</span> <span class="n">TLight</span><span class="p">,</span> <span class="n">StepCDM</span><span class="p">,</span>
 <span class="p">;</span><span class="n">Spline</span><span class="p">,</span> <span class="n">PolyCDM</span><span class="p">,</span> <span class="n">fPolyCDM</span><span class="p">,</span> <span class="n">Decay</span><span class="p">,</span> <span class="n">Decay01</span><span class="p">,</span> <span class="n">Decay05</span><span class="p">,</span> <span class="n">EarlyDE</span><span class="p">,</span> <span class="n">EarlyDE_rd_DE</span><span class="p">,</span> <span class="n">SlowRDE</span><span class="p">,</span> <span class="n">sline</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">owaCDM</span>
+<span class="p">;</span><span class="n">more</span> <span class="n">options</span> <span class="n">located</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">RunBase</span><span class="o">.</span><span class="n">py</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LCDM</span>
 
 <span class="p">;</span><span class="n">prefact</span> <span class="n">options</span> <span class="p">:</span> <span class="p">[</span><span class="n">pre</span><span class="p">,</span> <span class="n">phy</span><span class="p">]</span>
 <span class="n">prefact</span> <span class="o">=</span> <span class="n">phy</span>
 
+<span class="p">;</span><span class="n">varys8</span> <span class="kc">True</span> <span class="n">otherwise</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.8</span>
+<span class="n">varys8</span>  <span class="o">=</span> <span class="kc">False</span>
+
 <span class="p">;</span><span class="nb">set</span> <span class="n">datasets</span> <span class="n">used</span><span class="o">.</span> <span class="n">Ex</span><span class="p">:</span> <span class="n">UnionSN</span><span class="o">+</span><span class="n">BBAO</span><span class="o">+</span><span class="n">Planck</span>
-<span class="p">;</span><span class="n">data</span> <span class="n">options</span><span class="p">:</span> <span class="n">HD</span><span class="p">,</span> <span class="n">BBAO</span><span class="p">,</span> <span class="n">GBAO</span><span class="p">,</span> <span class="n">GBAO_no6dF</span><span class="p">,</span> <span class="n">CMASS</span><span class="p">,</span> <span class="n">LBAO</span><span class="p">,</span> <span class="n">LaBAO</span><span class="p">,</span>
+<span class="p">;</span><span class="n">data</span> <span class="n">options</span><span class="p">:</span> <span class="n">HD</span><span class="p">,</span> <span class="n">BBAO</span><span class="p">,</span> <span class="n">GBAO11</span><span class="p">,</span> <span class="n">CBAO</span><span class="p">,</span> <span class="n">BAO_no6dF</span><span class="p">,</span> <span class="n">CMASS</span><span class="p">,</span> <span class="n">LBAO</span><span class="p">,</span> <span class="n">LaBAO</span><span class="p">,</span>
 <span class="p">;</span><span class="n">LxBAO</span><span class="p">,</span> <span class="n">MGS</span><span class="p">,</span> <span class="n">Planck</span><span class="p">,</span> <span class="n">WMAP</span><span class="p">,</span> <span class="n">PlRd</span><span class="p">,</span> <span class="n">WRd</span><span class="p">,</span> <span class="n">PlDa</span><span class="p">,</span> <span class="n">PlRdx10</span><span class="p">,</span> <span class="n">CMBW</span><span class="p">,</span> <span class="n">SN</span><span class="p">,</span> <span class="n">SNx10</span><span class="p">,</span> <span class="n">UnionSN</span><span class="p">,</span>
 <span class="p">;</span><span class="n">RiessH0</span><span class="p">,</span> <span class="mi">6</span><span class="n">dFGS</span><span class="p">,</span> <span class="n">dline</span>
-<span class="n">datasets</span> <span class="o">=</span> <span class="n">BBAO</span><span class="o">+</span><span class="n">HD</span><span class="o">+</span><span class="n">UnionSN</span><span class="o">+</span><span class="n">Planck</span>
+<span class="n">datasets</span> <span class="o">=</span> <span class="n">SN</span><span class="o">+</span><span class="n">CBAO</span>
+
+
 <span class="p">;</span><span class="n">sampler</span> <span class="n">can</span> <span class="n">be</span> <span class="p">{</span><span class="n">mcmc</span><span class="p">,</span> <span class="n">nested</span><span class="p">,</span> <span class="n">emcee</span><span class="p">}</span>
-<span class="p">;</span><span class="ow">or</span> <span class="n">analyzers</span> <span class="p">{</span><span class="n">MaxLikeAnalyzer</span><span class="p">,</span> <span class="n">genetic</span><span class="p">}</span>
+<span class="p">;</span><span class="ow">or</span> <span class="n">analyzers</span> <span class="p">{</span><span class="n">maxlike</span><span class="p">,</span> <span class="n">genetic</span><span class="p">}</span>
 <span class="p">;</span>
 <span class="p">;</span><span class="n">mcmc</span> <span class="o">-&gt;</span> <span class="n">metropolis</span><span class="o">-</span><span class="n">hastings</span>
 <span class="p">;</span><span class="n">nested</span>
-<span class="p">;</span><span class="n">engine</span> <span class="n">can</span> <span class="n">be</span> <span class="p">{</span><span class="n">nestle</span><span class="p">,</span> <span class="n">dynesty</span><span class="p">}</span>
-<span class="p">;</span><span class="n">nestedType</span> <span class="n">can</span> <span class="n">be</span>
-    <span class="p">;</span><span class="n">none</span> <span class="o">-&gt;</span> <span class="n">Prior</span> <span class="n">mass</span> <span class="n">without</span> <span class="n">bounds</span>
-    <span class="p">;</span><span class="n">single</span> <span class="o">-&gt;</span> <span class="n">Ellipsoidal</span> <span class="n">nested</span> <span class="n">sampling</span>
-    <span class="p">;</span><span class="n">multi</span> <span class="o">-&gt;</span> <span class="n">multinest</span>
-    <span class="p">;</span><span class="n">balls</span> <span class="o">-&gt;</span>  <span class="n">balls</span> <span class="n">centered</span> <span class="n">on</span> <span class="n">each</span> <span class="n">live</span> <span class="n">point</span>
-    <span class="p">;</span><span class="n">cube</span> <span class="o">-&gt;</span> <span class="n">cubes</span> <span class="n">centered</span> <span class="n">on</span> <span class="n">each</span> <span class="n">live</span> <span class="n">point</span>
+    <span class="p">;</span><span class="n">engine</span> <span class="n">can</span> <span class="n">be</span> <span class="p">{</span><span class="n">nestle</span><span class="p">,</span> <span class="n">dynesty</span><span class="p">}</span>
+    <span class="p">;</span><span class="n">nestedType</span> <span class="n">can</span> <span class="n">be</span>
+        <span class="p">;</span><span class="n">none</span> <span class="o">-&gt;</span> <span class="n">Prior</span> <span class="n">mass</span> <span class="n">without</span> <span class="n">bounds</span>
+        <span class="p">;</span><span class="n">single</span> <span class="o">-&gt;</span> <span class="n">Ellipsoidal</span> <span class="n">nested</span> <span class="n">sampling</span>
+        <span class="p">;</span><span class="n">multi</span> <span class="o">-&gt;</span> <span class="n">multinest</span>
+        <span class="p">;</span><span class="n">balls</span> <span class="o">-&gt;</span>  <span class="n">balls</span> <span class="n">centered</span> <span class="n">on</span> <span class="n">each</span> <span class="n">live</span> <span class="n">point</span>
+        <span class="p">;</span><span class="n">cube</span> <span class="o">-&gt;</span> <span class="n">cubes</span> <span class="n">centered</span> <span class="n">on</span> <span class="n">each</span> <span class="n">live</span> <span class="n">point</span>
 <span class="p">;</span><span class="n">emcee</span>
-<span class="p">;</span><span class="n">MaxLikeAnalyzer</span> <span class="o">-&gt;</span> <span class="n">Maximum</span> <span class="n">Likelihood</span> <span class="n">Analyzer</span>
-<span class="p">;</span><span class="n">genetic</span>
-<span class="n">sampler</span> <span class="o">=</span> <span class="n">genetic</span>
-<span class="p">[</span><span class="n">mcmc</span><span class="p">]</span>
-<span class="n">nsamp</span>   <span class="o">=</span> <span class="mi">4000</span>
-<span class="n">skip</span>    <span class="o">=</span> <span class="mi">100</span>
-<span class="n">temp</span>    <span class="o">=</span> <span class="mi">2</span>
+<span class="p">;</span><span class="n">maxlike</span> <span class="o">-&gt;</span> <span class="n">Maximum</span> <span class="n">Likelihood</span> <span class="n">Analyzer</span>
+<span class="p">;</span><span class="n">genetic</span><span class="p">,</span> <span class="n">ga_deap</span>
+<span class="n">analyzername</span> <span class="o">=</span> <span class="n">ga_deap</span>
 
-<span class="p">;</span><span class="k">if</span> <span class="n">single</span> <span class="n">cpu</span><span class="p">,</span> <span class="n">otherwise</span> <span class="n">use</span> <span class="n">mpi</span> <span class="o">-</span><span class="n">np</span> <span class="c1">#</span>
-<span class="n">chainno</span> <span class="o">=</span> <span class="mi">1</span>
 
 <span class="p">;</span><span class="n">add</span> <span class="n">derived</span> <span class="n">parameters</span> <span class="p">(</span><span class="kc">True</span><span class="o">/</span><span class="kc">False</span><span class="p">)</span> <span class="p">,</span>
 <span class="p">;</span><span class="n">i</span><span class="o">.</span><span class="n">e</span><span class="o">.</span> <span class="n">Omega_Lambda</span><span class="p">,</span> <span class="n">H0</span><span class="p">,</span> <span class="n">Age</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Universe</span>
-<span class="n">addderived</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">addDerived</span> <span class="o">=</span> <span class="kc">False</span>
 
+
+<span class="p">;</span><span class="n">use</span> <span class="n">neural</span> <span class="n">network</span> <span class="n">to</span> <span class="n">predict</span> <span class="n">likelihoods</span> <span class="p">(</span><span class="kc">True</span><span class="o">/</span><span class="kc">False</span><span class="p">),</span>
+<span class="p">;</span><span class="n">edit</span> <span class="n">block</span> <span class="n">neuralike</span> <span class="n">to</span> <span class="nb">set</span> <span class="n">options</span>
+<span class="n">useNeuralLike</span> <span class="o">=</span> <span class="kc">False</span>
+
+
+<span class="p">[</span><span class="n">mcmc</span><span class="p">]</span>
+<span class="p">;</span><span class="n">Nsamples</span>
+<span class="n">nsamp</span>   <span class="o">=</span> <span class="mi">50000</span>
+
+<span class="p">;</span><span class="n">Burn</span><span class="o">-</span><span class="ow">in</span>
+<span class="n">skip</span>    <span class="o">=</span> <span class="mi">300</span>
+
+<span class="p">;</span><span class="n">temperature</span> <span class="n">at</span> <span class="n">which</span> <span class="n">to</span> <span class="n">sample</span>
+<span class="n">temp</span>    <span class="o">=</span> <span class="mi">2</span>
+
+<span class="p">;</span> <span class="n">Gelman</span><span class="o">-</span><span class="n">Rubin</span> <span class="k">for</span> <span class="n">convergence</span>
+<span class="n">GRstop</span>  <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="p">;</span><span class="n">every</span> <span class="n">number</span> <span class="n">of</span> <span class="n">steps</span> <span class="n">check</span> <span class="n">the</span> <span class="n">GR</span><span class="o">-</span><span class="n">criteria</span>
+<span class="n">checkGR</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="p">;</span><span class="mi">1</span> <span class="k">if</span> <span class="n">single</span> <span class="n">cpu</span> <span class="p">,</span> <span class="n">otherwise</span> <span class="ow">is</span> <span class="n">giving</span> <span class="n">by</span> <span class="n">the</span> <span class="n">nproc</span><span class="o">-&gt;</span> <span class="n">mpi</span> <span class="o">-</span><span class="n">np</span> <span class="c1">#</span>
+<span class="n">chainno</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="p">;</span><span class="n">use</span> <span class="n">mcevidence</span> <span class="n">to</span> <span class="n">compute</span> <span class="n">Bayesinas</span> <span class="n">evidene</span> <span class="n">after</span> <span class="n">posteriors</span> <span class="n">are</span> <span class="n">produed</span>
+<span class="n">evidence</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="p">[</span><span class="n">nested</span><span class="p">]</span>
 <span class="p">;</span><span class="n">engine</span> <span class="n">can</span> <span class="n">be</span> <span class="n">nestle</span> <span class="ow">or</span> <span class="n">dynesty</span>
 <span class="n">engine</span> <span class="o">=</span> <span class="n">dynesty</span>
-
-<span class="p">;</span><span class="n">dynamic</span> <span class="n">option</span> <span class="ow">is</span> <span class="n">only</span> <span class="k">for</span> <span class="n">dynesty</span> <span class="n">engine</span>
-<span class="p">;</span><span class="n">dynamic</span> <span class="ow">and</span> <span class="n">neuralNetwork</span> <span class="n">can</span> <span class="n">be</span> <span class="n">yes</span><span class="o">/</span><span class="n">no</span>
-<span class="n">dynamic</span> <span class="o">=</span> <span class="n">no</span>
-<span class="n">neuralNetwork</span> <span class="o">=</span> <span class="n">no</span>
 
 <span class="p">;</span><span class="nb">type</span><span class="p">:</span> <span class="k">for</span> <span class="n">dynesty</span> <span class="o">-&gt;</span> <span class="p">{</span><span class="s1">&#39;single&#39;</span><span class="p">,</span><span class="s1">&#39;multi&#39;</span><span class="p">,</span> <span class="s1">&#39;balls&#39;</span><span class="p">,</span> <span class="s1">&#39;cubes&#39;</span><span class="p">}</span>
 <span class="p">;</span><span class="nb">type</span> <span class="k">for</span> <span class="n">nestle</span> <span class="o">-&gt;</span> <span class="p">{</span><span class="s1">&#39;single&#39;</span><span class="p">,</span> <span class="s1">&#39;multi&#39;</span><span class="p">}</span>
 <span class="n">nestedType</span> <span class="o">=</span> <span class="n">multi</span>
 
 <span class="p">;</span><span class="n">it</span> <span class="ow">is</span> <span class="n">recommended</span> <span class="n">around</span> <span class="n">nlivepoints</span><span class="o">=</span><span class="mi">50</span><span class="o">*</span><span class="n">ndim</span><span class="p">,</span> <span class="n">recommended</span> <span class="mi">1024</span>
-<span class="n">nlivepoints</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">nlivepoints</span> <span class="o">=</span> <span class="mi">350</span>
 
 
-<span class="p">;</span><span class="n">recommended</span> <span class="mf">0.5</span>
-<span class="n">accuracy</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="p">;</span><span class="n">recommended</span> <span class="mf">0.01</span>
+<span class="n">accuracy</span> <span class="o">=</span> <span class="mf">0.02</span>
 
 <span class="p">;</span><span class="n">u</span> <span class="k">for</span> <span class="n">flat</span><span class="p">(</span><span class="n">uniform</span><span class="p">)</span> <span class="ow">or</span> <span class="n">g</span> <span class="k">for</span> <span class="n">gaussian</span> <span class="n">prior</span>
 <span class="n">priortype</span> <span class="o">=</span> <span class="n">u</span>
 
-<span class="p">;</span><span class="n">nproc</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span><span class="o">//</span><span class="mi">2</span> <span class="n">by</span> <span class="n">default</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="nb">set</span> <span class="k">with</span> <span class="n">another</span> <span class="n">positive</span> <span class="n">integer</span>
-<span class="n">nproc</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="p">;</span><span class="n">when</span> <span class="n">using</span> <span class="n">gaussian</span> <span class="n">prior</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mi">2</span>
 
-<span class="p">;</span><span class="k">if</span> <span class="n">neuralNetwork</span> <span class="o">=</span> <span class="n">yes</span><span class="p">,</span> <span class="n">then</span> <span class="n">you</span> <span class="n">can</span> <span class="nb">set</span><span class="p">:</span>
+
+<span class="p">;</span><span class="k">if</span> <span class="n">nproc</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">uses</span> <span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span><span class="o">//</span><span class="mi">2</span> <span class="n">by</span> <span class="n">default</span><span class="p">,</span>
+<span class="p">;</span><span class="n">you</span> <span class="n">can</span> <span class="nb">set</span> <span class="k">with</span> <span class="n">another</span> <span class="n">positive</span> <span class="n">integer</span>
+<span class="n">nproc</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="p">;</span><span class="n">Produce</span> <span class="n">output</span> <span class="n">on</span> <span class="n">the</span> <span class="n">fly</span>
+<span class="n">showfiles</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="p">;</span><span class="n">dynamic</span> <span class="n">option</span> <span class="ow">is</span> <span class="n">only</span> <span class="k">for</span> <span class="n">dynesty</span> <span class="n">engine</span>
+<span class="p">;</span><span class="n">dynamic</span> <span class="ow">and</span> <span class="n">neuralNetwork</span> <span class="n">can</span> <span class="n">be</span> <span class="kc">False</span><span class="o">/</span><span class="kc">True</span>
+<span class="n">dynamic</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">neuralNetwork</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="p">;</span><span class="k">if</span> <span class="n">neuralNetwork</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">then</span> <span class="n">you</span> <span class="n">can</span> <span class="nb">set</span><span class="p">:</span>
 
 <span class="p">[</span><span class="n">neural</span><span class="p">]</span>
+<span class="p">;</span><span class="n">modified</span> <span class="n">bambi</span>
 <span class="n">split</span> <span class="o">=</span> <span class="mf">0.8</span>
-
-<span class="p">;</span><span class="n">numNeurons</span> <span class="n">of</span> <span class="n">hidden</span> <span class="n">layer</span>
+<span class="p">;</span> <span class="n">keras</span> <span class="ow">or</span> <span class="n">nearestneighbour</span>
+<span class="n">learner</span> <span class="o">=</span> <span class="n">keras</span>
+<span class="p">;</span><span class="nb">all</span> <span class="n">the</span> <span class="n">following</span> <span class="n">options</span> <span class="n">are</span> <span class="n">only</span> <span class="k">for</span> <span class="n">keras</span> <span class="n">learner</span>
+<span class="p">;</span> <span class="n">number</span> <span class="n">of</span> <span class="n">neurons</span> <span class="n">of</span> <span class="n">the</span> <span class="n">three</span> <span class="n">hidden</span> <span class="n">layers</span>
 <span class="n">numNeurons</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="p">;</span> <span class="n">epochs</span> <span class="k">for</span> <span class="n">training</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="p">;</span> <span class="n">number</span> <span class="n">of</span> <span class="n">training</span> <span class="n">points</span>
+<span class="p">;</span><span class="n">ntrain</span> <span class="o">=</span> <span class="n">nlivepoints</span> <span class="n">by</span> <span class="n">default</span>
+<span class="p">;</span><span class="n">dlogz</span> <span class="n">to</span> <span class="n">start</span> <span class="n">to</span> <span class="n">train</span> <span class="n">the</span> <span class="n">neural</span> <span class="n">net</span> <span class="p">(</span><span class="n">we</span> <span class="n">recommend</span> <span class="n">dlogz_start</span> <span class="o">&lt;=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">dlogz_start</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="p">;</span><span class="n">number</span> <span class="n">of</span> <span class="n">nested</span> <span class="p">(</span><span class="n">dynesty</span><span class="p">)</span> <span class="n">iterations</span> <span class="n">to</span> <span class="n">start</span> <span class="n">to</span> <span class="n">train</span> <span class="n">the</span> <span class="n">neural</span> <span class="n">net</span>
+<span class="n">it_to_start_net</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="p">;</span><span class="n">number</span> <span class="n">of</span> <span class="n">iterations</span> <span class="n">to</span> <span class="n">re</span><span class="o">-</span><span class="n">train</span> <span class="n">the</span> <span class="n">neural</span> <span class="n">net</span><span class="o">.</span> <span class="n">By</span> <span class="n">default</span> <span class="n">updInt</span> <span class="o">=</span> <span class="n">nlivepoints</span><span class="p">,</span>
+<span class="p">;</span><span class="n">choose</span> <span class="n">updInt</span> <span class="o">&lt;=</span> <span class="n">nlivepoints</span>
+<span class="p">;</span><span class="n">updInt</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="p">;</span><span class="n">proxy_tolerance</span> <span class="n">uncertainity</span> <span class="n">of</span> <span class="n">the</span> <span class="n">net</span> <span class="n">allowed</span><span class="o">.</span>
+<span class="n">proxy_tolerance</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+<span class="p">[</span><span class="n">neuralike</span><span class="p">]</span>
+<span class="p">;</span><span class="n">neuralike</span> <span class="n">contains</span> <span class="n">options</span> <span class="n">to</span> <span class="n">use</span> <span class="n">a</span> <span class="n">neural</span> <span class="n">network</span> <span class="ow">in</span> <span class="n">likelihood</span> <span class="n">evaluations</span> <span class="n">over</span> <span class="n">the</span> <span class="n">parameter</span> <span class="n">space</span>
+<span class="n">ndivsgrid</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-5</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">psplit</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="p">;</span><span class="n">hidden_layers_neurons</span><span class="p">:</span> <span class="n">number</span> <span class="n">of</span> <span class="n">nodes</span> <span class="n">per</span> <span class="n">layer</span> <span class="n">separated</span> <span class="n">by</span> <span class="n">commas</span>
+<span class="n">hidden_layers_neurons</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span>
+<span class="p">;</span><span class="n">number</span> <span class="n">of</span> <span class="n">procesors</span> <span class="n">to</span> <span class="n">make</span> <span class="n">the</span> <span class="n">grid</span>
+<span class="n">nproc</span> <span class="o">=</span> <span class="mi">5</span>
 
 <span class="p">[</span><span class="n">emcee</span><span class="p">]</span>
-<span class="n">walkers</span> <span class="o">=</span> <span class="mi">200</span>
-<span class="n">burnin</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">samples</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">walkers</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">nsamp</span> <span class="o">=</span> <span class="mi">15000</span>
+
+<span class="n">burnin</span> <span class="o">=</span> <span class="n">x</span>
 <span class="n">nproc</span> <span class="o">=</span> <span class="mi">4</span>
 
-<span class="p">[</span><span class="n">MaxLikeAnalyzer</span><span class="p">]</span>
+
+<span class="p">[</span><span class="n">maxlike</span><span class="p">]</span>
 <span class="p">;</span><span class="n">compute</span> <span class="n">errror</span> <span class="kn">from</span> <span class="nn">Hessian</span> <span class="n">matrix</span>
-<span class="p">;</span><span class="n">Yes</span><span class="o">/</span><span class="n">No</span>
-<span class="n">withErrors</span> <span class="o">=</span> <span class="n">No</span>
+<span class="p">;</span><span class="kc">False</span><span class="o">/</span><span class="kc">True</span>
+<span class="n">compute_errors</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="p">;</span><span class="n">If</span> <span class="n">withErrors</span> <span class="ow">is</span> <span class="kc">True</span>
+<span class="p">;</span><span class="n">plot</span> <span class="n">Fisher</span> <span class="n">matrix</span>
+<span class="n">show_contours</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="p">;</span><span class="n">If</span> <span class="n">showplot</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">,</span> <span class="n">then</span>
+<span class="p">;</span><span class="mi">2</span><span class="n">D</span> <span class="n">plot</span> <span class="k">for</span> <span class="n">the</span> <span class="n">parameters</span><span class="p">:</span>
+<span class="n">plot_par1</span> <span class="o">=</span> <span class="n">h</span>
+<span class="n">plot_par2</span> <span class="o">=</span> <span class="n">Om</span>
 
 <span class="p">;[</span><span class="n">DerivedParameters</span><span class="p">]</span>
-<span class="p">;</span><span class="n">add</span> <span class="n">Derived</span> <span class="n">Parameters</span> <span class="n">to</span> <span class="n">chains</span>
+<span class="n">compute_derived</span> <span class="o">=</span> <span class="kc">True</span>
+
+
 <span class="p">;</span><span class="n">genetic</span> <span class="n">parameters</span>
 
 <span class="p">[</span><span class="n">genetic</span><span class="p">]</span>
 <span class="n">n_individuals</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">n_generations</span> <span class="o">=</span> <span class="mi">500</span>
-<span class="p">;</span><span class="n">selection_method</span> <span class="o">=</span> <span class="p">{</span><span class="n">tournament</span><span class="p">,</span> <span class="n">ruleta</span><span class="p">,</span> <span class="n">rank</span><span class="p">}</span>
+<span class="p">;</span><span class="n">selection_method</span> <span class="o">=</span> <span class="p">{</span><span class="n">tournament</span><span class="p">,</span> <span class="n">roulette</span><span class="p">,</span> <span class="n">rank</span><span class="p">}</span>
 <span class="n">selection_method</span> <span class="o">=</span> <span class="n">tournament</span>
 <span class="p">;</span><span class="n">mutation</span> <span class="n">probability</span>
 <span class="n">mut_prob</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="p">;</span><span class="n">distribution</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span> <span class="s2">&quot;gaussian&quot;</span><span class="p">,</span> <span class="s2">&quot;random&quot;</span><span class="p">}</span>
+<span class="n">distribution</span> <span class="o">=</span> <span class="s2">&quot;uniform&quot;</span>
+<span class="p">;</span><span class="n">media_distribution</span> <span class="p">:</span> <span class="n">media</span> <span class="n">value</span> <span class="k">for</span> <span class="n">gaussian</span> <span class="n">distributions</span>
+<span class="n">media_distribution</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="p">;</span><span class="n">sd_distribution</span> <span class="p">:</span> <span class="n">Standard</span> <span class="n">deviation</span> <span class="k">for</span> <span class="n">gaussian</span> <span class="n">distributions</span>
+<span class="n">sd_distribution</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="p">;</span><span class="n">min_distribution</span> <span class="p">:</span> <span class="n">Minimum</span> <span class="n">value</span> <span class="k">for</span> <span class="n">uniform</span> <span class="n">distributions</span>
+<span class="n">min_distribution</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+<span class="p">;</span><span class="n">max_distribution</span> <span class="p">:</span> <span class="n">Maximum</span> <span class="n">value</span> <span class="k">for</span> <span class="n">uniform</span> <span class="n">distributions</span>
+<span class="n">max_distribution</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="p">;</span><span class="n">stopping_early</span> <span class="p">:</span> <span class="n">It</span> <span class="n">needs</span> <span class="n">a</span> <span class="n">value</span> <span class="k">for</span> <span class="s2">&quot;rounds_stopping&quot;</span> <span class="ow">and</span> <span class="s2">&quot;tolerance_stopping&quot;</span><span class="o">.</span>
+<span class="n">stopping_early</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">;</span><span class="n">rounds_stopping</span> <span class="p">:</span> <span class="n">Rounds</span> <span class="n">to</span> <span class="n">consider</span> <span class="n">to</span> <span class="n">stopping</span> <span class="n">early</span> <span class="k">with</span> <span class="n">the</span> <span class="n">tolerance_stopping</span> <span class="n">value</span><span class="o">.</span>
+<span class="n">rounds_stopping</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="p">;</span><span class="n">tolerance_stopping</span> <span class="p">:</span> <span class="n">Value</span> <span class="n">to</span> <span class="n">stopping</span> <span class="n">early</span> <span class="n">criteria</span><span class="o">.</span>
+<span class="p">;</span><span class="n">This</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">difference</span> <span class="n">between</span> <span class="n">the</span> <span class="n">best</span> <span class="n">fit</span> <span class="k">for</span> <span class="n">the</span>
+<span class="p">;</span><span class="n">latest</span> <span class="n">rounds_stopping</span> <span class="n">generations</span><span class="o">.</span>
+<span class="n">tolerance_stopping</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="p">[</span><span class="n">ga_deap</span><span class="p">]</span>
+<span class="p">;</span><span class="n">Plot</span> <span class="n">Generation</span> <span class="n">vs</span> <span class="n">Fitness</span>
+<span class="n">plot_fitness</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="p">;</span><span class="n">compute</span> <span class="n">errror</span> <span class="kn">from</span> <span class="nn">Hessian</span> <span class="n">matrix</span>
+<span class="p">;</span><span class="kc">False</span><span class="o">/</span><span class="kc">True</span>
+<span class="n">compute_errors</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="p">;</span><span class="n">If</span> <span class="n">withErrors</span> <span class="ow">is</span> <span class="kc">True</span>
+<span class="p">;</span><span class="n">plot</span> <span class="n">Fisher</span> <span class="n">matrix</span>
+<span class="n">show_contours</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="p">;</span><span class="n">If</span> <span class="n">showplot</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">,</span> <span class="n">then</span>
+<span class="p">;</span><span class="mi">2</span><span class="n">D</span> <span class="n">plot</span> <span class="k">for</span> <span class="n">the</span> <span class="n">parameters</span><span class="p">:</span>
+<span class="n">plot_par1</span> <span class="o">=</span> <span class="n">h</span>
+<span class="n">plot_par2</span> <span class="o">=</span> <span class="n">Om</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -416,8 +547,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="plotters.html" class="btn btn-neutral float-right" title="Plotters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="data.html" class="btn btn-neutral float-left" title="Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data.html" class="btn btn-neutral float-right" title="Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="intro.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

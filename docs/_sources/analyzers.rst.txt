@@ -1,15 +1,49 @@
 **Analyzers**
 =============
 
-SimpleMC contains two types of analyzers :
+SimpleMC contains the following analyzers:
 
-   * Metropolis-Hastings.
-      It is implemented in the **MCMCAnalyzer class**.
+.. list-table:: Analyzers
+   :widths: 15 20 25 40
+   :header-rows: 1
 
-   
+   * - Analyzer key
+     - Type
+     - Description
+     - Tasks
+
+   * - mcmc
+     - Bayesian inference
+     - Metropolis-Hastings algorithm
+     - Parameter estimation
+
+   * - nested
+     - Bayesian inference
+     - nested sampling algorithms from dynesty library
+     - Parameter estimation and model comparison
+
+   * - emcee
+     - Bayesian inference
+     - EMCEE algorithm 
+     - Parameter estimation 
+
+   * - MaxLikeAnalyzer
+     - Optimization
+     - L-BFGS-B algorithm
+     - Likelihood maximization
+
+   * - genetic
+     - Optimization
+     - Simple genetic algorithm
+     - Likelihood maximization
+
+   * - ga_deap
+     - Optimization
+     - Collection of genetic algorithms from deap library
+     - Likelihood maximization
 
 
-Also, for a previous quickly test, SuperMC have **MaxAnalyzer** that analyze the most probably values of the parameters.
+We recommend for a previous quickly test, to use an optimizer before an Bayesian inference algorithm.
 
 
 Sampler comparison

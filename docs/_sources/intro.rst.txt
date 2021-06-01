@@ -122,16 +122,12 @@ you must choose an existing directory to save the outputs (chains, summary, and 
 
 .. note::
 
-	* model options:
-		* LCDM, LCDMasslessnu, nuLCDM, NeffLCDM, noradLCDM, nuoLCDM, nuwLCDM, oLCDM, wCDM, waCDM, owCDM, owaCDM, JordiCDM, WeirdCDM, TLight, StepCDM, Spline, PolyCDM, fPolyCDM, Decay, Decay01, Decay05, EarlyDE, EarlyDE_rd_DE, SlowRDE, sline
-
+	* model: visit `Models section <models.html>`_ to see the options.
 
 	* analyzer options: 
 		* mcmc, nested, emcee, MaxLikeAnalyzer, genetic, ga_deap
 
-
-   	* data options (you can combine any of them): 
-   		* HD, BBAO, GBAO, GBAO_no6dF, CMASS, LBAO, LaBAO, LxBAO, MGS, Planck, WMAP, PlRd, WRd, PlDa, PlRdx10, CMBW, SN, SNx10, UnionSN, RiessH0, 6dFGS, dline
+	* data options (you can combine any of them): visit `Data section <data.html>`_ to see the options.
 
 
 ..  _Python script:
