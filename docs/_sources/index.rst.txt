@@ -44,6 +44,7 @@ Index:
 Changelog
 ----------
 
+- **0.9.6 (7/06/2021)** Unify simple and generic models, test generic likelihood.
 - **0.9.5.8 (26/04/2021)** Quintom with coupling and curvature. Beta version of neuralike. Warnings for non-essential libraries.
 - **0.9.5.4 (21/03/2021)** Fixed parameter estimation problem in Summary of nested chains.
 - **0.9.5.2 (07/02/2021)** GA from deap working with fisher matrix for errors.
@@ -68,7 +69,6 @@ Changelog
 TODO
 -----
 
-- To unify GenericModel, SimpleModel and SimpleCosmoModel.
 - Add more DE EoS for comparison, for example, in CPL (owaCDM).
 - Unify pybambi and nerualike. 
 - Neural networks methods with dynesty multiprocessing fails.
