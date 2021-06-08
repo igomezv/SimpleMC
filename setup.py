@@ -1,64 +1,47 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-import sys
+from __future__ import absolute_import
+import io
+import re
 import os
-from setuptools import find_packages
-os.path = ["simplemc"] + os.path
+
 try:
-    from setuptools import setup, Extension
-    setup, Extension
+    from setuptools import setup
 except ImportError:
-    from distutils.core import setup, Extension
-    setup, Extension
-
-from setuptools.command.test import test as TestCommand
-
-class PyTest(TestCommand):
-    def finalize_options(self):
-        TestCommand.finalize_options(self)
-        self.test_args = []
-        self.test_suite = True
-    def run_tests(self):
-        #import here, cause outside the eggs aren't loaded
-        import pytest
-        errno = pytest.main(self.test_args)
-        sys.exit(errno)
+    from distutils.core import setup
 
 
-desc = open("README.rst").read()
-required = ["numpy", "emcee", "scipy", "nestle", "keras", "tensorflow", "matplotlib", 
-            "corner", "getdist"]
-test_requires = ["mock"]
+def find_version():
+    version_file = io.open(os.path.join(os.path.dirname(__file__), 'simplemc')).read()
+    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", version_file, re.M)
+    if version_match:
+        return version_match.group(1)
+    raise RuntimeError("Unable to find version string.")
 
-PACKAGE_PATH = os.path.abspath(os.path.join(__file__, os.pardir))
 
-setup(
-    name="SimpleMC",
-    version='2.0.0',
-    author='JA Vazquez, I Gomez-Vargas, A Slosar',
-    author_email="jvazquez@icf.unam.mx",
-    url="https://github.com/ja-vazquez/SimpleMC",
-    license="GPLv3",
-    # packages=find_packages(PACKAGE_PATH, "Tests"),
-    description="Cosmological parameter estimation with SimpleMC",
-    long_description=desc,
-    install_requires=required,
-    test_requires=test_requires,
-    package_data={"": ["LICENSE"],
-                  'SimpleMC': ['data/*.dat']},
-    include_package_data=True,
-    keywords=["SimpleMC",
-              "parameter estimation",
-              "cosmology",
-              "MCMC"],
-    cmdclass = {'test': PyTest},
-    classifiers=[
-        "Development Status :: 2 - Beta",
-        "Intended Audience :: Science/Research",
-        "Operating System :: OS Independent",
-        "Programming Language :: Python",
-        'Natural Language :: English',
-        'Programming Language :: Python :: 3.6',
-    ],
-)
+setup(name='MCEvidence',
+      version=find_version(),
+      description='SimpleMC cosmological parameter estimation',
+      author='JA Vazquez, I Gomez-Vargas, A Slosar',
+      author_email='javazquez@icf.unam.mx',
+      url="https://github.com/ja-vazquez/SimpleMC",
+      packages=[''],
+      scripts=['simplemc'],
+      # test_suite='example.py',
+      # package_data={'planck_fullgrid_R2': ['AllChains','SingleChains']}
+      install_requires=[
+          'numpy',
+          'deap',
+          "scipy (>=0.11.0)",
+      ],
+
+      classifiers=[
+          "Programming Language :: Python :: 2",
+          'Programming Language :: Python :: 2.7',
+          'Programming Language :: Python :: 3',
+          'Programming Language :: Python :: 3.4',
+          'Programming Language :: Python :: 3.5',
+      ],
+      keywords=['MCMC', 'nested sampling', 'parameter estimation']
+      )
