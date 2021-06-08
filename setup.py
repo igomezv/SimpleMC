@@ -42,7 +42,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     package_data={"": ["README.md", "LICENSE", "AUTHORS.md"]},
-    package_dir={'': 'py/'},
+    package_dir={'': '/'},
     include_package_data=True,
     keywords=["parameter estimatio", "nested sampling", "mcmc", "bayesian"],
     classifiers=["Development Status :: 5 - Production/Stable",
