@@ -24,8 +24,8 @@ You can propose any function that you want. Define your parameters with Paramete
 	model = LCDM
 
 	datasets = generic
-	path_to_data = /home/cosmocicatais/panth15.txt
-	path_to_cov = /home/cosmocicatais/panth15cov.txt
+	path_to_data = path-to-data
+	path_to_cov = path-to-data-cov
 	fn = distance_mod
 	...
 
@@ -35,9 +35,21 @@ You can propose any function that you want. Define your parameters with Paramete
 Without cosmological functions
 -------------------------------
 
-In this case, we need to make a Python script instead to use the ``ini file``.
+In this case, we need to make a Python script instead to use the ``ini file`` and combine the  `simple model independent of any cosmology <simple_model.html#simple-model-independent-of-any-cosmology>`_ with new data
 
 .. code-block:: python
 
-	from simplemc.DriverMC import DriverMC
-	from simplemc.cosmo.Parameter import Parameter
+    m = Parameter("m", 0, 0.05, (0, 0.1), "m_0")
+    b = Parameter("b", 3, 0.05, (0, 5), "b_0")
+
+    # create a list with your parameters objects
+    parameterlist = [m, b]
+
+    my_model = 'm*x+b'
+
+    analyzer = DriverMC(model='simple', datasets='generic', analyzername='mcmc',
+                        custom_parameters=parameterlist, custom_function=my_model, 
+                        path_to_data='path-to-data', path_to_cov='path_to_data_cov',
+                        fn='generic')
+
+    analyzer.executer(nsamp=1000)
