@@ -14,7 +14,7 @@ Two options
 From ini file with the existing cosmological functions
 -------------------------------------------------------
 
-You can propose any function that you want. Define your parameters with Parameter 
+If you want to use external data with an existing ``SimpleMC`` model, you can set it in the ``ini file`` using ``h``, ``fs8`` or ``distance_mod`` cosmological functions in the key ``fn``:
 
 .. code-block:: bash
 
