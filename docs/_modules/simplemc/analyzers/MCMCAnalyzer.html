@@ -94,7 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../models.html"><strong>Models</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../analyzers.html"><strong>Analyzers</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../plotters.html"><strong>Plotters</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Citation.html">Citation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../API.html">API</a></li>
 </ul>
@@ -177,13 +177,13 @@
 
 <span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
 
-<span class="c1"># comm = MPI.COMM_WORLD</span>
-<span class="c1"># name = MPI.Get_processor_name()</span>
-<span class="c1">#</span>
-<span class="c1">#</span>
-<span class="c1"># print (&quot;Hello, World! &quot;</span>
-<span class="c1">#        &quot;I am process %d of %d on %s&quot; %</span>
-<span class="c1">#        (comm.rank, comm.size, name))</span>
+<span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">Get_processor_name</span><span class="p">()</span>
+
+
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Hello, World! &quot;</span>
+        <span class="s2">&quot;I am process </span><span class="si">%d</span><span class="s2"> of </span><span class="si">%d</span><span class="s2"> on </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+        <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span><span class="p">,</span> <span class="n">comm</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
 
 <div class="viewcode-block" id="MCMCAnalyzer"><a class="viewcode-back" href="../../../API.html#simplemc.analyzers.MCMCAnalyzer.MCMCAnalyzer">[docs]</a><span class="k">class</span> <span class="nc">MCMCAnalyzer</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>

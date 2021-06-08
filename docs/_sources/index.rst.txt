@@ -34,7 +34,7 @@ Index:
 
    plotters
 
-   examples
+   tutorials
 
    Citation
 
