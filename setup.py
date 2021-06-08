@@ -1,47 +1,56 @@
 #!/usr/bin/env python
-# encoding: utf-8
+# -*- coding: utf-8 -*-
 
-from __future__ import absolute_import
-import io
-import re
 import os
+import re
 
 try:
     from setuptools import setup
+
+    setup
 except ImportError:
     from distutils.core import setup
 
+    setup
 
-def find_version():
-    version_file = io.open(os.path.join(os.path.dirname(__file__), 'simplemc')).read()
-    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", version_file, re.M)
-    if version_match:
-        return version_match.group(1)
-    raise RuntimeError("Unable to find version string.")
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
+init_string = open(os.path.join(dir_path, 'simplemc', '__init__.py')).read()
+VERS = r"^__version__ = ['\"]([^'\"]*)['\"]"
+mo = re.search(VERS, init_string, re.M)
+__version__ = mo.group(1)
 
-setup(name='MCEvidence',
-      version=find_version(),
-      description='SimpleMC cosmological parameter estimation',
-      author='JA Vazquez, I Gomez-Vargas, A Slosar',
-      author_email='javazquez@icf.unam.mx',
-      url="https://github.com/ja-vazquez/SimpleMC",
-      packages=[''],
-      scripts=['simplemc'],
-      # test_suite='example.py',
-      # package_data={'planck_fullgrid_R2': ['AllChains','SingleChains']}
-      install_requires=[
-          'numpy',
-          'deap',
-          "scipy (>=0.11.0)",
-      ],
+try:
+    import pypandoc
 
-      classifiers=[
-          "Programming Language :: Python :: 2",
-          'Programming Language :: Python :: 2.7',
-          'Programming Language :: Python :: 3',
-          'Programming Language :: Python :: 3.4',
-          'Programming Language :: Python :: 3.5',
-      ],
-      keywords=['MCMC', 'nested sampling', 'parameter estimation']
-      )
+    with open('README.md', 'r') as f:
+        txt = f.read()
+    txt = re.sub('<[^<]+>', '', txt)
+    long_description = pypandoc.convert(txt, 'rst', 'md')
+except ImportError:
+    long_description = open('README.md').read()
+
+setup(
+    name="simplemc",
+    url="https://github.com/ja-vazquez/SimpleMC",
+    version=__version__,
+    author="JA Vazquez, I Gomez-Vargas, A Solosar",
+    author_email="javazquez@icf.unam.mx",
+    packages=["simplemc"],
+    license="MIT",
+    description=("Cosmological parameter estimation."),
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    package_data={"": ["README.md", "LICENSE", "AUTHORS.md"]},
+    package_dir={'': 'py/'},
+    include_package_data=True,
+    keywords=["parameter estimatio", "nested sampling", "mcmc", "bayesian"],
+    classifiers=["Development Status :: 5 - Production/Stable",
+                 "License :: OSI Approved :: MIT License",
+                 "Natural Language :: English",
+                 "Programming Language :: Python :: 2.7",
+                 "Programming Language :: Python :: 3.6",
+                 "Operating System :: OS Independent",
+                 "Topic :: Scientific/Engineering",
+                 "Intended Audience :: Science/Research"]
+)
