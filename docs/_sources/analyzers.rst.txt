@@ -19,17 +19,23 @@ SimpleMC contains the following analyzers:
 
    * - nested
      - Bayesian inference
-     - nested sampling algorithms from dynesty library
+     - Nested sampling algorithms from Dynesty library 
+
+       [arXiv:1904.02180]
      - Parameter estimation and model comparison
 
    * - emcee
      - Bayesian inference
-     - EMCEE algorithm 
+     - EMCEE algorithm
+
+       [arXiv:1202.3665]
      - Parameter estimation 
 
    * - MaxLikeAnalyzer
      - Optimization
      - L-BFGS-B algorithm
+       
+       https://docs.scipy.org/doc/scipy/reference/optimize.minimize-lbfgsb.html
      - Likelihood maximization
 
    * - genetic
@@ -39,7 +45,14 @@ SimpleMC contains the following analyzers:
 
    * - ga_deap
      - Optimization
-     - Collection of genetic algorithms from deap library
+     - Collection of genetic algorithms from DEAP library
+
+       Fortin, F. A., et al (2012). 
+
+       DEAP: Evolutionary algorithms made easy. 
+
+       The Journal of Machine Learning Research, 13(1), 2171-2175.
+
      - Likelihood maximization
 
 

@@ -1,9 +1,43 @@
 How to use an external dataset?
 ===============================
 
+Two options
+
+  * :ref:`simple_likelihood`
+
+  * :ref:`generic_likelihood`
 
 
-Generic likelihood
-----------------------
+
+..  _simple_likelihood:
+
+From ini file with the existing cosmological functions
+-------------------------------------------------------
 
 You can propose any function that you want. Define your parameters with Parameter 
+
+.. code-block:: bash
+
+	[custom]
+	...
+
+	model = LCDM
+
+	datasets = generic
+	path_to_data = /home/cosmocicatais/panth15.txt
+	path_to_cov = /home/cosmocicatais/panth15cov.txt
+	fn = distance_mod
+	...
+
+..  _generic_likelihood:
+
+
+Without cosmological functions
+-------------------------------
+
+In this case, we need to make a Python script instead to use the ``ini file``.
+
+.. code-block:: python
+
+	from simplemc.DriverMC import DriverMC
+	from simplemc.cosmo.Parameter import Parameter

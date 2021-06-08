@@ -83,6 +83,3 @@
      
    * - SlowRDE
      - 
-
-   * - sline
-     - straight line

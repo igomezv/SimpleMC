@@ -99,7 +99,8 @@
 <li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="simple_model.html">How to create a new model</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">How to use an external dataset?</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#generic-likelihood">Generic likelihood</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#from-ini-file-with-the-existing-cosmological-functions">From ini file with the existing cosmological functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#without-cosmological-functions">Without cosmological functions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
@@ -178,9 +179,36 @@
             
   <div class="section" id="how-to-use-an-external-dataset">
 <h1>How to use an external dataset?<a class="headerlink" href="#how-to-use-an-external-dataset" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="generic-likelihood">
-<h2>Generic likelihood<a class="headerlink" href="#generic-likelihood" title="Permalink to this headline">¶</a></h2>
+<p>Two options</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#simple-likelihood"><span class="std std-ref">From ini file with the existing cosmological functions</span></a></p></li>
+<li><p><a class="reference internal" href="#generic-likelihood"><span class="std std-ref">Without cosmological functions</span></a></p></li>
+</ul>
+</div></blockquote>
+<div class="section" id="from-ini-file-with-the-existing-cosmological-functions">
+<span id="simple-likelihood"></span><h2>From ini file with the existing cosmological functions<a class="headerlink" href="#from-ini-file-with-the-existing-cosmological-functions" title="Permalink to this headline">¶</a></h2>
 <p>You can propose any function that you want. Define your parameters with Parameter</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
+...
+
+<span class="nv">model</span> <span class="o">=</span> LCDM
+
+<span class="nv">datasets</span> <span class="o">=</span> generic
+<span class="nv">path_to_data</span> <span class="o">=</span> /home/cosmocicatais/panth15.txt
+<span class="nv">path_to_cov</span> <span class="o">=</span> /home/cosmocicatais/panth15cov.txt
+<span class="nv">fn</span> <span class="o">=</span> distance_mod
+...
+</pre></div>
+</div>
+</div>
+<div class="section" id="without-cosmological-functions">
+<span id="generic-likelihood"></span><h2>Without cosmological functions<a class="headerlink" href="#without-cosmological-functions" title="Permalink to this headline">¶</a></h2>
+<p>In this case, we need to make a Python script instead to use the <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">simplemc.DriverMC</span> <span class="kn">import</span> <span class="n">DriverMC</span>
+<span class="kn">from</span> <span class="nn">simplemc.cosmo.Parameter</span> <span class="kn">import</span> <span class="n">Parameter</span>
+</pre></div>
+</div>
 </div>
 </div>
 
