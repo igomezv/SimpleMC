@@ -40,7 +40,9 @@ Define a method that reads a list of parameters,
 
 .. code-block:: python
 
-    my_model = 'm*x+b'
+    def my_model(parameterlist, x):
+        m, b = parameterlist
+        return m*x+b
 
 Use SimpleMC as usually, but with ``model = simple``
 
@@ -57,7 +59,7 @@ Use SimpleMC as usually, but with ``model = simple``
 Simple cosmological model based on LCDM
 -----------------------------------------
 
-Now we use ``model = simple_cosmo`` and we can use the LCDM parameters in the expresion of the model (Ocb, Omrad, Om, h and NuContrib) and this expression must be in terms of a (scale factor). For example:
+Now we use ``model = simple_cosmo`` and we can use the LCDM parameters in the expresion of the model (Ocb, Omrad, Om, Ombh2, h and NuContrib) and add extra parameters. This expression must be in terms of a (scale factor) and definied in a string. For example:
 
 .. code-block:: python
 
