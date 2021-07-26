@@ -1,9 +1,0 @@
-How to use an external dataset?
-===============================
-
-
-
-Generic likelihood
-----------------------
-
-You can propose any function that you want. Define your parameters with Parameter 

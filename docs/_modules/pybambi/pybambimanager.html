@@ -20,11 +20,20 @@
   <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
   
     
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'latest',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -83,11 +92,17 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html#general-flow">General flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../samplers.html">Samplers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Toy Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Run.html"><strong>Run modules</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../likelihoods.html"><strong>Likelihoods</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../models.html"><strong>Models</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nested_samplers.html"><strong>Nested samplers</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../data.html"><strong>Data</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../plotters.html"><strong>Plotters</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../API.html">API</a></li>
 </ul>
 
             
@@ -156,19 +171,22 @@
 <span class="sd">Author: Pat Scott (p.scott@imperial.ac.uk)</span>
 <span class="sd">Date: Feb 2019</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">unicode_literals</span><span class="p">,</span> <span class="n">print_function</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">unicode_literals</span><span class="p">,</span> <span class="n">print_function</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="c1">#sys.path=[&quot;neuralnetworks&quot;,&quot;../neuralnetworks&quot;]+sys.path</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;neuralnetworks&quot;</span><span class="p">,</span><span class="s2">&quot;../neuralnetworks&quot;</span><span class="p">]</span><span class="o">+</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">kerasnet</span> <span class="kn">import</span> <span class="n">KerasNetInterpolation</span>
-<span class="kn">from</span> <span class="nn">nearestneighbour</span> <span class="kn">import</span> <span class="n">NearestNeighbourInterpolation</span>
+<span class="c1">#from neuralnetworks.kerasnet import KerasNetInterpolation</span>
+<span class="c1">#from neuralnetworks.nearestneighbour \</span>
+<span class="c1">#        import NearestNeighbourInterpolation</span>
+<span class="kn">from</span> <span class="nn">kerasnet</span> <span class="k">import</span> <span class="n">KerasNetInterpolation</span>
+<span class="kn">from</span> <span class="nn">nearestneighbour</span> <span class="k">import</span> <span class="n">NearestNeighbourInterpolation</span>
 <span class="c1">#</span>
 <span class="kn">import</span> <span class="nn">keras.models</span>
 
 
-<div class="viewcode-block" id="BambiManager"><a class="viewcode-back" href="../../API.html#pybambi.pybambimanager.BambiManager">[docs]</a><span class="k">class</span> <span class="nc">BambiManager</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="BambiManager"><a class="viewcode-back" href="../../nested_samplers.html#pybambi.pybambimanager.BambiManager">[docs]</a><span class="k">class</span> <span class="nc">BambiManager</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Does all the talking for BAMBI.</span>
 
 <span class="sd">    Takes a new set of training data from the dumper and trains (or retrains) a</span>
@@ -182,7 +200,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loglikelihood</span><span class="p">,</span> <span class="n">learner</span><span class="p">,</span> <span class="n">proxy_tolerance</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loglikelihood</span><span class="p">,</span> <span class="n">learner</span><span class="p">,</span> <span class="n">proxy_tolerance</span><span class="p">,</span>
                  <span class="n">failure_tolerance</span><span class="p">,</span> <span class="n">ntrain</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Construct bambi object.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">proxy_tolerance</span> <span class="o">=</span> <span class="n">proxy_tolerance</span>
@@ -194,7 +212,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_proxy_trained</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">old_learners</span> <span class="o">=</span> <span class="p">[]</span>
 
-<div class="viewcode-block" id="BambiManager.make_learner"><a class="viewcode-back" href="../../API.html#pybambi.pybambimanager.BambiManager.make_learner">[docs]</a>    <span class="k">def</span> <span class="nf">make_learner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">loglikes</span><span class="p">):</span>
+<div class="viewcode-block" id="BambiManager.make_learner"><a class="viewcode-back" href="../../nested_samplers.html#pybambi.pybambimanager.BambiManager.make_learner">[docs]</a>    <span class="k">def</span> <span class="nf">make_learner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">loglikes</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Construct a Predictor.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_learner</span> <span class="o">==</span> <span class="s1">&#39;keras&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">KerasNetInterpolation</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">loglikes</span><span class="p">)</span>
@@ -206,7 +224,7 @@
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;learner </span><span class="si">%s</span><span class="s1"> is not implemented.&#39;</span>
                                       <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_learner</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BambiManager.dumper"><a class="viewcode-back" href="../../API.html#pybambi.pybambimanager.BambiManager.dumper">[docs]</a>    <span class="k">def</span> <span class="nf">dumper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">live_params</span><span class="p">,</span> <span class="n">live_loglks</span><span class="p">,</span> <span class="n">dead_params</span><span class="p">,</span> <span class="n">dead_loglks</span><span class="p">):</span>
+<div class="viewcode-block" id="BambiManager.dumper"><a class="viewcode-back" href="../../nested_samplers.html#pybambi.pybambimanager.BambiManager.dumper">[docs]</a>    <span class="k">def</span> <span class="nf">dumper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">live_params</span><span class="p">,</span> <span class="n">live_loglks</span><span class="p">,</span> <span class="n">dead_params</span><span class="p">,</span> <span class="n">dead_loglks</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Respond to signal from nested sampler.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_proxy_trained</span><span class="p">:</span>
             <span class="n">params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">live_params</span><span class="p">,</span> <span class="n">dead_params</span><span class="p">))</span>
@@ -218,7 +236,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unable to use proxy&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BambiManager.loglikelihood"><a class="viewcode-back" href="../../API.html#pybambi.pybambimanager.BambiManager.loglikelihood">[docs]</a>    <span class="k">def</span> <span class="nf">loglikelihood</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+<div class="viewcode-block" id="BambiManager.loglikelihood"><a class="viewcode-back" href="../../nested_samplers.html#pybambi.pybambimanager.BambiManager.loglikelihood">[docs]</a>    <span class="k">def</span> <span class="nf">loglikelihood</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Bambi Proxy wrapper for original loglikelihood.&quot;&quot;&quot;</span>
         <span class="c1"># Short circuit to the full likelihood if proxy not yet fully trained</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_proxy_trained</span><span class="p">:</span>
@@ -239,7 +257,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_proxy_trained</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_loglikelihood</span><span class="p">(</span><span class="n">params</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BambiManager.train_new_learner"><a class="viewcode-back" href="../../API.html#pybambi.pybambimanager.BambiManager.train_new_learner">[docs]</a>    <span class="k">def</span> <span class="nf">train_new_learner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">loglikes</span><span class="p">):</span>
+<div class="viewcode-block" id="BambiManager.train_new_learner"><a class="viewcode-back" href="../../nested_samplers.html#pybambi.pybambimanager.BambiManager.train_new_learner">[docs]</a>    <span class="k">def</span> <span class="nf">train_new_learner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">loglikes</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Train a new Predictor.&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">old_learners</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_learner</span><span class="p">)</span>

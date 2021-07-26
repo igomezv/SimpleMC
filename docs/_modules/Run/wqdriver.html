@@ -20,11 +20,20 @@
   <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
   
     
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'latest',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -83,11 +92,17 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html#general-flow">General flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../samplers.html">Samplers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Toy Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Run.html"><strong>Run modules</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../likelihoods.html"><strong>Likelihoods</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../models.html"><strong>Models</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nested_samplers.html"><strong>Nested samplers</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../data.html"><strong>Data</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../plotters.html"><strong>Plotters</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../API.html">API</a></li>
 </ul>
 
             
@@ -152,48 +167,41 @@
             
   <h1>Source code for Run.wqdriver</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+<span class="c1">## this scripts runs everything on the bnl cluster</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span><span class="nn">time</span>
 
-<span class="c1"># this scripts runs everything on the bnl cluster</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">time</span>
-
-<span class="c1"># datasetl=[&#39;BBAO&#39;,&#39;GBAO&#39;,&#39;GBAO_no6dF&#39;,&#39;LBAO&#39;,&#39;LBAO+CMBP&#39;,&#39;LBAO+CMBW&#39;,&#39;GBAO+CMBP&#39;,&#39;GBAO+CMBW&#39;,</span>
+<span class="c1">#datasetl=[&#39;BBAO&#39;,&#39;GBAO&#39;,&#39;GBAO_no6dF&#39;,&#39;LBAO&#39;,&#39;LBAO+CMBP&#39;,&#39;LBAO+CMBW&#39;,&#39;GBAO+CMBP&#39;,&#39;GBAO+CMBW&#39;,</span>
 <span class="c1">#         &#39;BBAO+CMBP&#39;,&#39;BBAO+CMBW&#39;,&#39;BBAO+SN&#39;,&#39;BBAO+SN+RiessH0&#39;,&#39;SN&#39;,&#39;SN+CMBW&#39;,&#39;SN+CMBP&#39;,</span>
 <span class="c1">#         &#39;BBAO+SN+CMBP&#39;,&#39;BBAO+SN+CMBW&#39;, &#39;GBAO+SN+cCMBP&#39;]</span>
 
 
-<span class="c1"># removed JordiCDM for the time being</span>
-<span class="n">modell</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;LCDM&#39;</span><span class="p">,</span> <span class="s1">&#39;oLCDM&#39;</span><span class="p">,</span> <span class="s1">&#39;wCDM&#39;</span><span class="p">,</span> <span class="s1">&#39;owCDM&#39;</span><span class="p">,</span> <span class="s1">&#39;waCDM&#39;</span><span class="p">,</span>
-          <span class="s1">&#39;owaCDM&#39;</span><span class="p">,</span> <span class="s1">&#39;PolyCDM&#39;</span><span class="p">,</span> <span class="s1">&#39;LCDMmasslessnu&#39;</span><span class="p">,</span> <span class="s1">&#39;nuLCDM&#39;</span><span class="p">]</span>
+<span class="c1">## removed JordiCDM for the time being</span>
+<span class="n">modell</span><span class="o">=</span> <span class="p">[</span><span class="s1">&#39;LCDM&#39;</span><span class="p">,</span><span class="s1">&#39;oLCDM&#39;</span><span class="p">,</span><span class="s1">&#39;wCDM&#39;</span><span class="p">,</span><span class="s1">&#39;owCDM&#39;</span><span class="p">,</span><span class="s1">&#39;waCDM&#39;</span><span class="p">,</span><span class="s1">&#39;owaCDM&#39;</span><span class="p">,</span><span class="s1">&#39;PolyCDM&#39;</span><span class="p">,</span><span class="s1">&#39;LCDMmasslessnu&#39;</span><span class="p">,</span><span class="s1">&#39;nuLCDM&#39;</span><span class="p">]</span> 
 
+<div class="viewcode-block" id="wqsubmit"><a class="viewcode-back" href="../../Run.html#Run.wqdriver.wqsubmit">[docs]</a><span class="k">def</span> <span class="nf">wqsubmit</span><span class="p">(</span><span class="n">prefact</span><span class="p">,</span><span class="n">model</span><span class="p">,</span><span class="n">datasets</span><span class="p">,</span><span class="n">nchains</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">nsamp</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span><span class="n">chainsdir</span><span class="o">=</span><span class="s2">&quot;chains&quot;</span><span class="p">):</span>
+  <span class="c1"># run three chains</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nchains</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
 
-<div class="viewcode-block" id="wqsubmit"><a class="viewcode-back" href="../../API.html#Run.wqdriver.wqsubmit">[docs]</a><span class="k">def</span> <span class="nf">wqsubmit</span><span class="p">(</span><span class="n">prefact</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">nchains</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">nsamp</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">chainsdir</span><span class="o">=</span><span class="s2">&quot;chains&quot;</span><span class="p">):</span>
-    <span class="c1"># run three chains</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nchains</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-
-        <span class="n">comd</span> <span class="o">=</span> <span class="s2">&quot;Run/driver.py </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="si">%i</span><span class="s2"> </span><span class="si">%i</span><span class="s2"> </span><span class="si">%i</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
-            <span class="n">prefact</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">nsamp</span><span class="o">/</span><span class="mi">100</span><span class="p">),</span> <span class="n">nsamp</span><span class="p">,</span> <span class="n">chainsdir</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">comd</span><span class="p">)</span>
-        <span class="n">nm</span> <span class="o">=</span> <span class="n">model</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="n">prefact</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="n">datasets</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-        <span class="n">wqcom</span> <span class="o">=</span> <span class="s1">&#39;wq sub -r job_name:</span><span class="si">%s</span><span class="s1"> -c &quot;</span><span class="si">%s</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">nm</span><span class="p">,</span> <span class="n">comd</span><span class="p">)</span>
-        <span class="c1">#os.system(&quot;nohup %s&amp;&quot;%(wqcom))</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&quot;nohup </span><span class="si">%s</span><span class="s2"> &gt;</span><span class="si">%s</span><span class="s2"> 2&gt;</span><span class="si">%s</span><span class="s2"> &amp;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">wqcom</span><span class="p">,</span> <span class="n">chainsdir</span> <span class="o">+</span>
-                                           <span class="s1">&#39;/logs/&#39;</span><span class="o">+</span><span class="n">nm</span><span class="o">+</span><span class="s1">&#39;.log&#39;</span><span class="p">,</span> <span class="n">chainsdir</span><span class="o">+</span><span class="s1">&#39;/logs/&#39;</span><span class="o">+</span><span class="n">nm</span><span class="o">+</span><span class="s1">&#39;.err&#39;</span><span class="p">))</span>
-        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span></div>
-
+    <span class="n">comd</span> <span class="o">=</span> <span class="s2">&quot;Run/driver.py </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="si">%i</span><span class="s2"> </span><span class="si">%i</span><span class="s2"> </span><span class="si">%i</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">prefact</span><span class="p">,</span><span class="n">model</span><span class="p">,</span><span class="n">datasets</span><span class="p">,</span><span class="n">i</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="n">nsamp</span><span class="o">/</span><span class="mi">100</span><span class="p">),</span> <span class="n">nsamp</span><span class="p">,</span> <span class="n">chainsdir</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">comd</span><span class="p">)</span>
+    <span class="n">nm</span><span class="o">=</span><span class="n">model</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="n">prefact</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="n">datasets</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">wqcom</span><span class="o">=</span><span class="s1">&#39;wq sub -r job_name:</span><span class="si">%s</span><span class="s1"> -c &quot;</span><span class="si">%s</span><span class="s1">&quot;&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">nm</span><span class="p">,</span><span class="n">comd</span><span class="p">)</span>
+    <span class="c1">#os.system(&quot;nohup %s&amp;&quot;%(wqcom))</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&quot;nohup </span><span class="si">%s</span><span class="s2"> &gt;</span><span class="si">%s</span><span class="s2"> 2&gt;</span><span class="si">%s</span><span class="s2"> &amp;&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">wqcom</span><span class="p">,</span><span class="n">chainsdir</span><span class="o">+</span><span class="s1">&#39;/logs/&#39;</span><span class="o">+</span><span class="n">nm</span><span class="o">+</span><span class="s1">&#39;.log&#39;</span><span class="p">,</span><span class="n">chainsdir</span><span class="o">+</span><span class="s1">&#39;/logs/&#39;</span><span class="o">+</span><span class="n">nm</span><span class="o">+</span><span class="s1">&#39;.err&#39;</span><span class="p">))</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span></div>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;all&#39;</span><span class="p">:</span>
-        <span class="n">modell</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;all&#39;</span><span class="p">:</span>
-        <span class="n">datasetl</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;all&#39;</span><span class="p">:</span>
+          <span class="n">modell</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">!=</span><span class="s1">&#39;all&#39;</span><span class="p">:</span>
+          <span class="n">datasetl</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">modell</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">datasets</span> <span class="ow">in</span> <span class="n">datasetl</span><span class="p">:</span>
-            <span class="n">prefactl</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;phy&#39;</span><span class="p">]</span>
-            <span class="k">for</span> <span class="n">prefact</span> <span class="ow">in</span> <span class="n">prefactl</span><span class="p">:</span>
-                <span class="n">wqsubmit</span><span class="p">(</span><span class="n">prefact</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">datasets</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">modell</span><span class="p">:</span>
+      <span class="k">for</span> <span class="n">datasets</span> <span class="ow">in</span> <span class="n">datasetl</span><span class="p">:</span>
+        <span class="n">prefactl</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;phy&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">prefact</span> <span class="ow">in</span> <span class="n">prefactl</span><span class="p">:</span>
+          <span class="n">wqsubmit</span> <span class="p">(</span><span class="n">prefact</span><span class="p">,</span><span class="n">model</span><span class="p">,</span><span class="n">datasets</span><span class="p">)</span>
 </pre></div>
 
            </div>

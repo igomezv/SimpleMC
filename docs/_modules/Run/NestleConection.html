@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Run.NestleConection &mdash; SuperMC latest documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'latest',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> SuperMC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                latest
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html#general-flow">General flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../samplers.html">Samplers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Toy Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Run.html"><strong>Run modules</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../likelihoods.html"><strong>Likelihoods</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../models.html"><strong>Models</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nested_samplers.html"><strong>Nested samplers</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data.html"><strong>Data</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../plotters.html"><strong>Plotters</strong></a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SuperMC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>Run.NestleConection</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for Run.NestleConection</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module processes the samples from a nested sampler and prints, saves chains in a text file </span>
+<span class="sd">and creates a param file.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;pybambi&quot;</span><span class="p">,</span><span class="s2">&quot;../pybambi&quot;</span><span class="p">]</span><span class="o">+</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span>
+<span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">path</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="k">import</span> <span class="n">remove</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">nestle</span>
+
+
+<div class="viewcode-block" id="printNestle"><a class="viewcode-back" href="../../nested_samplers.html#Run.NestleConection.printNestle">[docs]</a><span class="k">def</span> <span class="nf">printNestle</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="n">dims</span><span class="p">,</span><span class="n">listParameters</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Print the results of parameter estimation with Nestle samplers&quot;&quot;&quot;</span>
+    <span class="n">p</span><span class="p">,</span> <span class="n">cov</span> <span class="o">=</span> <span class="n">nestle</span><span class="o">.</span><span class="n">mean_and_cov</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">samples</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span>
+    <span class="n">outtext</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dims</span><span class="p">):</span>
+        <span class="n">outtext</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> = </span><span class="si">%5f</span><span class="s2"> +/- </span><span class="si">%5f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">listParameters</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cov</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">])))</span>
+        <span class="c1">#print(&quot;%s = %5f +/- %5f&quot;%(listParameters[i],p[i], np.sqrt(cov[i, i])))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">outtext</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">outtext</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="saveChainNestle"><a class="viewcode-back" href="../../nested_samplers.html#Run.NestleConection.saveChainNestle">[docs]</a><span class="k">def</span> <span class="nf">saveChainNestle</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="n">skip</span><span class="p">,</span><span class="n">outputname</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This generates an output Simple(cosmo)MC style for Nestle Samplers&quot;&quot;&quot;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">outputname</span><span class="p">)):</span>
+    	<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;An existing file with the same name has been deleted.&quot;</span><span class="p">,</span> <span class="n">outputname</span><span class="p">)</span>
+    	<span class="n">remove</span><span class="p">(</span><span class="n">outputname</span><span class="p">)</span>
+
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">outputname</span><span class="p">,</span><span class="s1">&#39;a+&#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">skip</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">samples</span><span class="p">)):</span>
+        <span class="n">strweights</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;]&#39;</span><span class="p">)</span>
+        <span class="n">strlogl</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">result</span><span class="o">.</span><span class="n">logl</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;]&#39;</span><span class="p">)</span>
+        <span class="n">strsamples</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">samples</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;]&#39;</span><span class="p">)</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">strweights</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="o">+</span><span class="n">strlogl</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="o">+</span><span class="n">strsamples</span>
+        <span class="n">nrow</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="n">row</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">nrow</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="c1">#f.write(strweights+&#39; &#39;+strlogl+&#39; &#39;+strsamples+&#39;\n&#39;)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="paramFiles"><a class="viewcode-back" href="../../nested_samplers.html#Run.NestleConection.paramFiles">[docs]</a><span class="k">def</span> <span class="nf">paramFiles</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">outputname</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This method writes the .paramnames file with theirs LaTeX names.&quot;&quot;&quot;</span>
+    <span class="n">cpars</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">freeParameters</span><span class="p">()</span>
+    <span class="n">parfile</span> <span class="o">=</span> <span class="n">outputname</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;.paramnames&quot;</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">parfile</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Existing parameters file!&quot;</span><span class="p">)</span>
+    
+    <span class="n">fpar</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">parfile</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>   
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">cpars</span><span class="p">:</span>
+        <span class="n">fpar</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\t\t\t</span><span class="s2">&quot;</span><span class="o">+</span><span class="n">p</span><span class="o">.</span><span class="n">Ltxname</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">fpar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, A Slosar, JA Vazquez, I Gomez-Vargas
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
