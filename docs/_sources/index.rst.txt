@@ -14,13 +14,13 @@ You can visit the `GitHub code repository <https://github.com/ja-vazquez/SimpleM
 
 Please read the `introduction <intro.html>`_ section where you can see the `requirements <intro.html#requirements>`_  and a simple `quick start <intro.html#quick-start>`_.
 
-In ``SimpleMC`` we use amazing external codes, please if you consider pertinent cite them, go to the `citation  section <Citation.html#cite-external-codes>`_ to details. 
+``SimpleMC`` uses amazing external codes, please if you consider pertinent cite them, go to the `citation  section <Citation.html#cite-external-codes>`_ to details. 
 
-Index:
+Index
 -------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    intro
    
@@ -60,8 +60,8 @@ Changelog
 - **0.8.0 (01/09/2014)** Initial version.
 
 
-TODO
------
+TO DO
+------
 
 - Add more DE EoS for comparison, for example, in CPL (owaCDM).
 - Unify pybambi and nerualike. 

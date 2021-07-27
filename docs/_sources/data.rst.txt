@@ -3,7 +3,7 @@
 
 Previously, in `Quick start <intro.html#quick-start>`_ and `Customize ini file <inifile.html>`_, we  display all the options to datasets. Now, we mention in what consit all of them. The data avaiable in SimpleMC is the following table.
 
-.. list-table:: Datasets in ``SimpleMC``
+.. list-table:: 
    :widths: 25 25 50
    :header-rows: 1
 

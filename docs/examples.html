@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Examples &mdash; SimpleMC latest documentation</title>
+  <title>Toy models &mdash; SimpleMC latest documentation</title>
   
 
   
@@ -92,18 +92,14 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inifile.html">Customize ini file</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data.html"><strong>Data</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="models.html"><strong>Models</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="analyzers.html"><strong>Analyzers</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="plotters.html"><strong>Plotters</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">First steps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html"><strong>Structure</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html"><strong>Tools</strong></a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="simple_model.html">How to create a new model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="simple_likelihood.html">How to use an external dataset?</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Examples</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#toy-models">Toy Models</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#other-toy-models">Other toy models:</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Toy models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#other-toy-models">Other toy models</a></li>
 </ul>
 </li>
 </ul>
@@ -160,7 +156,7 @@
         
           <li><a href="tutorials.html">Tutorials</a> &raquo;</li>
         
-      <li>Examples</li>
+      <li>Toy models</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -179,17 +175,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="examples">
-<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="toy-models">
-<h2>Toy Models<a class="headerlink" href="#toy-models" title="Permalink to this headline">¶</a></h2>
-<p>In the directory <strong>SuperMC/Run</strong> you can run a set of toy models in order to test the nested samplers.</p>
+  <div class="section" id="toy-models">
+<h1>Toy models<a class="headerlink" href="#toy-models" title="Permalink to this headline">¶</a></h1>
+<p>In the directory <strong>simplemc</strong> you can run a set of toy models in order to test the nested samplers.</p>
 <p>Usage:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python toyModels.py sampler toymodel nlivepoints accuracy
 </pre></div>
 </div>
 <p>where sampler is one of the nested samplers avaiable in SuperMC and toymodel is one of {egg, ring, square, gauss, shells, square}.</p>
-<p>For example, in the SuperMC directory, you can run:</p>
+<p>For example, in the SimpleMC directory, you can run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>python examples/toyModels.py egg mnest <span class="m">50</span> <span class="m">0</span>.5
 </pre></div>
 </div>
@@ -197,9 +191,8 @@
 <div class="figure align-default">
 <img alt="_images/egg_mnest_50_0.6_2D.png" src="_images/egg_mnest_50_0.6_2D.png" />
 </div>
-</div>
 <div class="section" id="other-toy-models">
-<h2>Other toy models:<a class="headerlink" href="#other-toy-models" title="Permalink to this headline">¶</a></h2>
+<h2>Other toy models<a class="headerlink" href="#other-toy-models" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default">
 <img alt="_images/toymodels.png" src="_images/toymodels.png" />
 </div>
