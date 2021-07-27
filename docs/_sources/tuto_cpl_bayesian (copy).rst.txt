@@ -1,0 +1,56 @@
+Parameter estimation to CPL parameterisation
+=============================================
+
+In this post we show how perform Bayesian inference (parameter estimation) to the Dark Energy parameterisation known as Chevalier-Polansky-Linder (CPL) without curvature using SN-Ia and cosmic chronometers. There are two options to make parameter estimation through Bayesian inference in ``SimpleMC``: 
+
+
+  * :ref:`mcmc`
+
+  * :ref:`nested`
+
+
+
+..  _mcmc:
+
+With Metropolis-sampling algorithm
+------------------------------------
+
+If you want to use external data with an existing ``SimpleMC`` model, you can set it in the ``ini file`` using ``h``, ``fs8`` or ``distance_mod`` cosmological functions in the key ``fn``:
+
+.. code-block:: bash
+
+	[custom]
+	...
+
+	model = waCDM
+
+	datasets = SN+HD
+	analyzer = mcmc
+	...
+	[mcmc]
+	nsamp = 10000
+	...
+
+..  _nested:
+
+
+With nested sampling algorithms
+--------------------------------
+
+In this case, we need to make a Python script instead to use the ``ini file`` and combine the  `simple model independent of any cosmology <simple_model.html#simple-model-independent-of-any-cosmology>`_ with new data
+
+.. code-block:: bash
+
+	[custom]
+	...
+
+	model = waCDM
+
+	datasets = SN+HD
+	analyzer = nested
+
+	...
+	
+	[nested]
+	nlive = 100
+	dlogz = 0.1

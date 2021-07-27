@@ -93,7 +93,6 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">First steps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html"><strong>Structure</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="tools.html"><strong>Tools</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Citation.html">Citation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="API.html">API</a></li>
@@ -166,7 +165,7 @@
             
   <div class="section" id="simplemc">
 <h1>SimpleMC<a class="headerlink" href="#simplemc" title="Permalink to this headline">¶</a></h1>
-<p><strong>[Under construction]</strong></p>
+<p><strong>[Site under construction]</strong></p>
 <p>This is the <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> documentation, a code for cosmological parameter estimation and model comparison using Bayesian inference, optimization and machine learning algorithms.</p>
 <p>You can visit the <a class="reference external" href="https://github.com/ja-vazquez/SimpleMC.git">GitHub code repository</a>, download the <a class="reference external" href="https://github.com/ja-vazquez/SimpleMC/archive/refs/heads/master.zip">source code here</a> or clone it as follows:</p>
 <blockquote>
@@ -176,32 +175,67 @@
 </div></blockquote>
 <p>Please read the <a class="reference external" href="intro.html">introduction</a> section where you can see the <a class="reference external" href="intro.html#requirements">requirements</a>  and a simple <a class="reference external" href="intro.html#quick-start">quick start</a>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> uses amazing external codes, please if you consider pertinent cite them, go to the <a class="reference external" href="Citation.html#cite-external-codes">citation  section</a> to details.</p>
-<div class="section" id="index">
-<h2>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="extended-index">
+<h2>Extended index<a class="headerlink" href="#extended-index" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">First steps</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="requirements.html">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inifile.html">Customize ini file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#ini-file">ini file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#python-script">Python script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#run-in-terminal">run in terminal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#analyze-outputs">analyze outputs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="inifile.html">Customize ini file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inifile.html#baseconfig-ini">baseConfig.ini</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html"><strong>Structure</strong></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data.html"><strong>Data</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html"><strong>Data</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="data.html#datasets-combinations">Datasets combinations</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="models.html"><strong>Models</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="analyzers.html"><strong>Analyzers</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="analyzers.html"><strong>Analyzers</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="analyzers.html#sampler-comparison">Sampler comparison</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="structure.html#general-structure">General structure</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tools.html"><strong>Tools</strong></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cosmocalc.html"><strong>Cosmological calculator</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotters.html"><strong>Plotters</strong></a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples.html">Toy models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tuto_cosmocalc.html"><strong>Cosmological calculator</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_plotters.html">Plot the outputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tuto_plotters.html#with-getdist">With getdist:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tuto_plotters.html#with-corner">With Corner:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tuto_plotters.html#with-plotter-class">With Plotter class</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="simple_model.html">How to create a new model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="simple_likelihood.html">How to use an external dataset?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_toymodels.html">Toy models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_priors.html">Set a prior probability density function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_simple_model.html">How to create a new model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tuto_simple_model.html#simple-model-independent-of-any-cosmology">Simple model independent of any cosmology</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tuto_simple_model.html#simple-cosmological-model-based-on-lcdm">Simple cosmological model based on LCDM</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_simple_likelihood.html">How to use an external dataset?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tuto_simple_likelihood.html#from-ini-file-with-the-existing-cosmological-functions">From ini file with the existing cosmological functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tuto_simple_likelihood.html#without-cosmological-functions">Without cosmological functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_cpl_bayesian.html">Parameter estimation to CPL parameterisation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tuto_cpl_bayesian.html#with-metropolis-sampling-algorithm">With Metropolis-sampling algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tuto_cpl_bayesian.html#with-nested-sampling-algorithms">With nested sampling algorithms</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_maxlike.html">Maximum Likelihood Estimation (MLE) with optimizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_genetic.html">MLE with genetic algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_modelcomparison.html">Model comparison with Bayesian evidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_neuralike.html">Speed up Bayesian inference with neural networks</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Citation.html">Citation</a><ul>

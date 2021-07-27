@@ -1,0 +1,55 @@
+How to use an external dataset?
+===============================
+
+Two options
+
+  * :ref:`simple_likelihood`
+
+  * :ref:`generic_likelihood`
+
+
+
+..  _simple_likelihood:
+
+From ini file with the existing cosmological functions
+-------------------------------------------------------
+
+If you want to use external data with an existing ``SimpleMC`` model, you can set it in the ``ini file`` using ``h``, ``fs8`` or ``distance_mod`` cosmological functions in the key ``fn``:
+
+.. code-block:: bash
+
+	[custom]
+	...
+
+	model = LCDM
+
+	datasets = generic
+	path_to_data = path-to-data
+	path_to_cov = path-to-data-cov
+	fn = distance_mod
+	...
+
+..  _generic_likelihood:
+
+
+Without cosmological functions
+-------------------------------
+
+In this case, we need to make a Python script instead to use the ``ini file`` and combine the  `simple model independent of any cosmology <simple_model.html#simple-model-independent-of-any-cosmology>`_ with new data
+
+.. code-block:: python
+
+    m = Parameter("m", 0, 0.05, (0, 0.1), "m_0")
+    b = Parameter("b", 3, 0.05, (0, 5), "b_0")
+
+    # create a list with your parameters objects
+    parameterlist = [m, b]
+
+    my_model = 'm*x+b'
+
+    analyzer = DriverMC(model='simple', datasets='generic', analyzername='mcmc',
+                        custom_parameters=parameterlist, custom_function=my_model, 
+                        path_to_data='path-to-data', path_to_cov='path_to_data_cov',
+                        fn='generic')
+
+    analyzer.executer(nsamp=1000)

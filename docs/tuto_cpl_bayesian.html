@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>How to use an external dataset? &mdash; SimpleMC latest documentation</title>
+  <title>Parameter estimation to CPL parameterisation &mdash; SimpleMC latest documentation</title>
   
 
   
@@ -41,8 +41,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Toy models" href="examples.html" />
-    <link rel="prev" title="How to create a new model" href="simple_model.html" /> 
+    <link rel="next" title="Maximum Likelihood Estimation (MLE) with optimizer" href="tuto_maxlike.html" />
+    <link rel="prev" title="How to use an external dataset?" href="tuto_simple_likelihood.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -94,15 +94,22 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">First steps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html"><strong>Structure</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="tools.html"><strong>Tools</strong></a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">Tutorials</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="simple_model.html">How to create a new model</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">How to use an external dataset?</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#from-ini-file-with-the-existing-cosmological-functions">From ini file with the existing cosmological functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#without-cosmological-functions">Without cosmological functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_cosmocalc.html"><strong>Cosmological calculator</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_plotters.html">Plot the outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_toymodels.html">Toy models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_priors.html">Set a prior probability density function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_simple_model.html">How to create a new model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_simple_likelihood.html">How to use an external dataset?</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Parameter estimation to CPL parameterisation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#with-metropolis-sampling-algorithm">With Metropolis-sampling algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#with-nested-sampling-algorithms">With nested sampling algorithms</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="examples.html">Toy models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_maxlike.html">Maximum Likelihood Estimation (MLE) with optimizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_genetic.html">MLE with genetic algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_modelcomparison.html">Model comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_neuralike.html">Speed up Bayesian inference with neural networks</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Citation.html">Citation</a></li>
@@ -157,13 +164,13 @@
         
           <li><a href="tutorials.html">Tutorials</a> &raquo;</li>
         
-      <li>How to use an external dataset?</li>
+      <li>Parameter estimation to CPL parameterisation</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/simple_likelihood.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/tuto_cpl_bayesian.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -176,48 +183,49 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="how-to-use-an-external-dataset">
-<h1>How to use an external dataset?<a class="headerlink" href="#how-to-use-an-external-dataset" title="Permalink to this headline">¶</a></h1>
-<p>Two options</p>
+  <div class="section" id="parameter-estimation-to-cpl-parameterisation">
+<h1>Parameter estimation to CPL parameterisation<a class="headerlink" href="#parameter-estimation-to-cpl-parameterisation" title="Permalink to this headline">¶</a></h1>
+<p>[Section in process…]</p>
+<p>In this post we show how perform Bayesian inference (parameter estimation) to the Dark Energy parameterisation known as Chevalier-Polansky-Linder (CPL) without curvature using SN-Ia and cosmic chronometers. There are two options to make parameter estimation through Bayesian inference in <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code>:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><a class="reference internal" href="#simple-likelihood"><span class="std std-ref">From ini file with the existing cosmological functions</span></a></p></li>
-<li><p><a class="reference internal" href="#generic-likelihood"><span class="std std-ref">Without cosmological functions</span></a></p></li>
+<li><p><a class="reference internal" href="#mcmc"><span class="std std-ref">With Metropolis-sampling algorithm</span></a></p></li>
+<li><p><a class="reference internal" href="#nested"><span class="std std-ref">With nested sampling algorithms</span></a></p></li>
 </ul>
 </div></blockquote>
-<div class="section" id="from-ini-file-with-the-existing-cosmological-functions">
-<span id="simple-likelihood"></span><h2>From ini file with the existing cosmological functions<a class="headerlink" href="#from-ini-file-with-the-existing-cosmological-functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="with-metropolis-sampling-algorithm">
+<span id="mcmc"></span><h2>With Metropolis-sampling algorithm<a class="headerlink" href="#with-metropolis-sampling-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>If you want to use external data with an existing <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> model, you can set it in the <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> using <code class="docutils literal notranslate"><span class="pre">h</span></code>, <code class="docutils literal notranslate"><span class="pre">fs8</span></code> or <code class="docutils literal notranslate"><span class="pre">distance_mod</span></code> cosmological functions in the key <code class="docutils literal notranslate"><span class="pre">fn</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
 ...
 
-<span class="nv">model</span> <span class="o">=</span> LCDM
+<span class="nv">model</span> <span class="o">=</span> waCDM
 
-<span class="nv">datasets</span> <span class="o">=</span> generic
-<span class="nv">path_to_data</span> <span class="o">=</span> path-to-data
-<span class="nv">path_to_cov</span> <span class="o">=</span> path-to-data-cov
-<span class="nv">fn</span> <span class="o">=</span> distance_mod
+<span class="nv">datasets</span> <span class="o">=</span> SN+HD
+<span class="nv">analyzer</span> <span class="o">=</span> mcmc
+...
+<span class="o">[</span>mcmc<span class="o">]</span>
+<span class="nv">nsamp</span> <span class="o">=</span> <span class="m">10000</span>
 ...
 </pre></div>
 </div>
 </div>
-<div class="section" id="without-cosmological-functions">
-<span id="generic-likelihood"></span><h2>Without cosmological functions<a class="headerlink" href="#without-cosmological-functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="with-nested-sampling-algorithms">
+<span id="nested"></span><h2>With nested sampling algorithms<a class="headerlink" href="#with-nested-sampling-algorithms" title="Permalink to this headline">¶</a></h2>
 <p>In this case, we need to make a Python script instead to use the <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> and combine the  <a class="reference external" href="simple_model.html#simple-model-independent-of-any-cosmology">simple model independent of any cosmology</a> with new data</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="s2">&quot;m_0&quot;</span><span class="p">)</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="s2">&quot;b_0&quot;</span><span class="p">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
+...
 
-<span class="c1"># create a list with your parameters objects</span>
-<span class="n">parameterlist</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span>
+<span class="nv">model</span> <span class="o">=</span> waCDM
 
-<span class="n">my_model</span> <span class="o">=</span> <span class="s1">&#39;m*x+b&#39;</span>
+<span class="nv">datasets</span> <span class="o">=</span> SN+HD
+<span class="nv">analyzer</span> <span class="o">=</span> nested
 
-<span class="n">analyzer</span> <span class="o">=</span> <span class="n">DriverMC</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s1">&#39;simple&#39;</span><span class="p">,</span> <span class="n">datasets</span><span class="o">=</span><span class="s1">&#39;generic&#39;</span><span class="p">,</span> <span class="n">analyzername</span><span class="o">=</span><span class="s1">&#39;mcmc&#39;</span><span class="p">,</span>
-                    <span class="n">custom_parameters</span><span class="o">=</span><span class="n">parameterlist</span><span class="p">,</span> <span class="n">custom_function</span><span class="o">=</span><span class="n">my_model</span><span class="p">,</span>
-                    <span class="n">path_to_data</span><span class="o">=</span><span class="s1">&#39;path-to-data&#39;</span><span class="p">,</span> <span class="n">path_to_cov</span><span class="o">=</span><span class="s1">&#39;path_to_data_cov&#39;</span><span class="p">,</span>
-                    <span class="n">fn</span><span class="o">=</span><span class="s1">&#39;generic&#39;</span><span class="p">)</span>
+...
 
-<span class="n">analyzer</span><span class="o">.</span><span class="n">executer</span><span class="p">(</span><span class="n">nsamp</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="o">[</span>nested<span class="o">]</span>
+<span class="nv">nlive</span> <span class="o">=</span> <span class="m">100</span>
+<span class="nv">dlogz</span> <span class="o">=</span> <span class="m">0</span>.1
 </pre></div>
 </div>
 </div>
@@ -229,8 +237,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="examples.html" class="btn btn-neutral float-right" title="Toy models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="simple_model.html" class="btn btn-neutral float-left" title="How to create a new model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tuto_maxlike.html" class="btn btn-neutral float-right" title="Maximum Likelihood Estimation (MLE) with optimizer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tuto_simple_likelihood.html" class="btn btn-neutral float-left" title="How to use an external dataset?" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

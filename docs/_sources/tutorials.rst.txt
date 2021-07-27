@@ -2,12 +2,32 @@
 Tutorials
 ===========
 
+[Section in process...]
     
 .. toctree::
    :maxdepth: 1
 
-   simple_model
+   tuto_cosmocalc
+   
+   tuto_plotters
+   
+   tuto_toymodels
+   
+   tuto_priors
+   
+   tuto_simple_model
 
-   simple_likelihood
+   tuto_simple_likelihood
 
+   tuto_cpl_bayesian
+   
+   tuto_maxlike
+   
+   tuto_genetic
+   
+   tuto_modelcomparison
+   
+   tuto_neuralike
+   
+   
 

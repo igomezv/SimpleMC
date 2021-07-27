@@ -2,7 +2,7 @@
 SimpleMC
 ===========
 
-**[Under construction]**
+**[Site under construction]**
 
 This is the ``SimpleMC`` documentation, a code for cosmological parameter estimation and model comparison using Bayesian inference, optimization and machine learning algorithms.
 
@@ -16,11 +16,11 @@ Please read the `introduction <intro.html>`_ section where you can see the `requ
 
 ``SimpleMC`` uses amazing external codes, please if you consider pertinent cite them, go to the `citation  section <Citation.html#cite-external-codes>`_ to details. 
 
-Index
--------
+Extended index
+---------------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    intro
    
