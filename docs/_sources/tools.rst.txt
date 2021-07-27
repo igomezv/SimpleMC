@@ -8,3 +8,4 @@
    
    plotters
    
+   examples

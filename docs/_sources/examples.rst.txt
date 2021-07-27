@@ -27,9 +27,7 @@ As output you will obtain a text file with the samples, a summary and a plot.
 .. figure:: img/egg_mnest_50_0.6_2D.png
 
 
-Other toy models
-------------------
-
+**Other toy models:**
 
 .. figure:: img/toymodels.png
 

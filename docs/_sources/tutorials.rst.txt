@@ -10,6 +10,4 @@ Tutorials
 
    simple_likelihood
 
-   examples
-
 
