@@ -35,6 +35,7 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -95,7 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="intro.html">First steps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html"><strong>Structure</strong></a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">Tutorials</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="tuto_cosmocalc.html"><strong>Cosmological calculator</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_cosmocalc.html">Cosmological calculator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_plotters.html">Plot the outputs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_toymodels.html">Toy models</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Set a prior probability density function</a></li>
@@ -104,11 +105,11 @@
 <li class="toctree-l2"><a class="reference internal" href="tuto_cpl_bayesian.html">Parameter estimation to CPL parameterisation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_maxlike.html">Maximum Likelihood Estimation (MLE) with optimizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_genetic.html">MLE with genetic algorithms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tuto_modelcomparison.html">Model comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_modelcomparison.html">Model comparison with Bayesian evidence</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_neuralike.html">Speed up Bayesian inference with neural networks</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Citation.html">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Citation.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="API.html">API</a></li>
 </ul>
 
@@ -181,8 +182,31 @@
             
   <div class="section" id="set-a-prior-probability-density-function">
 <h1>Set a prior probability density function<a class="headerlink" href="#set-a-prior-probability-density-function" title="Permalink to this headline">¶</a></h1>
-<p>[Section in process…]</p>
-<p>In this post we explain how to set the priors in <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code>.</p>
+<p>The goal of Bayesian inference is to sample an unknown posterior probability distribution and thus to get an idea of how probable a theoretical model is given a set of data. To do this, it is worthwhile to establish two probabilities at hand: the likelihood and the prior.</p>
+<p>Given a dataset <em>D</em> and a model with <span class="math notranslate nohighlight">\(\theta\)</span> free parameters, it is worth reminding the Bayes’ theorem:</p>
+<div class="math notranslate nohighlight">
+\[P(\theta| D)= \frac{P(D|\theta)P(\theta)}{P(D)},\]</div>
+<p>where the likelihood function <span class="math notranslate nohighlight">\(P(D|\theta)\)</span> is defined according to the data involved and the priori probability <span class="math notranslate nohighlight">\(P(\theta)\)</span> contains the prior knowledge about the model parameters. It is common that this a priori likelihood function can be a uniform distribution in which the bounds of the parameter values are set. Another common approach is that the prior probability is assumed to be a Gaussian distribution. In <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> both types of priors can be used for nested sampling, but for MCMC we can only use (for the moment) uniform priors. To define the priors we need to use the <code class="docutils literal notranslate"><span class="pre">Parameter</span> <span class="pre">class</span></code> and set the bounds of each parameter; for example, if we know that the matter density parameter <span class="math notranslate nohighlight">\(\Omega_m\)</span> is between 0.25 and 0.35, we can write it as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">simplemc.cosmo.Parameter</span> <span class="kn">import</span> <span class="n">Parameter</span>
+
+<span class="n">Om</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s2">&quot;Om&quot;</span><span class="p">,</span> <span class="mf">0.28</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">),</span> <span class="s2">&quot;\Omega_m&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then, if we use nested sampling, in the <a class="reference external" href="inifile.html">ini file</a> we can choose between uniform or Gaussian prior:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">custom</span><span class="p">]</span>
+<span class="o">...</span>
+<span class="o">...</span>
+
+<span class="p">[</span><span class="n">nested</span><span class="p">]</span>
+<span class="o">...</span>
+<span class="o">...</span>
+<span class="p">;</span><span class="n">u</span> <span class="k">for</span> <span class="n">flat</span><span class="p">(</span><span class="n">uniform</span><span class="p">)</span> <span class="ow">or</span> <span class="n">g</span> <span class="k">for</span> <span class="n">gaussian</span> <span class="n">prior</span>
+<span class="n">priortype</span> <span class="o">=</span> <span class="n">u</span>
+<span class="p">;</span><span class="n">when</span> <span class="n">using</span> <span class="n">gaussian</span> <span class="n">prior</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>In the <code class="docutils literal notranslate"><span class="pre">simplemc.cosmo.paramDefs</span></code> module there is a collection of cosmological parameters already defined and you can edit their bounds at your convenience. If you want to create a new parameter, you can write it in this module, or define it externally as in the <a class="reference external" href="tuto_simple_model.html">Simple Model</a> and <a class="reference external" href="tuto_simple_likelihood.html">Simple Likelihood</a> examples.</p>
 </div>
 
 

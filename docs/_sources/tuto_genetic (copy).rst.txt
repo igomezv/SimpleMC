@@ -1,4 +1,0 @@
-MLE with genetic algorithms
-============================
-
-In this post we show how to use genetic algorithms.   

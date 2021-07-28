@@ -22,6 +22,10 @@ With Plotter class
 The **Plotter class** reads the chains to draw with the chosen option.
 
 
+With fgivenx
+--------------
+
+
 
 
 

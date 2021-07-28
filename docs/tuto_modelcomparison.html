@@ -35,6 +35,7 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -95,7 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="intro.html">First steps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html"><strong>Structure</strong></a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">Tutorials</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="tuto_cosmocalc.html"><strong>Cosmological calculator</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_cosmocalc.html">Cosmological calculator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_plotters.html">Plot the outputs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_toymodels.html">Toy models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_priors.html">Set a prior probability density function</a></li>
@@ -108,7 +109,7 @@
 <li class="toctree-l2"><a class="reference internal" href="tuto_neuralike.html">Speed up Bayesian inference with neural networks</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Citation.html">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Citation.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="API.html">API</a></li>
 </ul>
 
@@ -182,7 +183,9 @@
   <div class="section" id="model-comparison-with-bayesian-evidence">
 <h1>Model comparison with Bayesian evidence<a class="headerlink" href="#model-comparison-with-bayesian-evidence" title="Permalink to this headline">¶</a></h1>
 <p>[Section in process…]</p>
-<p>In this post we show how to perform model comparison between two models (:math::<cite>Lambda CDM</cite> and CPL) with Bayesian inference using the Bayesian evidence obtained by nested sampling.</p>
+<p>In this post we show how to perform model comparison between two models (<span class="math notranslate nohighlight">\(\Lambda CDM\)</span> and CPL) with Bayesian inference using the Bayesian evidence obtained by nested sampling.</p>
+<div class="math notranslate nohighlight">
+\[P(D)=\int_{\mathbb{R}^N} P(D|\theta)P(\theta)d\theta,\]</div>
 </div>
 
 

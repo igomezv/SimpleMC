@@ -4,7 +4,7 @@ SimpleMC
 
 **[Site under construction]**
 
-This is the ``SimpleMC`` documentation, a code for cosmological parameter estimation and model comparison using Bayesian inference, optimization and machine learning algorithms.
+This is the ``SimpleMC`` documentation, a Python package for cosmological parameter estimation and model comparison using Bayesian inference, optimization and machine learning algorithms. ``SimpleMC`` also contains a collection of tools for cosmological data analysis, such as a `cosmological calculator <tuto_cosmocalc.html>`_, `plotting utilities <tuto_plotters.html>`_ and other statistical issues. The cosmological models included in ``SimpleMC`` are Dark Energy models where only expansion history matters.
 
 You can visit the `GitHub code repository <https://github.com/ja-vazquez/SimpleMC.git>`_, download the `source code here <https://github.com/ja-vazquez/SimpleMC/archive/refs/heads/master.zip>`_ or clone it as follows:
 
@@ -12,9 +12,11 @@ You can visit the `GitHub code repository <https://github.com/ja-vazquez/SimpleM
 
       git clone https://github.com/ja-vazquez/SimpleMC.git
 
-Please read the `introduction <intro.html>`_ section where you can see the `requirements <intro.html#requirements>`_  and a simple `quick start <intro.html#quick-start>`_.
+Please read the `introduction <intro.html>`_ section where you can see the `requirements <intro.html#requirements>`_  and a simple `quick start <intro.html#quick-start>`_. In the `tutorials section <tutorials.html>`_ you can find several examples of ``SimpleMC`` functions.
 
-``SimpleMC`` uses amazing external codes, please if you consider pertinent cite them, go to the `citation  section <Citation.html#cite-external-codes>`_ to details. 
+
+``SimpleMC`` employs amazing external codes and algorithms, please go to the `citation  section <Citation.html#cite-external-codes>`_ for details if you feel it is pertinent to cite them.
+
 
 Extended index
 ---------------

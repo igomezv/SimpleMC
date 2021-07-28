@@ -1,10 +1,15 @@
-=========
-Citation
-=========
+===========
+References
+===========
 
-   * Vazquez, JA., Gómez-Vargas, I., & Slosar, A. (2021). SimpleMC: A package for cosmological parameter estimation and model comparison. [arXiv.xxx.xxx]. **In process**.	
+Cite SimpleMC
+-----------------
 
    * Aubourg, É., et al (2015). Cosmological implications of baryon acoustic oscillation measurements. Physical Review D, 92(12), 123516.
+
+   * Vazquez, JA., Gómez-Vargas, I., & Slosar, A. (2021). SimpleMC: A package for cosmological parameter estimation and model comparison. [arXiv.xxx.xxx]. **In process (soon available)**.	
+
+
 
 
 Cite external codes
@@ -56,6 +61,18 @@ We have gathered great codes made by others and put them to work together in the
 		* Abadi, M., et al (2016). Tensorflow: A system for large-scale machine learning. In 12th USENIX symposium on operating systems design and implementation (OSDI 16) (pp. 265-283).
 
 
+Some research using SimpleMC
+-----------------------------
+
+	* Padilla, L. E., Tellez, L. O., Escamilla, L. A., & Vazquez, J. A. (2021). Cosmological parameter inference with Bayesian statistics. Universe, 7(7), 213.
+	
+	* Akarsu, Ö., Barrow, J. D., Escamilla, L. A., & Vazquez, J. A. (2020). Graduated dark energy: Observational hints of a spontaneous sign switch in the cosmological constant. Physical Review D, 101(6), 063528.
+	
+	* Gómez-Vargas, I., Vázquez, J. A., Esquivel, R. M., & García-Salcedo, R. (2021). Cosmological Reconstructions with Artificial Neural Networks. arXiv preprint arXiv:2104.00595.
+	
+	* Vázquez, J. A., Tamayo, D., Sen, A. A., & Quiros, I. (2021). Bayesian model selection on scalar ε-field dark energy. Physical Review D, 103(4), 043506.
+	
+	* Tamayo, D., & Vazquez, J. A. (2019). Fourier-series expansion of the dark-energy equation of state. Monthly Notices of the Royal Astronomical Society, 487(1), 729-736.s
 
 
 
