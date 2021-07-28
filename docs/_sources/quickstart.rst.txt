@@ -71,6 +71,12 @@ For last, run in the terminal:
    
    $ python test.py
 
+
+..  _parallelization:
+
+parallelization
+****************
+
 To run multiple MCMC (Metropolis-Hastings) chains in parallel:
 
 .. code-block:: bash
@@ -78,6 +84,23 @@ To run multiple MCMC (Metropolis-Hastings) chains in parallel:
    mpirun -np 4 python test.py
 
 where 4 is the number of chains and the number of processors.  
+
+The nested sampling algorithms use the ``multiprocessing library``, therefore it is only necessary to set in the ``[nested]`` section of the ``ini file`` the number of cores with the ``nproc`` key:
+
+.. code-block:: bash
+
+	[custom]
+	...
+	...
+	analyzer = nested
+	...
+
+	[nested]
+	...
+	; using 3 cores:
+	nproc = 3
+	...
+
 
 ..  _analyze outputs:
 
