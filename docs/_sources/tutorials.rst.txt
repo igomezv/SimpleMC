@@ -19,7 +19,7 @@ Tutorials
 
    tuto_simple_likelihood
 
-   tuto_cpl_bayesian
+   tuto_lcdm_bayesian
    
    tuto_maxlike
    

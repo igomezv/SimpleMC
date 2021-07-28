@@ -1,6 +1,39 @@
 Maximum Likelihood Estimation (MLE) with optimizer
 ===================================================
 
-[Section in process...]
+``SimpleMC`` through the ``MaxLikeAnalyzer class`` uses the L-BFGS-B algorithm from ``scipy.optimize.minimize`` and tries to maximize the Likelihood function based on a cosmological model and selected datasets. It then obtains the errors of the Hessian.
 
-In this post we show how to use genetic algorithms.   
+An example of ``ini file`` to use the ``MaxLikeAnalyzer class`` is as follows:
+
+.. code-block:: bash
+
+	[custom]
+	...
+
+	model = LCDM
+
+	datasets = SN+HD
+	
+	analyzer = maxlike
+	...
+
+	[maxlike]
+	;compute errror from Hessian matrix
+	;False/True
+	compute_errors = True
+
+	;If withErrors is True
+	;plot Fisher matrix
+	show_contours = True
+
+	;If showplot is True, then
+	;2D plot for the parameters:
+	plot_par1 = h
+	plot_par2 = Om
+
+	;[DerivedParameters]
+	compute_derived = True
+
+
+Lastly, we can run ``SimpleMC`` as in the `example Python script <quickstart.html#python-script>`_ using the ``ini file`` with the ``maxlike`` information.
+

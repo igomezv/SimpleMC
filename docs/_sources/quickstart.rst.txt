@@ -84,7 +84,7 @@ where 4 is the number of chains and the number of processors.
 analyze outputs
 ****************
 
-You can see the outputs in the chains directory and then make plots. See the `plots <tuto_plotters.html>`_ section for details. The name of the outputs begins with the name of the model, prefact (pre / phy), datasets and analyzer, for the example of the above ``ini file``: ``LCDM_phy_BBAO+HD+SN_mcmc``.
+You can see the outputs in the chains directory and then make plots. See the `plots <tuto_plotters.html>`_ section for details. The name of the outputs begins with the name of the model, prefact (pre / phy), datasets and analyzer, for the example of the above ``ini file`` we have the output name: ``LCDM_phy_BBAO+HD+SN_mcmc``.
 
 In addition to the chain file, it is a summary where you can notice the parameter estimation, the execution time and in the case of nested sampling, the Bayesian evidence, useful for the comparison of models. 
 

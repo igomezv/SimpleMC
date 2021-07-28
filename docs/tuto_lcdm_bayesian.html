@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Parameter estimation to CPL parameterisation &mdash; SimpleMC latest documentation</title>
+  <title>Bayesian inference to LCDM &mdash; SimpleMC latest documentation</title>
   
 
   
@@ -35,6 +35,7 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -95,24 +96,24 @@
 <li class="toctree-l1"><a class="reference internal" href="intro.html">First steps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html"><strong>Structure</strong></a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">Tutorials</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="tuto_cosmocalc.html"><strong>Cosmological calculator</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_cosmocalc.html">Cosmological calculator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_plotters.html">Plot the outputs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_toymodels.html">Toy models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_priors.html">Set a prior probability density function</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_simple_model.html">How to create a new model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_simple_likelihood.html">How to use an external dataset?</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Parameter estimation to CPL parameterisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#with-metropolis-sampling-algorithm">With Metropolis-sampling algorithm</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#with-nested-sampling-algorithms">With nested sampling algorithms</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Bayesian inference to LCDM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#with-metropolis-hastings-algorithm">With Metropolis-Hastings algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#with-nested-sampling">With nested sampling</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_maxlike.html">Maximum Likelihood Estimation (MLE) with optimizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_genetic.html">MLE with genetic algorithms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tuto_modelcomparison.html">Model comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_modelcomparison.html">Model comparison with Bayesian evidence</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_neuralike.html">Speed up Bayesian inference with neural networks</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Citation.html">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Citation.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="API.html">API</a></li>
 </ul>
 
@@ -164,13 +165,13 @@
         
           <li><a href="tutorials.html">Tutorials</a> &raquo;</li>
         
-      <li>Parameter estimation to CPL parameterisation</li>
+      <li>Bayesian inference to LCDM</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/tuto_cpl_bayesian.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/tuto_lcdm_bayesian.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -183,49 +184,58 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="parameter-estimation-to-cpl-parameterisation">
-<h1>Parameter estimation to CPL parameterisation<a class="headerlink" href="#parameter-estimation-to-cpl-parameterisation" title="Permalink to this headline">¶</a></h1>
-<p>[Section in process…]</p>
-<p>In this post we show how perform Bayesian inference (parameter estimation) to the Dark Energy parameterisation known as Chevalier-Polansky-Linder (CPL) without curvature using SN-Ia and cosmic chronometers. There are two options to make parameter estimation through Bayesian inference in <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code>:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><a class="reference internal" href="#mcmc"><span class="std std-ref">With Metropolis-sampling algorithm</span></a></p></li>
-<li><p><a class="reference internal" href="#nested"><span class="std std-ref">With nested sampling algorithms</span></a></p></li>
-</ul>
-</div></blockquote>
-<div class="section" id="with-metropolis-sampling-algorithm">
-<span id="mcmc"></span><h2>With Metropolis-sampling algorithm<a class="headerlink" href="#with-metropolis-sampling-algorithm" title="Permalink to this headline">¶</a></h2>
-<p>If you want to use external data with an existing <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> model, you can set it in the <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> using <code class="docutils literal notranslate"><span class="pre">h</span></code>, <code class="docutils literal notranslate"><span class="pre">fs8</span></code> or <code class="docutils literal notranslate"><span class="pre">distance_mod</span></code> cosmological functions in the key <code class="docutils literal notranslate"><span class="pre">fn</span></code>:</p>
+  <div class="section" id="bayesian-inference-to-lcdm">
+<h1>Bayesian inference to LCDM<a class="headerlink" href="#bayesian-inference-to-lcdm" title="Permalink to this headline">¶</a></h1>
+<p>To perform Bayesian inference for the <span class="math notranslate nohighlight">\(\Lambda CDM\)</span> model using Type Ia Supernovae and cosmic chronometers, in the <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> we must set <code class="docutils literal notranslate"><span class="pre">LCDM</span></code> and <code class="docutils literal notranslate"><span class="pre">SN+HD</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
 ...
 
-<span class="nv">model</span> <span class="o">=</span> waCDM
+<span class="nv">model</span> <span class="o">=</span> LCDM
 
 <span class="nv">datasets</span> <span class="o">=</span> SN+HD
+
+...
+</pre></div>
+</div>
+<p>There are two options to make parameter estimation through Bayesian inference in <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#mcmc"><span class="std std-ref">With Metropolis-Hastings algorithm</span></a></p></li>
+<li><p><a class="reference internal" href="#nested"><span class="std std-ref">With nested sampling</span></a></p></li>
+</ul>
+</div></blockquote>
+<p>Once setting the ini file according to the selected sampler, we can run <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> as in the <a class="reference external" href="quickstart.html#python-script">python script example</a>.</p>
+<p>In both cases, the output is a summary with the parameter estimation and an output file with the Markov Chain (see the <a class="reference external" href="quickstart.html#analyze-outputs">section of outputs for details</a>).</p>
+<div class="section" id="with-metropolis-hastings-algorithm">
+<span id="mcmc"></span><h2>With Metropolis-Hastings algorithm<a class="headerlink" href="#with-metropolis-hastings-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>The model keyword for using the Metropolis-Hastings algorithm is <code class="docutils literal notranslate"><span class="pre">mcmc</span></code> as the analyzer. The basic keys in the <code class="docutils literal notranslate"><span class="pre">[mcmc]</span></code> section are the number of samples <code class="docutils literal notranslate"><span class="pre">nsamp</span></code>, the burn-in steps <code class="docutils literal notranslate"><span class="pre">skip</span></code> and the Gelman-Rubin stopping criterion <code class="docutils literal notranslate"><span class="pre">GRstop</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
+...
+...
 <span class="nv">analyzer</span> <span class="o">=</span> mcmc
 ...
+
 <span class="o">[</span>mcmc<span class="o">]</span>
 <span class="nv">nsamp</span> <span class="o">=</span> <span class="m">10000</span>
+<span class="nv">skip</span>    <span class="o">=</span> <span class="m">100</span>
+<span class="nv">GRstop</span>  <span class="o">=</span> <span class="m">0</span>.01
 ...
 </pre></div>
 </div>
 </div>
-<div class="section" id="with-nested-sampling-algorithms">
-<span id="nested"></span><h2>With nested sampling algorithms<a class="headerlink" href="#with-nested-sampling-algorithms" title="Permalink to this headline">¶</a></h2>
-<p>In this case, we need to make a Python script instead to use the <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> and combine the  <a class="reference external" href="simple_model.html#simple-model-independent-of-any-cosmology">simple model independent of any cosmology</a> with new data</p>
+<div class="section" id="with-nested-sampling">
+<span id="nested"></span><h2>With nested sampling<a class="headerlink" href="#with-nested-sampling" title="Permalink to this headline">¶</a></h2>
+<p>To perform nested sampling we use the <code class="docutils literal notranslate"><span class="pre">dynesty</span></code> library. In this case, in the <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> the most important keys in the <code class="docutils literal notranslate"><span class="pre">[nested]</span></code> section are the number of live points <code class="docutils literal notranslate"><span class="pre">nlivepoints</span></code> and the difference between the Bayesian evidence of two consecutive steps (<code class="docutils literal notranslate"><span class="pre">accuracy</span></code>).</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
 ...
-
-<span class="nv">model</span> <span class="o">=</span> waCDM
-
-<span class="nv">datasets</span> <span class="o">=</span> SN+HD
+...
 <span class="nv">analyzer</span> <span class="o">=</span> nested
-
 ...
 
 <span class="o">[</span>nested<span class="o">]</span>
-<span class="nv">nlive</span> <span class="o">=</span> <span class="m">100</span>
-<span class="nv">dlogz</span> <span class="o">=</span> <span class="m">0</span>.1
+<span class="nv">nlivepoints</span> <span class="o">=</span> <span class="m">100</span>
+<span class="nv">accuracy</span> <span class="o">=</span> <span class="m">0</span>.02
+...
 </pre></div>
 </div>
 </div>
