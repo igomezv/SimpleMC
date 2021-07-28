@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Speed up Bayesian inference with neural networks &mdash; SimpleMC latest documentation</title>
+  <title>Speed-up Bayesian inference with neural networks &mdash; SimpleMC latest documentation</title>
   
 
   
@@ -41,8 +41,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Citation" href="Citation.html" />
-    <link rel="prev" title="Model comparison" href="tuto_modelcomparison.html" /> 
+    <link rel="next" title="References" href="Citation.html" />
+    <link rel="prev" title="Model comparison with Bayesian evidence" href="tuto_modelcomparison.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -95,20 +95,24 @@
 <li class="toctree-l1"><a class="reference internal" href="intro.html">First steps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html"><strong>Structure</strong></a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">Tutorials</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="tuto_cosmocalc.html"><strong>Cosmological calculator</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_cosmocalc.html">Cosmological calculator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_plotters.html">Plot the outputs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_toymodels.html">Toy models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_priors.html">Set a prior probability density function</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_simple_model.html">How to create a new model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_simple_likelihood.html">How to use an external dataset?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tuto_cpl_bayesian.html">Parameter estimation to CPL parameterisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_lcdm_bayesian.html">Bayesian inference to LCDM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_maxlike.html">Maximum Likelihood Estimation (MLE) with optimizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_genetic.html">MLE with genetic algorithms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tuto_modelcomparison.html">Model comparison</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Speed up Bayesian inference with neural networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_modelcomparison.html">Model comparison with Bayesian evidence</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Speed-up Bayesian inference with neural networks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modified-pybambi">Modified pybambi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#neuralike">Neuralike</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Citation.html">Citation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Citation.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="API.html">API</a></li>
 </ul>
 
@@ -160,7 +164,7 @@
         
           <li><a href="tutorials.html">Tutorials</a> &raquo;</li>
         
-      <li>Speed up Bayesian inference with neural networks</li>
+      <li>Speed-up Bayesian inference with neural networks</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -180,9 +184,84 @@
            <div itemprop="articleBody">
             
   <div class="section" id="speed-up-bayesian-inference-with-neural-networks">
-<h1>Speed up Bayesian inference with neural networks<a class="headerlink" href="#speed-up-bayesian-inference-with-neural-networks" title="Permalink to this headline">¶</a></h1>
-<p>[Section in process…]</p>
-<p>In this post we show how to use Artificial Neural Networks (ANN) to speed up a Bayesian inference process.</p>
+<h1>Speed-up Bayesian inference with neural networks<a class="headerlink" href="#speed-up-bayesian-inference-with-neural-networks" title="Permalink to this headline">¶</a></h1>
+<p>[Section in process…], [Beta release]</p>
+<p><code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> can use Artificial Neural Networks (ANNs) to speed-up a Bayesian inference process. Currently, the two available methods only work with one processor and are under continuous development and improvement.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#pybambi"><span class="std std-ref">Modified pybambi</span></a></p></li>
+<li><p><a class="reference internal" href="#neuralike"><span class="std std-ref">Neuralike</span></a></p></li>
+</ul>
+</div></blockquote>
+<p>In both cases, we can run <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> as in the <a class="reference external" href="quickstart.html#python-script">example Python script</a> using the <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> with the genetic algorithm information.</p>
+<div class="section" id="modified-pybambi">
+<span id="pybambi"></span><h2>Modified pybambi<a class="headerlink" href="#modified-pybambi" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> contains a modified version of <code class="docutils literal notranslate"><span class="pre">pybambi</span></code> that only works with nested sampling. It trains a real-time ANN and, if the accuracy of the predictions is good, the sampling process uses the ANN instead of the analytical expression of the Likelihood function.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
+...
+...
+<span class="nv">analyzername</span> <span class="o">=</span> nested
+...
+
+<span class="nv">useNeuralLike</span> <span class="o">=</span> False
+
+
+<span class="o">[</span>nested<span class="o">]</span>
+<span class="nv">nlivepoints</span> <span class="o">=</span> <span class="m">350</span>
+<span class="nv">accuracy</span> <span class="o">=</span> <span class="m">0</span>.02
+...
+<span class="nv">neuralNetwork</span> <span class="o">=</span> True
+
+<span class="o">[</span>neural<span class="o">]</span>
+<span class="p">;</span>modified bambi
+<span class="nv">split</span> <span class="o">=</span> <span class="m">0</span>.8
+<span class="p">;</span> keras or nearestneighbour
+<span class="nv">learner</span> <span class="o">=</span> keras
+<span class="p">;</span>all the following options are only <span class="k">for</span> keras learner
+<span class="p">;</span> number of neurons of the three hidden layers
+<span class="nv">numNeurons</span> <span class="o">=</span> <span class="m">50</span>
+<span class="p">;</span> epochs <span class="k">for</span> training
+<span class="nv">epochs</span> <span class="o">=</span> <span class="m">100</span>
+<span class="p">;</span> number of training points
+<span class="p">;</span><span class="nv">ntrain</span> <span class="o">=</span> nlivepoints by default
+<span class="p">;</span>dlogz to start to train the neural net <span class="o">(</span>we recommend dlogz_start &lt;<span class="o">=</span><span class="m">10</span><span class="o">)</span>
+<span class="nv">dlogz_start</span> <span class="o">=</span> <span class="m">5</span>
+<span class="p">;</span>number of nested <span class="o">(</span>dynesty<span class="o">)</span> iterations to start to train the neural net
+<span class="nv">it_to_start_net</span> <span class="o">=</span> <span class="m">10000</span>
+<span class="p">;</span>number of iterations to re-train the neural net. By default <span class="nv">updInt</span> <span class="o">=</span> nlivepoints,
+<span class="p">;</span>choose updInt &lt;<span class="o">=</span> nlivepoints
+<span class="p">;</span><span class="nv">updInt</span> <span class="o">=</span> <span class="m">500</span>
+<span class="p">;</span>proxy_tolerance uncertainity of the net allowed.
+<span class="nv">proxy_tolerance</span> <span class="o">=</span> <span class="m">0</span>.3
+</pre></div>
+</div>
+</div>
+<div class="section" id="neuralike">
+<span id="id1"></span><h2>Neuralike<a class="headerlink" href="#neuralike" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Neuralike</span></code> generate a grid over the parameter space and train an ANN with it and the corresponding likelihood values. Then, if the accuracy of the ANN predictions are consistent, perform Bayesian inference with the ANN instead of the analytical expression of the Likelihood function.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
+...
+...
+<span class="nv">analyzername</span> <span class="o">=</span> nested
+<span class="p">;</span>analyzername can be mcmc
+...
+
+<span class="nv">useNeuralLike</span> <span class="o">=</span> True
+
+<span class="o">[</span>neuralike<span class="o">]</span>
+<span class="p">;</span>neuralike contains options to use a neural network <span class="k">in</span> likelihood evaluations over the parameter space
+<span class="nv">ndivsgrid</span> <span class="o">=</span> <span class="m">4</span>
+<span class="nv">epochs</span> <span class="o">=</span> <span class="m">500</span>
+<span class="nv">learning_rate</span> <span class="o">=</span> 1e-5
+<span class="nv">batch_size</span> <span class="o">=</span> <span class="m">16</span>
+<span class="nv">psplit</span> <span class="o">=</span> <span class="m">0</span>.8
+<span class="p">;</span>hidden_layers_neurons: number of nodes per layer separated by commas
+<span class="nv">hidden_layers_neurons</span> <span class="o">=</span> <span class="m">100</span>, <span class="m">100</span>, <span class="m">100</span>
+<span class="p">;</span>number of procesors to make the grid
+<span class="nv">nproc</span> <span class="o">=</span> <span class="m">5</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -191,8 +270,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="Citation.html" class="btn btn-neutral float-right" title="Citation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="tuto_modelcomparison.html" class="btn btn-neutral float-left" title="Model comparison" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Citation.html" class="btn btn-neutral float-right" title="References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tuto_modelcomparison.html" class="btn btn-neutral float-left" title="Model comparison with Bayesian evidence" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

@@ -28,8 +28,6 @@ Extended index
    
    structure
 
-   tools
-
    tutorials
 
    Citation
@@ -65,6 +63,8 @@ Changelog
 TO DO
 ------
 
+- ga_deap options in ``ini file``.
+- Summary to MCMCAnalyzer
 - Add more DE EoS for comparison, for example, in CPL (owaCDM).
 - Unify pybambi and nerualike. 
 - Neural networks methods with dynesty multiprocessing fails.
