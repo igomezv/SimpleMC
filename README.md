@@ -1,4 +1,4 @@
-This `docs` branch is intended to contain the documentation files for `SimpleMC`. In the `doc` directory are all the files used by the` sphinx` library to build the website. On the other hand, in the `docs` directory there are only the` html` files and from there a github page is generated: https://igomezv.github.io/SimpleMC/ .
+This `docs` branch is intended to contain the documentation files for `SimpleMC`. In the `docs_sphinx` directory are all the files used by the` sphinx` library to build the website. On the other hand, in the `docs` directory there are only the` html` files and from there a github page is generated: https://igomezv.github.io/SimpleMC/ .
 
 SimpleMC
 ==========
