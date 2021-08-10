@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Model comparison with Bayesian evidence &mdash; SimpleMC latest documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Speed-up Bayesian inference with neural networks" href="tuto_neuralike.html" />
+    <link rel="prev" title="MLE with genetic algorithms" href="tuto_genetic.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SimpleMC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                latest
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">First steps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html"><strong>Structure</strong></a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tuto_cosmocalc.html">Cosmological calculator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_plotters.html">Plot the outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_toymodels.html">Toy models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_priors.html">Set a prior probability density function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_simple_model.html">How to create a new model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_simple_likelihood.html">How to use an external dataset?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_lcdm_bayesian.html">Bayesian inference to LCDM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_maxlike.html">Maximum Likelihood Estimation (MLE) with optimizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_genetic.html">MLE with genetic algorithms</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Model comparison with Bayesian evidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_neuralike.html">Speed-up Bayesian inference with neural networks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Citation.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html">API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SimpleMC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="tutorials.html">Tutorials</a> &raquo;</li>
+        
+      <li>Model comparison with Bayesian evidence</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/tuto_modelcomparison.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="model-comparison-with-bayesian-evidence">
+<h1>Model comparison with Bayesian evidence<a class="headerlink" href="#model-comparison-with-bayesian-evidence" title="Permalink to this headline">¶</a></h1>
+<p>Model comparison between two models can be performed with Bayesian inference using Bayesian evidence obtained by nested sampling (or <code class="docutils literal notranslate"><span class="pre">MCEvidence</span></code> for other samplers). To do this, it is neccesary to <a class="reference external" href="tuto_lcdm_bayesian.html">run a Bayesian inference process</a> for each of the two models and be fair using the same datasets.</p>
+<p>Bayesian evidence is:</p>
+<div class="math notranslate nohighlight">
+\[Z = P(D)=\int_{\mathbb{R}^N} P(D|\theta)P(\theta)d\theta,\]</div>
+<p>and is an output value of a nested sampling process. To perform model comparison we can use the Bayes factor.</p>
+<p>The Bayes factor <span class="math notranslate nohighlight">\(B_{0,1}\)</span> of the <em>Model 0</em> with respect to <em>Model 1</em> is the ratio of their respective Bayesian evidences:</p>
+<div class="math notranslate nohighlight">
+\[B_{0,1} = \frac{Z_0}{Z_1}\]</div>
+<p>or in logarithm:</p>
+<div class="math notranslate nohighlight">
+\[\ln B_{0,1} = \ln Z_0 - \ln Z_1\]</div>
+<p>The following table has the Jeffrey’s scale, where the strength of the Bayesian evidence Z is in favours of the <em>Model 0</em> over the <em>Model 1</em>.</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><span class="math notranslate nohighlight">\(\ln B_{0,1}\)</span></th>
+<th class="head">Strength of Z</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><span class="math notranslate nohighlight">\(&lt;1\)</span></td>
+<td>Inconclusive</td>
+</tr>
+<tr class="row-odd"><td><span class="math notranslate nohighlight">\(1-2.5\)</span></td>
+<td>Significant</td>
+</tr>
+<tr class="row-even"><td><span class="math notranslate nohighlight">\(2.5-5\)</span></td>
+<td>Strong</td>
+</tr>
+<tr class="row-odd"><td><span class="math notranslate nohighlight">\(&gt;5\)</span></td>
+<td>Decisive</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tuto_neuralike.html" class="btn btn-neutral float-right" title="Speed-up Bayesian inference with neural networks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tuto_genetic.html" class="btn btn-neutral float-left" title="MLE with genetic algorithms" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, A Slosar, JA Vazquez, I Gomez-Vargas
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

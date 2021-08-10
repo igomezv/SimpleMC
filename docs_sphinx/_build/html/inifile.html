@@ -1,0 +1,346 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Customize ini file &mdash; SimpleMC latest documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Structure" href="structure.html" />
+    <link rel="prev" title="Quickstart" href="quickstart.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SimpleMC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                latest
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="intro.html">First steps</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="requirements.html">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Customize ini file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#baseconfig-ini">baseConfig.ini</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html"><strong>Structure</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Citation.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html">API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SimpleMC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="intro.html">First steps</a> &raquo;</li>
+        
+      <li>Customize ini file</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/inifile.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="customize-ini-file">
+<h1>Customize ini file<a class="headerlink" href="#customize-ini-file" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> to <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> configuration must have a module <code class="docutils literal notranslate"><span class="pre">[custom]</span></code> and according to the selected analyzer can have several modules: <code class="docutils literal notranslate"><span class="pre">[mcmc]</span></code>, <code class="docutils literal notranslate"><span class="pre">[nested]</span></code>, <code class="docutils literal notranslate"><span class="pre">[neural]</span></code>, <code class="docutils literal notranslate"><span class="pre">[neuralike]</span></code>, <code class="docutils literal notranslate"><span class="pre">[MaxLikeAnalyzer]</span></code>, <code class="docutils literal notranslate"><span class="pre">[emcee]</span></code>, <code class="docutils literal notranslate"><span class="pre">[genetic]</span></code>, <code class="docutils literal notranslate"><span class="pre">[ga_deap]</span></code>. In this section, we explain each of them. To more details about analyzers, pleas visit the <a class="reference external" href="analyzers.html">Analyzer sections</a>.</p>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">[custom]</span></code></dt>
+<dd><ul class="first">
+<li><p class="first">Requiered keys:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">model</span></code> : visit <a class="reference external" href="models.html">Models section</a> to see the options.</li>
+<li><code class="docutils literal notranslate"><span class="pre">datasets</span></code> : visit <a class="reference external" href="data.html">Data section</a> to see all the datasets options.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Other keys:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">analyzer</span></code>: mcmc, nested, genetic, MaxLikeAnalyzer, ga_deap. By default: mcmc.</li>
+<li><code class="docutils literal notranslate"><span class="pre">chainsdir</span></code>: directory to save the outputs. By default <code class="docutils literal notranslate"><span class="pre">simplemc/chain</span></code>.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p class="last"><strong>Example:</strong></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">[mcmc]</span></code></dt>
+<dd><ul class="first simple">
+<li><dl class="first docutils">
+<dt>Keys:</dt>
+<dd><ul class="first last">
+<li>nsamp: number of steps.</li>
+<li>skip: burn-in samples.</li>
+<li>temp: temperature.</li>
+<li>chainno: number of chains.</li>
+<li>addderived: If you want to add derived parameters such as the age of the Universe.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p class="last"><strong>Example:</strong></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">[nested]</span></code></dt>
+<dd><ul class="first simple">
+<li><dl class="first docutils">
+<dt>Keys:</dt>
+<dd><ul class="first last">
+<li>dynamic: If you want dynamic nested sampling.</li>
+<li>neuralNetwork: if you can to use neural network to speed-up the process. Currently only works for one processor.</li>
+<li>nestedType: nested sampling algorithm, can be {‘single’,’multi’, ‘balls’, ‘cubes’}.</li>
+<li>nlivepoints: number of live points.</li>
+<li>accuracy: difference of Bayesian evidence between two iterations that indicates the stopping criterion.</li>
+<li>priortype: u-&gt;uniform, g-&gt;gaussian.</li>
+<li>nproc: number of processors.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p class="last"><strong>Example</strong></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">[neural]</span></code></dt>
+<dd><p class="first">At the current time, this block only have sense if analyzer is nested and if nproc=1.</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Keys:</dt>
+<dd><ul class="first last">
+<li>numNeurons: number of neurons of the three hidden layers.</li>
+<li>epochs: number of epochs.</li>
+<li>dlogz_start: value of dlogz to start to train the neural net.</li>
+<li>it_to_start_net: iterations to start the trainning.</li>
+<li>updInt: number of iterations to re-train the neural net.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p class="last"><strong>Example:</strong></p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="section" id="baseconfig-ini">
+<span id="baseconfig"></span><h2>baseConfig.ini<a class="headerlink" href="#baseconfig-ini" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Considerations:</p>
+<ul class="last">
+<li><p class="first"><em>prefact</em> and <em>nsamp</em> are only for Metropolis-Hastings.</p>
+</li>
+<li><p class="first"><em>nlivepoints</em> and <em>accuracy</em> are only for nested sampling.</p>
+</li>
+<li><p class="first"><em>sampler</em> options are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>mcmc : Metropolis-Hastings.</li>
+<li>nested : Nested Sampling</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><em>sampler</em> can be one <em>optimizer</em> of the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li>MaxLikeAnalyzer : from scipy.optimize.minimize</li>
+<li>genetic : a Simple Genetic Algorithm</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><em>skip</em> is burnin.</p>
+</li>
+<li><p class="first">For <em>priortype</em> u is uniform prior and g gaussian prior. At this time, only nested sampling accept both of them.</p>
+</li>
+<li><p class="first"><em>chainsdir</em> is the directory where the chains in a text file and the plots will be saved.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="structure.html" class="btn btn-neutral float-right" title="Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="quickstart.html" class="btn btn-neutral float-left" title="Quickstart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, A Slosar, JA Vazquez, I Gomez-Vargas
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
