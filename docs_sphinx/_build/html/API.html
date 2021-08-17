@@ -565,30 +565,124 @@ new one with extension _new in its name.</p>
 <em class="property">class </em><code class="descclassname">simplemc.likelihoods.BaseLikelihood.</code><code class="descname">BaseLikelihood</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/likelihoods/BaseLikelihood.html#BaseLikelihood"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.likelihoods.BaseLikelihood.BaseLikelihood" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>This is the base likelihood object. Base for all other likelihoods.</p>
+<dl class="method">
+<dt id="simplemc.likelihoods.BaseLikelihood.BaseLikelihood.freeParameters">
+<code class="descname">freeParameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/likelihoods/BaseLikelihood.html#BaseLikelihood.freeParameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.likelihoods.BaseLikelihood.BaseLikelihood.freeParameters" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">free parameters of the theory</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="simplemc.likelihoods.BaseLikelihood.BaseLikelihood.name">
+<code class="descname">name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/likelihoods/BaseLikelihood.html#BaseLikelihood.name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.likelihoods.BaseLikelihood.BaseLikelihood.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the dataset</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">name</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="simplemc.likelihoods.BaseLikelihood.BaseLikelihood.setTheory">
+<code class="descname">setTheory</code><span class="sig-paren">(</span><em>theory</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/likelihoods/BaseLikelihood.html#BaseLikelihood.setTheory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.likelihoods.BaseLikelihood.BaseLikelihood.setTheory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a theoretical model to use in the likelihood</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>theory</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><em>object</em></a>) – Instance of BaseCosmology class.
+For example, theory = LCDMCosmology()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">theory</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="simplemc.likelihoods.BaseLikelihood.BaseLikelihood.theory">
+<code class="descname">theory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/likelihoods/BaseLikelihood.html#BaseLikelihood.theory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.likelihoods.BaseLikelihood.BaseLikelihood.theory" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">theory</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="simplemc.likelihoods.BaseLikelihood.BaseLikelihood.updateParams">
+<code class="descname">updateParams</code><span class="sig-paren">(</span><em>params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/likelihoods/BaseLikelihood.html#BaseLikelihood.updateParams"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.likelihoods.BaseLikelihood.BaseLikelihood.updateParams" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Update values of the model parameters</p>
+<dl class="docutils">
+<dt>params <span class="classifier-delimiter">:</span> <span class="classifier">list</span></dt>
+<dd>List of instance of Parameter class.</dd>
+</dl>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list of updated parameters</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 <span class="target" id="module-simplemc.likelihoods.CompressedSNLikelihood"></span><dl class="class">
 <dt id="simplemc.likelihoods.CompressedSNLikelihood.BetouleSN">
 <em class="property">class </em><code class="descclassname">simplemc.likelihoods.CompressedSNLikelihood.</code><code class="descname">BetouleSN</code><a class="reference internal" href="_modules/simplemc/likelihoods/CompressedSNLikelihood.html#BetouleSN"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.likelihoods.CompressedSNLikelihood.BetouleSN" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#simplemc.likelihoods.CompressedSNLikelihood.CompressedSNLikelihood" title="simplemc.likelihoods.CompressedSNLikelihood.CompressedSNLikelihood"><code class="xref py py-class docutils literal notranslate"><span class="pre">simplemc.likelihoods.CompressedSNLikelihood.CompressedSNLikelihood</span></code></a></p>
+<p>Likelihood to binned JLA dataset.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="simplemc.likelihoods.CompressedSNLikelihood.BinnedPantheon">
 <em class="property">class </em><code class="descclassname">simplemc.likelihoods.CompressedSNLikelihood.</code><code class="descname">BinnedPantheon</code><a class="reference internal" href="_modules/simplemc/likelihoods/CompressedSNLikelihood.html#BinnedPantheon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.likelihoods.CompressedSNLikelihood.BinnedPantheon" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#simplemc.likelihoods.CompressedSNLikelihood.CompressedSNLikelihood" title="simplemc.likelihoods.CompressedSNLikelihood.CompressedSNLikelihood"><code class="xref py py-class docutils literal notranslate"><span class="pre">simplemc.likelihoods.CompressedSNLikelihood.CompressedSNLikelihood</span></code></a></p>
+<p>Likelihood to binned Pantheon dataset.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="simplemc.likelihoods.CompressedSNLikelihood.CompressedSNLikelihood">
 <em class="property">class </em><code class="descclassname">simplemc.likelihoods.CompressedSNLikelihood.</code><code class="descname">CompressedSNLikelihood</code><span class="sig-paren">(</span><em>name</em>, <em>values_filename</em>, <em>cov_filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/likelihoods/CompressedSNLikelihood.html#CompressedSNLikelihood"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.likelihoods.CompressedSNLikelihood.CompressedSNLikelihood" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#simplemc.likelihoods.BaseLikelihood.BaseLikelihood" title="simplemc.likelihoods.BaseLikelihood.BaseLikelihood"><code class="xref py py-class docutils literal notranslate"><span class="pre">simplemc.likelihoods.BaseLikelihood.BaseLikelihood</span></code></a></p>
+<p>This module calculates likelihood for the compressed SN.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of the dataset</li>
+<li><strong>values_filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – File text with the observational data.</li>
+<li><strong>cov_filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – File text with the covariance matrix of the observational data.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="class">
 <dt id="simplemc.likelihoods.CompressedSNLikelihood.UnionSN">
 <em class="property">class </em><code class="descclassname">simplemc.likelihoods.CompressedSNLikelihood.</code><code class="descname">UnionSN</code><a class="reference internal" href="_modules/simplemc/likelihoods/CompressedSNLikelihood.html#UnionSN"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.likelihoods.CompressedSNLikelihood.UnionSN" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#simplemc.likelihoods.CompressedSNLikelihood.CompressedSNLikelihood" title="simplemc.likelihoods.CompressedSNLikelihood.CompressedSNLikelihood"><code class="xref py py-class docutils literal notranslate"><span class="pre">simplemc.likelihoods.CompressedSNLikelihood.CompressedSNLikelihood</span></code></a></p>
+<p>Likelihood to binned Union 2.1 dataset</p>
 </dd></dl>
 
 </div>
@@ -978,57 +1072,10 @@ i.e. H(z)^2/H(z=0)^2.</p>
 </dd></dl>
 
 <span class="target" id="module-simplemc.models.SimpleModel"></span><dl class="class">
-<dt id="simplemc.models.SimpleModel.SimpleCosmoModel">
-<em class="property">class </em><code class="descclassname">simplemc.models.SimpleModel.</code><code class="descname">SimpleCosmoModel</code><span class="sig-paren">(</span><em>extra_params=None</em>, <em>RHSquared=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/models/SimpleModel.html#SimpleCosmoModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.models.SimpleModel.SimpleCosmoModel" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#simplemc.models.LCDMCosmology.LCDMCosmology" title="simplemc.models.LCDMCosmology.LCDMCosmology"><code class="xref py py-class docutils literal notranslate"><span class="pre">simplemc.models.LCDMCosmology.LCDMCosmology</span></code></a></p>
-<dl class="method">
-<dt id="simplemc.models.SimpleModel.SimpleCosmoModel.RHSquared_a">
-<code class="descname">RHSquared_a</code><span class="sig-paren">(</span><em>a</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/models/SimpleModel.html#SimpleCosmoModel.RHSquared_a"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.models.SimpleModel.SimpleCosmoModel.RHSquared_a" title="Permalink to this definition">¶</a></dt>
-<dd><p>This is relative h-squared as a function of the factor scale a
-i.e. H(z)^2/H(z=0)^2.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Factor scale.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="simplemc.models.SimpleModel.SimpleCosmoModel.updateParams">
-<code class="descname">updateParams</code><span class="sig-paren">(</span><em>pars</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/models/SimpleModel.html#SimpleCosmoModel.updateParams"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.models.SimpleModel.SimpleCosmoModel.updateParams" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update parameters values.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pars</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – List of intance of the Parameter class</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
 <dt id="simplemc.models.SimpleModel.SimpleModel">
 <em class="property">class </em><code class="descclassname">simplemc.models.SimpleModel.</code><code class="descname">SimpleModel</code><span class="sig-paren">(</span><em>parameters</em>, <em>function</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/models/SimpleModel.html#SimpleModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.models.SimpleModel.SimpleModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>This is a generic model</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – List of Parameter objects</li>
-<li><strong>function</strong> (<em>function</em>) – model or function. It should be in terms of the parameters list.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
 </dd></dl>
 
 </div>

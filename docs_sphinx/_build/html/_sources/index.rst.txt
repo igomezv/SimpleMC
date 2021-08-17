@@ -38,6 +38,8 @@ Extended index
 Changelog
 ----------
 
+- **0.9.6.8 (12/08/2021)** Summary output to all analyzers. Remove nestle engine. 
+- **0.9.6.5 (09/08/2021)** Add ga_deap options in ini file. 
 - **0.9.6 (7/06/2021)** Unify simple and generic models, test generic likelihood.
 - **0.9.5.8 (26/04/2021)** Quintom with coupling and curvature. Beta version of neuralike. Warnings for non-essential libraries.
 - **0.9.5.4 (21/03/2021)** Fixed parameter estimation problem in Summary of nested chains.
@@ -63,8 +65,6 @@ Changelog
 TO DO
 ------
 
-- ga_deap options in ``ini file``.
-- Summary to MCMCAnalyzer
 - Add more DE EoS for comparison, for example, in CPL (owaCDM).
 - Unify pybambi and nerualike. 
 - Neural networks methods with dynesty multiprocessing fails.
