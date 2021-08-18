@@ -9,10 +9,6 @@ Tutorials
 
    tuto_cosmocalc
    
-   tuto_plotters
-   
-   tuto_toymodels
-   
    tuto_priors
    
    tuto_simple_model
@@ -26,7 +22,11 @@ Tutorials
    tuto_genetic
    
    tuto_modelcomparison
+
+   tuto_plotters
    
+   tuto_toymodels
+      
    tuto_neuralike
    
    

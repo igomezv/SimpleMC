@@ -43,3 +43,16 @@ The following table has the Jeffrey's scale, where the strength of the Bayesian 
      
    * - :math:`>5`
      - Decisive
+
+
+If you want to estimate Bayesian evidence without nested sampling, i.e., using ``mcmc`` or ``emcee``, you can use ``MCEvidence`` as follows:
+
+.. code-block:: bash
+
+  [custom]
+  ...
+  ...
+  analyzer = mcmc
+  mcevidence = True
+  ...
+  

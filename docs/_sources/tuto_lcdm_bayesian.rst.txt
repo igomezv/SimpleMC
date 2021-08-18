@@ -15,10 +15,12 @@ To perform Bayesian inference for the :math:`\Lambda CDM` model using Type Ia Su
 	...
 
 
-There are two options to make parameter estimation through Bayesian inference in ``SimpleMC``: 
+There are three options to make parameter estimation through Bayesian inference in ``SimpleMC``: 
 
 
   * :ref:`mcmc`
+
+  * :ref:`emcee`
 
   * :ref:`nested`
 
@@ -46,6 +48,30 @@ The model keyword for using the Metropolis-Hastings algorithm is ``mcmc`` as the
 	nsamp = 10000
 	skip    = 100
 	GRstop  = 0.01
+	...
+
+
+..  _emcee:
+
+With EMCEE algorithm
+------------------------------------
+
+To use the EMCEE algorithm we use ``emcee`` library. The basic keys in the ``[emcee]`` section of the ``ini file`` are the number of walkers of the ensemble ``walkers``, the number of samples for each walker ``[nsamp]`` and the burn-in steps ``burnin``.
+
+The number of walkers must be at least twice the number of free parameters. 
+
+.. code-block:: bash
+
+	[custom]
+	...
+	...
+	analyzer = emcee
+	...
+	
+	[emcee]
+	walkers = 10
+	nsamp = 200
+	burnin = 0
 	...
 
 

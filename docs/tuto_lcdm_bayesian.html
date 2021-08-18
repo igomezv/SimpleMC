@@ -97,6 +97,7 @@
 <li class="toctree-l2"><a class="reference internal" href="tuto_simple_likelihood.html">How to use an external dataset?</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Bayesian inference to LCDM</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#with-metropolis-hastings-algorithm">With Metropolis-Hastings algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#with-emcee-algorithm">With EMCEE algorithm</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#with-nested-sampling">With nested sampling</a></li>
 </ul>
 </li>
@@ -187,10 +188,11 @@
 ...
 </pre></div>
 </div>
-<p>There are two options to make parameter estimation through Bayesian inference in <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code>:</p>
+<p>There are three options to make parameter estimation through Bayesian inference in <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code>:</p>
 <blockquote>
 <div><ul class="simple">
 <li><a class="reference internal" href="#mcmc"><span class="std std-ref">With Metropolis-Hastings algorithm</span></a></li>
+<li><a class="reference internal" href="#emcee"><span class="std std-ref">With EMCEE algorithm</span></a></li>
 <li><a class="reference internal" href="#nested"><span class="std std-ref">With nested sampling</span></a></li>
 </ul>
 </div></blockquote>
@@ -209,6 +211,24 @@
 <span class="nv">nsamp</span> <span class="o">=</span> <span class="m">10000</span>
 <span class="nv">skip</span>    <span class="o">=</span> <span class="m">100</span>
 <span class="nv">GRstop</span>  <span class="o">=</span> <span class="m">0</span>.01
+...
+</pre></div>
+</div>
+</div>
+<div class="section" id="with-emcee-algorithm">
+<span id="emcee"></span><h2>With EMCEE algorithm<a class="headerlink" href="#with-emcee-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>To use the EMCEE algorithm we use <code class="docutils literal notranslate"><span class="pre">emcee</span></code> library. The basic keys in the <code class="docutils literal notranslate"><span class="pre">[emcee]</span></code> section of the <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> are the number of walkers of the ensemble <code class="docutils literal notranslate"><span class="pre">walkers</span></code>, the number of samples for each walker <code class="docutils literal notranslate"><span class="pre">[nsamp]</span></code> and the burn-in steps <code class="docutils literal notranslate"><span class="pre">burnin</span></code>.</p>
+<p>The number of walkers must be at least twice the number of free parameters.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
+...
+...
+<span class="nv">analyzer</span> <span class="o">=</span> emcee
+...
+
+<span class="o">[</span>emcee<span class="o">]</span>
+<span class="nv">walkers</span> <span class="o">=</span> <span class="m">10</span>
+<span class="nv">nsamp</span> <span class="o">=</span> <span class="m">200</span>
+<span class="nv">burnin</span> <span class="o">=</span> <span class="m">0</span>
 ...
 </pre></div>
 </div>
