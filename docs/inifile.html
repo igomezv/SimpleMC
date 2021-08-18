@@ -189,7 +189,18 @@
 </div></blockquote>
 </li>
 </ul>
-<p class="last"><strong>Example:</strong></p>
+<p><strong>Example:</strong></p>
+<div class="last highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
+
+<span class="nv">chainsdir</span> <span class="o">=</span> chains
+
+<span class="nv">model</span> <span class="o">=</span> LCDM
+
+<span class="nv">datasets</span> <span class="o">=</span> BBAO+HD+SN
+
+<span class="nv">analyzer</span> <span class="o">=</span> mcmc
+</pre></div>
+</div>
 </dd>
 </dl>
 </li>
@@ -209,7 +220,15 @@
 </dl>
 </li>
 </ul>
-<p class="last"><strong>Example:</strong></p>
+<p><strong>Example:</strong></p>
+<div class="last highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>mcmc<span class="o">]</span>
+<span class="nv">nsamp</span>   <span class="o">=</span> <span class="m">4000</span>
+<span class="nv">skip</span>    <span class="o">=</span> <span class="m">100</span>
+<span class="nv">temp</span>    <span class="o">=</span> <span class="m">2</span>
+<span class="nv">chainno</span> <span class="o">=</span> <span class="m">1</span>
+<span class="nv">addderived</span> <span class="o">=</span> False
+</pre></div>
+</div>
 </dd>
 </dl>
 </li>
@@ -231,7 +250,18 @@
 </dl>
 </li>
 </ul>
-<p class="last"><strong>Example</strong></p>
+<p><strong>Example</strong></p>
+<div class="last highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">dynamic</span> <span class="o">=</span> no
+<span class="nv">neuralNetwork</span> <span class="o">=</span> no
+<span class="nv">nestedType</span> <span class="o">=</span> multi
+<span class="nv">nlivepoints</span> <span class="o">=</span> <span class="m">500</span>
+<span class="nv">accuracy</span> <span class="o">=</span> <span class="m">0</span>.01
+
+<span class="nv">priortype</span> <span class="o">=</span> u
+
+<span class="nv">nproc</span> <span class="o">=</span> <span class="m">0</span>
+</pre></div>
+</div>
 </dd>
 </dl>
 </li>
@@ -252,13 +282,238 @@
 </dl>
 </li>
 </ul>
-<p class="last"><strong>Example:</strong></p>
+<p><strong>Example:</strong></p>
+<div class="last highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>neural<span class="o">]</span>
+<span class="nv">numNeurons</span> <span class="o">=</span> <span class="m">50</span>
+<span class="nv">epochs</span> <span class="o">=</span> <span class="m">100</span>
+<span class="nv">dlogz_start</span> <span class="o">=</span> <span class="m">5</span>
+<span class="nv">it_to_start_net</span> <span class="o">=</span> <span class="m">10000</span>
+<span class="nv">updInt</span> <span class="o">=</span> <span class="m">500</span>
+</pre></div>
+</div>
 </dd>
 </dl>
 </li>
 </ul>
 <div class="section" id="baseconfig-ini">
 <span id="baseconfig"></span><h2>baseConfig.ini<a class="headerlink" href="#baseconfig-ini" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
+<span class="p">;</span>directory <span class="k">for</span> chains/output
+<span class="nv">chainsdir</span> <span class="o">=</span> simplemc/chains
+
+<span class="p">;</span><span class="nb">set</span> model
+<span class="p">;</span>model options: LCDM, LCDMasslessnu, nuLCDM, NeffLCDM, noradLCDM, nuoLCDM,
+<span class="p">;</span>nuwLCDM, oLCDM, wCDM, waCDM, owCDM, owaCDM, JordiCDM, WeirdCDM, TLight, StepCDM,
+<span class="p">;</span>Spline, PolyCDM, fPolyCDM, Decay, Decay01, Decay05, EarlyDE, EarlyDE_rd_DE, SlowRDE, sline
+<span class="p">;</span>more options located in the RunBase.py
+<span class="nv">model</span> <span class="o">=</span> LCDM
+
+<span class="p">;</span>prefact options : <span class="o">[</span>pre, phy<span class="o">]</span>
+<span class="nv">prefact</span> <span class="o">=</span> phy
+
+<span class="p">;</span>varys8 True otherwise <span class="nv">s8</span><span class="o">=</span><span class="m">0</span>.8
+<span class="nv">varys8</span>  <span class="o">=</span> False
+
+<span class="p">;</span><span class="nb">set</span> datasets used. Ex: UnionSN+BBAO+Planck
+<span class="p">;</span>data options: HD, BBAO, GBAO11, CBAO, BAO_no6dF, CMASS, LBAO, LaBAO,
+<span class="p">;</span>LxBAO, MGS, Planck, WMAP, PlRd, WRd, PlDa, PlRdx10, CMBW, SN, SNx10, UnionSN,
+<span class="p">;</span>RiessH0, 6dFGS, dline
+<span class="nv">datasets</span> <span class="o">=</span> SN+CBAO
+
+
+<span class="p">;</span>sampler can be <span class="o">{</span>mcmc, nested, emcee<span class="o">}</span>
+<span class="p">;</span>or analyzers <span class="o">{</span>maxlike, genetic<span class="o">}</span>
+<span class="p">;</span>
+<span class="p">;</span>mcmc -&gt; metropolis-hastings
+<span class="p">;</span>nested
+    <span class="p">;</span>engine can be <span class="o">{</span>nestle, dynesty<span class="o">}</span>
+    <span class="p">;</span>nestedType can be
+        <span class="p">;</span>none -&gt; Prior mass without bounds
+        <span class="p">;</span>single -&gt; Ellipsoidal nested sampling
+        <span class="p">;</span>multi -&gt; multinest
+        <span class="p">;</span>balls -&gt;  balls centered on each live point
+        <span class="p">;</span>cube -&gt; cubes centered on each live point
+<span class="p">;</span>emcee
+<span class="p">;</span>maxlike -&gt; Maximum Likelihood Analyzer
+<span class="p">;</span>genetic, ga_deap
+<span class="nv">analyzername</span> <span class="o">=</span> ga_deap
+
+
+<span class="p">;</span>add derived parameters <span class="o">(</span>True/False<span class="o">)</span> ,
+<span class="p">;</span>i.e. Omega_Lambda, H0, Age of the Universe
+<span class="nv">addDerived</span> <span class="o">=</span> False
+
+
+<span class="p">;</span>use neural network to predict likelihoods <span class="o">(</span>True/False<span class="o">)</span>,
+<span class="p">;</span>edit block neuralike to <span class="nb">set</span> options
+<span class="nv">useNeuralLike</span> <span class="o">=</span> False
+
+
+<span class="o">[</span>mcmc<span class="o">]</span>
+<span class="p">;</span>Nsamples
+<span class="nv">nsamp</span>   <span class="o">=</span> <span class="m">50000</span>
+
+<span class="p">;</span>Burn-in
+<span class="nv">skip</span>    <span class="o">=</span> <span class="m">300</span>
+
+<span class="p">;</span>temperature at which to sample
+<span class="nv">temp</span>    <span class="o">=</span> <span class="m">2</span>
+
+<span class="p">;</span> Gelman-Rubin <span class="k">for</span> convergence
+<span class="nv">GRstop</span>  <span class="o">=</span> <span class="m">0</span>.01
+
+<span class="p">;</span>every number of steps check the GR-criteria
+<span class="nv">checkGR</span> <span class="o">=</span> <span class="m">500</span>
+
+<span class="p">;</span><span class="m">1</span> <span class="k">if</span> single cpu , otherwise is giving by the nproc-&gt; mpi -np <span class="c1">#</span>
+<span class="nv">chainno</span> <span class="o">=</span> <span class="m">0</span>
+
+<span class="p">;</span>use mcevidence to compute Bayesinas evidene after posteriors are produed
+<span class="nv">evidence</span> <span class="o">=</span> False
+
+<span class="o">[</span>nested<span class="o">]</span>
+<span class="p">;</span>engine can be nestle or dynesty
+<span class="nv">engine</span> <span class="o">=</span> dynesty
+
+<span class="p">;</span>type: <span class="k">for</span> dynesty -&gt; <span class="o">{</span><span class="s1">&#39;single&#39;</span>,<span class="s1">&#39;multi&#39;</span>, <span class="s1">&#39;balls&#39;</span>, <span class="s1">&#39;cubes&#39;</span><span class="o">}</span>
+<span class="p">;</span><span class="nb">type</span> <span class="k">for</span> nestle -&gt; <span class="o">{</span><span class="s1">&#39;single&#39;</span>, <span class="s1">&#39;multi&#39;</span><span class="o">}</span>
+<span class="nv">nestedType</span> <span class="o">=</span> multi
+
+<span class="p">;</span>it is recommended around <span class="nv">nlivepoints</span><span class="o">=</span><span class="m">50</span>*ndim, recommended <span class="m">1024</span>
+<span class="nv">nlivepoints</span> <span class="o">=</span> <span class="m">350</span>
+
+
+<span class="p">;</span>recommended <span class="m">0</span>.01
+<span class="nv">accuracy</span> <span class="o">=</span> <span class="m">0</span>.02
+
+<span class="p">;</span>u <span class="k">for</span> flat<span class="o">(</span>uniform<span class="o">)</span> or g <span class="k">for</span> gaussian prior
+<span class="nv">priortype</span> <span class="o">=</span> u
+
+<span class="p">;</span>when using gaussian prior
+<span class="nv">sigma</span> <span class="o">=</span> <span class="m">2</span>
+
+
+<span class="p">;</span><span class="k">if</span> <span class="nv">nproc</span> <span class="o">=</span> <span class="m">0</span> uses mp.cpu_count<span class="o">()</span>//2 by default,
+<span class="p">;</span>you can <span class="nb">set</span> with another positive integer
+<span class="nv">nproc</span> <span class="o">=</span> <span class="m">2</span>
+
+<span class="p">;</span>Produce output on the fly
+<span class="nv">showfiles</span> <span class="o">=</span> True
+
+<span class="p">;</span>dynamic option is only <span class="k">for</span> dynesty engine
+<span class="p">;</span>dynamic and neuralNetwork can be False/True
+<span class="nv">dynamic</span> <span class="o">=</span> False
+
+<span class="nv">neuralNetwork</span> <span class="o">=</span> False
+
+<span class="p">;</span><span class="k">if</span> <span class="nv">neuralNetwork</span> <span class="o">=</span> True, <span class="k">then</span> you can set:
+
+<span class="o">[</span>neural<span class="o">]</span>
+<span class="p">;</span>modified bambi
+<span class="nv">split</span> <span class="o">=</span> <span class="m">0</span>.8
+<span class="p">;</span> keras or nearestneighbour
+<span class="nv">learner</span> <span class="o">=</span> keras
+<span class="p">;</span>all the following options are only <span class="k">for</span> keras learner
+<span class="p">;</span> number of neurons of the three hidden layers
+<span class="nv">numNeurons</span> <span class="o">=</span> <span class="m">50</span>
+<span class="p">;</span> epochs <span class="k">for</span> training
+<span class="nv">epochs</span> <span class="o">=</span> <span class="m">100</span>
+<span class="p">;</span> number of training points
+<span class="p">;</span><span class="nv">ntrain</span> <span class="o">=</span> nlivepoints by default
+<span class="p">;</span>dlogz to start to train the neural net <span class="o">(</span>we recommend dlogz_start &lt;<span class="o">=</span><span class="m">10</span><span class="o">)</span>
+<span class="nv">dlogz_start</span> <span class="o">=</span> <span class="m">5</span>
+<span class="p">;</span>number of nested <span class="o">(</span>dynesty<span class="o">)</span> iterations to start to train the neural net
+<span class="nv">it_to_start_net</span> <span class="o">=</span> <span class="m">10000</span>
+<span class="p">;</span>number of iterations to re-train the neural net. By default <span class="nv">updInt</span> <span class="o">=</span> nlivepoints,
+<span class="p">;</span>choose updInt &lt;<span class="o">=</span> nlivepoints
+<span class="p">;</span><span class="nv">updInt</span> <span class="o">=</span> <span class="m">500</span>
+<span class="p">;</span>proxy_tolerance uncertainity of the net allowed.
+<span class="nv">proxy_tolerance</span> <span class="o">=</span> <span class="m">0</span>.3
+
+<span class="o">[</span>neuralike<span class="o">]</span>
+<span class="p">;</span>neuralike contains options to use a neural network in likelihood evaluations over the parameter space
+<span class="nv">ndivsgrid</span> <span class="o">=</span> <span class="m">4</span>
+<span class="nv">epochs</span> <span class="o">=</span> <span class="m">500</span>
+<span class="nv">learning_rate</span> <span class="o">=</span> 1e-5
+<span class="nv">batch_size</span> <span class="o">=</span> <span class="m">16</span>
+<span class="nv">psplit</span> <span class="o">=</span> <span class="m">0</span>.8
+<span class="p">;</span>hidden_layers_neurons: number of nodes per layer separated by commas
+<span class="nv">hidden_layers_neurons</span> <span class="o">=</span> <span class="m">100</span>, <span class="m">100</span>, <span class="m">100</span>
+<span class="p">;</span>number of procesors to make the grid
+<span class="nv">nproc</span> <span class="o">=</span> <span class="m">5</span>
+
+<span class="o">[</span>emcee<span class="o">]</span>
+<span class="nv">walkers</span> <span class="o">=</span> <span class="m">20</span>
+<span class="nv">nsamp</span> <span class="o">=</span> <span class="m">15000</span>
+
+<span class="nv">burnin</span> <span class="o">=</span> x
+<span class="nv">nproc</span> <span class="o">=</span> <span class="m">4</span>
+
+
+<span class="o">[</span>maxlike<span class="o">]</span>
+<span class="p">;</span>compute errror from Hessian matrix
+<span class="p">;</span>False/True
+<span class="nv">compute_errors</span> <span class="o">=</span> True
+
+<span class="p">;</span>If withErrors is True
+<span class="p">;</span>plot Fisher matrix
+<span class="nv">show_contours</span> <span class="o">=</span> True
+
+<span class="p">;</span>If showplot is True, <span class="k">then</span>
+<span class="p">;</span>2D plot <span class="k">for</span> the parameters:
+<span class="nv">plot_par1</span> <span class="o">=</span> h
+<span class="nv">plot_par2</span> <span class="o">=</span> Om
+
+<span class="p">;</span><span class="o">[</span>DerivedParameters<span class="o">]</span>
+<span class="nv">compute_derived</span> <span class="o">=</span> True
+
+
+<span class="p">;</span>genetic parameters
+
+<span class="o">[</span>genetic<span class="o">]</span>
+<span class="nv">n_individuals</span> <span class="o">=</span> <span class="m">10</span>
+<span class="nv">n_generations</span> <span class="o">=</span> <span class="m">500</span>
+<span class="p">;</span><span class="nv">selection_method</span> <span class="o">=</span> <span class="o">{</span>tournament, roulette, rank<span class="o">}</span>
+<span class="nv">selection_method</span> <span class="o">=</span> tournament
+<span class="p">;</span>mutation probability
+<span class="nv">mut_prob</span> <span class="o">=</span> <span class="m">0</span>.4
+<span class="p">;</span><span class="nv">distribution</span> <span class="o">=</span> <span class="o">{</span><span class="s2">&quot;uniform&quot;</span>, <span class="s2">&quot;gaussian&quot;</span>, <span class="s2">&quot;random&quot;</span><span class="o">}</span>
+<span class="nv">distribution</span> <span class="o">=</span> <span class="s2">&quot;uniform&quot;</span>
+<span class="p">;</span>media_distribution : media value <span class="k">for</span> gaussian distributions
+<span class="nv">media_distribution</span> <span class="o">=</span> <span class="m">1</span>.0
+<span class="p">;</span>sd_distribution : Standard deviation <span class="k">for</span> gaussian distributions
+<span class="nv">sd_distribution</span> <span class="o">=</span> <span class="m">1</span>.0
+<span class="p">;</span>min_distribution : Minimum value <span class="k">for</span> uniform distributions
+<span class="nv">min_distribution</span> <span class="o">=</span> -1.0
+<span class="p">;</span>max_distribution : Maximum value <span class="k">for</span> uniform distributions
+<span class="nv">max_distribution</span> <span class="o">=</span> <span class="m">1</span>.0
+<span class="p">;</span>stopping_early : It needs a value <span class="k">for</span> <span class="s2">&quot;rounds_stopping&quot;</span> and <span class="s2">&quot;tolerance_stopping&quot;</span>.
+<span class="nv">stopping_early</span> <span class="o">=</span> True
+<span class="p">;</span>rounds_stopping : Rounds to consider to stopping early with the tolerance_stopping value.
+<span class="nv">rounds_stopping</span> <span class="o">=</span> <span class="m">100</span>
+<span class="p">;</span>tolerance_stopping : Value to stopping early criteria.
+<span class="p">;</span>This value is the difference between the best fit <span class="k">for</span> the
+<span class="p">;</span>latest rounds_stopping generations.
+<span class="nv">tolerance_stopping</span> <span class="o">=</span> <span class="m">0</span>.01
+
+<span class="o">[</span>ga_deap<span class="o">]</span>
+<span class="p">;</span>Plot Generation vs Fitness
+<span class="nv">plot_fitness</span> <span class="o">=</span> True
+
+<span class="p">;</span>compute errror from Hessian matrix
+<span class="p">;</span>False/True
+<span class="nv">compute_errors</span> <span class="o">=</span> False
+
+<span class="p">;</span>If withErrors is True
+<span class="p">;</span>plot Fisher matrix
+<span class="nv">show_contours</span> <span class="o">=</span> False
+
+<span class="p">;</span>If showplot is True, <span class="k">then</span>
+<span class="p">;</span>2D plot <span class="k">for</span> the parameters:
+<span class="nv">plot_par1</span> <span class="o">=</span> h
+<span class="nv">plot_par2</span> <span class="o">=</span> Om
+</pre></div>
+</div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>Considerations:</p>

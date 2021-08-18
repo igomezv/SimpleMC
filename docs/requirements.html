@@ -169,20 +169,12 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo pip install numpy matplotlib scipy
 </pre></div>
 </div>
-<p>Only if you want to use EMCEE sampler:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo pip install emcee
-</pre></div>
-</div>
-<p>Optionally, MCEvidence is necessary to estimate the bayesian evidence in the Metropolis-Hastings sampler:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install git+https://github.com/yabebalFantaye/MCEvidence
+<p>To use genetic algorithms in order to maximize the Likelihood function:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install deap
 </pre></div>
 </div>
 <p>To use Artificial Neural Networks with nested sampling or to learn likelihood functions, you need to install:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install tensorflow keras
-</pre></div>
-</div>
-<p>To use genetic algorithms in order to maximize the Likelihood function:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install deap
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install tensorflow
 </pre></div>
 </div>
 <p>If you want the full options to plot:</p>
@@ -192,7 +184,7 @@
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>All in one copy-paste line:</p>
-<div class="last highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install numpy matplotlib scipy tensorflow keras corner getdist deap git+https://github.com/yabebalFantaye/MCEvidence
+<div class="last highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install numpy matplotlib scipy tensorflow corner getdist deap
 </pre></div>
 </div>
 </div>
@@ -200,7 +192,7 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install mpi4py
 </pre></div>
 </div>
-<p>this requirement is not necessary if you want to use nested sampling or optimization algorithms.</p>
+<p>this requirement is not necessary if you want to use nested sampling, emcee or optimization algorithms.</p>
 </div>
 
 
