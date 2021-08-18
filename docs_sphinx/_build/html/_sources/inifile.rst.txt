@@ -20,7 +20,7 @@ The ``ini file`` to ``SimpleMC`` configuration must have a module ``[custom]`` a
 
     **Example:**
 
-    .. code-block::
+    .. code-block:: bash
 
             [custom]
 
@@ -43,7 +43,7 @@ The ``ini file`` to ``SimpleMC`` configuration must have a module ``[custom]`` a
 
     **Example:**
     
-    .. code-block::
+    .. code-block:: bash
 
           [mcmc]
           nsamp   = 4000
@@ -65,8 +65,8 @@ The ``ini file`` to ``SimpleMC`` configuration must have a module ``[custom]`` a
 
     **Example**
 
-    .. code-block::
-
+    .. code-block:: bash
+    
             dynamic = no
             neuralNetwork = no
             nestedType = multi
@@ -90,7 +90,7 @@ The ``ini file`` to ``SimpleMC`` configuration must have a module ``[custom]`` a
 
     **Example:**
     
-    .. code-block::
+    .. code-block:: bash
             
             [neural]
             numNeurons = 50
@@ -100,12 +100,14 @@ The ``ini file`` to ``SimpleMC`` configuration must have a module ``[custom]`` a
             updInt = 500
 
 
+
 ..  _baseConfig:
 
 baseConfig.ini
 ---------------
-.. code-block::
-        
+
+.. code-block:: bash
+     
     [custom]
     ;directory for chains/output
     chainsdir = simplemc/chains
