@@ -10,7 +10,7 @@ try:
     from deap import base, creator, tools, algorithms
 except:
     import warnings
-    warnings.warn("Pleas install DEAP library if you want to use ga_deap genetic algorithms.")
+    warnings.warn("Please install DEAP library if you want to use ga_deap genetic algorithms.")
 
 # We import an independent module to implement elitism in the GA.
 from simplemc.analyzers import elitism
@@ -36,11 +36,17 @@ class GA_deap:
         :param show_contours: True if you want to show the contours in a plot.
         :param plot_param1: a parameter to plot in x-axis.
         :param plot_param2: a parameter to plot in y-axis.
+
     """
-    def __init__(self, like, model, plot_fitness=False, compute_errors=False, \
-                 show_contours=False, plot_param1=None, plot_param2=None):
+    def __init__(self, like, model, outputname='deap_output',
+                 population=20, crossover=0.7,
+                 mutation=0.3, max_generation=20, hof_size=1,
+                 crowding_factor=1, plot_fitness=False,
+                 compute_errors=False, show_contours=False,
+                 plot_param1=None, plot_param2=None):
         self.like = like
         self.model = model
+        self.outputname = outputname
         self.params = like.freeParameters()
         self.vpars = [p.value for p in self.params]
         self.sigma = sp.array([p.error for p in self.params])
@@ -54,12 +60,12 @@ class GA_deap:
         self.plot_param2 = plot_param2
 
         # Genetic Algorithm constants:
-        self.POPULATION_SIZE = 20    # 10-20
-        self.P_CROSSOVER = 0.7       # probability for crossover
-        self.P_MUTATION = 0.3        # (try also 0.5) probability for mutating an individual
-        self.MAX_GENERATIONS = 20    # 100- 300
-        self.HALL_OF_FAME_SIZE = 1
-        self.CROWDING_FACTOR = 20.0  # crowding factor for crossover and mutation
+        self.POPULATION_SIZE = population    # 10-20
+        self.P_CROSSOVER = crossover       # probability for crossover
+        self.P_MUTATION = mutation        # (try also 0.5) probability for mutating an individual
+        self.MAX_GENERATIONS = max_generation    # 100- 300
+        self.HALL_OF_FAME_SIZE = hof_size
+        self.CROWDING_FACTOR = crowding_factor  # crowding factor for crossover and mutation
 
         self.RANDOM_SEED = 42        # set the random seed
 
@@ -83,15 +89,19 @@ class GA_deap:
         # perform the Genetic Algorithm flow with elitism:
         population, logbook = elitism.eaSimpleWithElitism(population, toolbox, cxpb=self.P_CROSSOVER,\
                                                           mutpb=self.P_MUTATION, ngen=self.MAX_GENERATIONS,\
-                                                          stats=stats, halloffame=hof, verbose=True)
+                                                          stats=stats, halloffame=hof, verbose=True,
+                                                          outputname=self.outputname)
 
         # print info for best solution found:
         best = hof.items[0]
         print("-- Best Fitness = ", best.fitness.values[0])
         print("- Best solutions are:")
         best_params = [self.change_prior(i, x) for i, x in enumerate(best)]
+        res = [""]
         for i, x in enumerate(best_params):
             print("-- Best %s = "%self.params[i].name , x)
+            res.append("{}: {:.5f}".format(self.params[i].name, x))
+        res.append("Best Fitness: {:.5f}".format(best.fitness.values[0]))
 
 
         #for i in range(self.HALL_OF_FAME_SIZE):
@@ -125,7 +135,7 @@ class GA_deap:
             ax = fig.add_subplot(111)
             plot_elipses(best_params, self.cov, idx_param1, idx_param2, ax=ax)
             plt.show()
-        return population, logbook, hof
+        return population, logbook, hof, res
 
 
 
