@@ -90,19 +90,15 @@
 <li class="toctree-l1"><a class="reference internal" href="structure.html"><strong>Structure</strong></a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="tuto_cosmocalc.html">Cosmological calculator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tuto_plotters.html">Plot the outputs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tuto_toymodels.html">Toy models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_priors.html">Set a prior probability density function</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_simple_model.html">How to create a new model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_simple_likelihood.html">How to use an external dataset?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_lcdm_bayesian.html">Bayesian inference to LCDM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_maxlike.html">Maximum Likelihood Estimation (MLE) with optimizer</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">MLE with genetic algorithms</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#simple-genetic">Simple Genetic</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#deap-library">DEAP library</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">MLE with genetic algorithms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_modelcomparison.html">Model comparison with Bayesian evidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_plotters.html">Plot the outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_toymodels.html">Toy models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_neuralike.html">Speed-up Bayesian inference with neural networks</a></li>
 </ul>
 </li>
@@ -176,58 +172,8 @@
             
   <div class="section" id="mle-with-genetic-algorithms">
 <h1>MLE with genetic algorithms<a class="headerlink" href="#mle-with-genetic-algorithms" title="Permalink to this headline">¶</a></h1>
-<p>In the <a class="reference external" href="tuto_maxlike.html">maxlike tutorial</a> it is shown how <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> uses an optimization algorithm to maximize the Likelihood function. This task can also be accomplished using genetic algorithms:</p>
-<blockquote>
-<div><ul class="simple">
-<li><a class="reference internal" href="#simplegenetic"><span class="std std-ref">Simple Genetic</span></a></li>
-<li><a class="reference internal" href="#deap"><span class="std std-ref">DEAP library</span></a></li>
-</ul>
-</div></blockquote>
-<p>In both cases, we can run <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> as in the <a class="reference external" href="quickstart.html#python-script">example Python script</a> using the <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> with the genetic algorithm information.</p>
-<div class="section" id="simple-genetic">
-<span id="simplegenetic"></span><h2>Simple Genetic<a class="headerlink" href="#simple-genetic" title="Permalink to this headline">¶</a></h2>
-<p>An example of <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> to use the <code class="docutils literal notranslate"><span class="pre">SimpleGenetic</span> <span class="pre">class</span></code> is as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
-...
-
-<span class="nv">model</span> <span class="o">=</span> LCDM
-
-<span class="nv">datasets</span> <span class="o">=</span> SN+HD
-
-<span class="nv">analyzer</span> <span class="o">=</span> genetic
-...
-
-<span class="o">[</span>genetic<span class="o">]</span>
-
-<span class="nv">n_individuals</span> <span class="o">=</span> <span class="m">10</span>
-<span class="nv">n_generations</span> <span class="o">=</span> <span class="m">500</span>
-<span class="p">;</span><span class="nv">selection_method</span> <span class="o">=</span> <span class="o">{</span>tournament, roulette, rank<span class="o">}</span>
-<span class="nv">selection_method</span> <span class="o">=</span> tournament
-<span class="p">;</span>mutation probability
-<span class="nv">mut_prob</span> <span class="o">=</span> <span class="m">0</span>.4
-<span class="p">;</span><span class="nv">distribution</span> <span class="o">=</span> <span class="o">{</span><span class="s2">&quot;uniform&quot;</span>, <span class="s2">&quot;gaussian&quot;</span>, <span class="s2">&quot;random&quot;</span><span class="o">}</span>
-<span class="nv">distribution</span> <span class="o">=</span> <span class="s2">&quot;uniform&quot;</span>
-<span class="p">;</span>media_distribution : media value <span class="k">for</span> gaussian distributions
-<span class="nv">media_distribution</span> <span class="o">=</span> <span class="m">1</span>.0
-<span class="p">;</span>sd_distribution : Standard deviation <span class="k">for</span> gaussian distributions
-<span class="nv">sd_distribution</span> <span class="o">=</span> <span class="m">1</span>.0
-<span class="p">;</span>min_distribution : Minimum value <span class="k">for</span> uniform distributions
-<span class="nv">min_distribution</span> <span class="o">=</span> -1.0
-<span class="p">;</span>max_distribution : Maximum value <span class="k">for</span> uniform distributions
-<span class="nv">max_distribution</span> <span class="o">=</span> <span class="m">1</span>.0
-<span class="p">;</span>stopping_early : It needs a value <span class="k">for</span> <span class="s2">&quot;rounds_stopping&quot;</span> and <span class="s2">&quot;tolerance_stopping&quot;</span>.
-<span class="nv">stopping_early</span> <span class="o">=</span> True
-<span class="p">;</span>rounds_stopping : Rounds to consider to stopping early with the tolerance_stopping value.
-<span class="nv">rounds_stopping</span> <span class="o">=</span> <span class="m">100</span>
-<span class="p">;</span>tolerance_stopping : Value to stopping early criteria.
-<span class="p">;</span>This value is the difference between the best fit <span class="k">for</span> the
-<span class="p">;</span>latest rounds_stopping generations.
-<span class="nv">tolerance_stopping</span> <span class="o">=</span> <span class="m">0</span>.01
-</pre></div>
-</div>
-</div>
-<div class="section" id="deap-library">
-<span id="deap"></span><h2>DEAP library<a class="headerlink" href="#deap-library" title="Permalink to this headline">¶</a></h2>
+<p>In the <a class="reference external" href="tuto_maxlike.html">maxlike tutorial</a> it is shown how <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> uses an optimization algorithm to maximize the Likelihood function. This task can also be accomplished using genetic algorithms from DEAP library.</p>
+<p>We can run <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> as in the <a class="reference external" href="quickstart.html#python-script">example Python script</a> using the <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> with the genetic algorithm information.</p>
 <p>An example of <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> to use the simple genetic algorithm from <code class="docutils literal notranslate"><span class="pre">DEAP</span> <span class="pre">library</span></code> is as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
 ...
@@ -256,8 +202,6 @@
 <span class="nv">plot_par1</span> <span class="o">=</span> h
 <span class="nv">plot_par2</span> <span class="o">=</span> Om
 </pre></div>
-</div>
-<p><em>TO DO: add in the ini file the keywords to set the simple genetic algorithm from DEAP library.</em></p>
 </div>
 </div>
 

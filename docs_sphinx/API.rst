@@ -84,14 +84,6 @@ Analyzers
     :members:
     :show-inheritance:
 
-.. automodule:: simplemc.analyzers.SimpleGenetic
-    :members:
-    :show-inheritance:
-
-.. automodule:: simplemc.analyzers.Population
-    :members:
-    :show-inheritance:
-
 .. automodule:: simplemc.analyzers.neuralike.NeuralManager
     :members:
     :show-inheritance:

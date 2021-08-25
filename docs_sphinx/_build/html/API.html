@@ -188,7 +188,7 @@ to SimpleMC. If use this option the following kwargs not are necessary.</li>
 <li><strong>str</strong> (<em>datasets</em>) – Default HD (Hubble distance, i. e. Cosmic Chronometers).
 You can combine HD+SN+BBAO+Planck+UnionSN+…</li>
 <li><strong>analyzername</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The name of the analyzer. It can be a sampler: {mcmc, nested, emcee}
-or a optimizer: {maxlike, genetic}</li>
+or a optimizer: {maxlike, ga_deap}</li>
 <li><strong>compute_derived</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – True generates at the flight some derived parameters (such as
 Omega_Lambda or Universe Age, and save them in the output text file.</li>
 <li><strong>custom_parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – List of Parameter instances.</li>
@@ -227,43 +227,7 @@ and return a f(x) in terms of the parameters.</li>
 <code class="descname">executer</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/DriverMC.html#DriverMC.executer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.DriverMC.DriverMC.executer" title="Permalink to this definition">¶</a></dt>
 <dd><p>This is a wrapper of the runners of the analyzer in order to make
 easier the execution, mainly if is through an ini file.
-<a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs from mcmcRunner, nestedRunner, emceeRunner, geneticRunner and maxlikeRunner.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="simplemc.DriverMC.DriverMC.geneticRunner">
-<code class="descname">geneticRunner</code><span class="sig-paren">(</span><em>iniFile=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/DriverMC.html#DriverMC.geneticRunner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.DriverMC.DriverMC.geneticRunner" title="Permalink to this definition">¶</a></dt>
-<dd><p>It calls SimpleGenetic class.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>n_individuals</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of individuals.</li>
-<li><strong>n_generations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of generations.</li>
-<li><strong>selection_method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Selection method {tournament, roulette, rank}</li>
-<li><strong>mut_prob</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Probability of mutation.</li>
-<li><strong>distribution</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – {“uniform”, “gaussian”, “random”}
-Default: uniform</li>
-<li><strong>media_distribution</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Media value for gaussian distributions</li>
-<li><strong>sd_distribution</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Standard deviation for gaussian distributions
-Default: 1.0</li>
-<li><strong>min_distribution</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Minimum value for uniform distributions
-Default: -1.0</li>
-<li><strong>max_distribution</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Maximum value for uniform distributions
-Default: 1.0</li>
-<li><strong>stopping_early</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – It needs a not None value for “rounds_stopping” and “tolerance_stopping”.
-Default: True</li>
-<li><strong>rounds_stopping</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Rounds to consider to stopping early with the tolerance_stopping value.
-Default : 100</li>
-<li><strong>tolerance_stopping</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Value to stopping early criteria. This value is the difference between the
-best fit for the latest rounds_stopping generations.
-Default : 0.01</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
+<a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs from mcmcRunner, nestedRunner, emceeRunner, genetic_deap and maxlikeRunner.</p>
 </dd></dl>
 
 <dl class="method">
@@ -368,7 +332,6 @@ as parameter of the sampler run function.</p>
 <li><strong>nsamp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of mcmc steps.</li>
 <li><strong>skip</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Burn-in.</li>
 <li><strong>temp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Temperature for the weights.</li>
-<li><strong>chainno</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of chains in parallel.</li>
 <li><strong>GRstop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Gelman Rubin criteria for stopping (0, 0.1].</li>
 <li><strong>evidence</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – True if after the mcmc chain was generated,
 estimates bayesian evidence throug MCEvidence (arXiv:1704.03472).</li>
@@ -408,7 +371,6 @@ estimates bayesian evidence throug MCEvidence (arXiv:1704.03472).</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>engine</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Use dynesty or nestle library</li>
 <li><strong>dynamic</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Default <cite>False</cite></li>
 <li><strong>neuralNetwork</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – If True use a pybambi neural network.
 Default: False.</li>
@@ -459,22 +421,8 @@ new one with extension _new in its name.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="simplemc.DriverMC.DriverMC.plot">
-<code class="descname">plot</code><span class="sig-paren">(</span><em>show=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/DriverMC.html#DriverMC.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.DriverMC.DriverMC.plot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Simple connection with the plotters.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>show</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Default False</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
 <dt id="simplemc.DriverMC.DriverMC.postprocess">
-<code class="descname">postprocess</code><span class="sig-paren">(</span><em>summary=True</em>, <em>stats=False</em>, <em>addtxt=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/DriverMC.html#DriverMC.postprocess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.DriverMC.DriverMC.postprocess" title="Permalink to this definition">¶</a></dt>
+<code class="descname">postprocess</code><span class="sig-paren">(</span><em>addtxt=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/DriverMC.html#DriverMC.postprocess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.DriverMC.DriverMC.postprocess" title="Permalink to this definition">¶</a></dt>
 <dd><p>It calls the PostProcessing class.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -535,9 +483,9 @@ new one with extension _new in its name.</p>
 
 <span class="target" id="module-simplemc.PostProcessing"></span><dl class="class">
 <dt id="simplemc.PostProcessing.PostProcessing">
-<em class="property">class </em><code class="descclassname">simplemc.PostProcessing.</code><code class="descname">PostProcessing</code><span class="sig-paren">(</span><em>list_result</em>, <em>paramList</em>, <em>filename</em>, <em>skip=0.1</em>, <em>engine=None</em>, <em>addDerived=True</em>, <em>loglike=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/PostProcessing.html#PostProcessing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.PostProcessing.PostProcessing" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">simplemc.PostProcessing.</code><code class="descname">PostProcessing</code><span class="sig-paren">(</span><em>list_result</em>, <em>paramList</em>, <em>filename</em>, <em>skip=0.1</em>, <em>addDerived=True</em>, <em>loglike=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/PostProcessing.html#PostProcessing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.PostProcessing.PostProcessing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>This class makes postprocessing such as generate a summary or calculates some statistics.</p>
+<p>This class makes postprocessing such as generate a summary with some statistics.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -547,7 +495,6 @@ new one with extension _new in its name.</p>
 <li><strong>paramList</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – List with Parameter objects.</li>
 <li><strong>filename</strong> (<em>str.</em>) – File name.</li>
 <li><strong>skip</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Burn-in.</li>
-<li><strong>engine</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Default None.</li>
 <li><strong>addDerived</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Derived parameters?</li>
 <li><strong>loglike</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><em>object</em></a>) – Likelihood object.</li>
 </ul>
@@ -555,6 +502,20 @@ new one with extension _new in its name.</p>
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="simplemc.PostProcessing.PostProcessing.plot">
+<code class="descname">plot</code><span class="sig-paren">(</span><em>chainsdir</em>, <em>show=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/PostProcessing.html#PostProcessing.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.PostProcessing.PostProcessing.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple connection with the plotters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>show</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Default False</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -1072,10 +1033,57 @@ i.e. H(z)^2/H(z=0)^2.</p>
 </dd></dl>
 
 <span class="target" id="module-simplemc.models.SimpleModel"></span><dl class="class">
+<dt id="simplemc.models.SimpleModel.SimpleCosmoModel">
+<em class="property">class </em><code class="descclassname">simplemc.models.SimpleModel.</code><code class="descname">SimpleCosmoModel</code><span class="sig-paren">(</span><em>extra_params=None</em>, <em>RHSquared=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/models/SimpleModel.html#SimpleCosmoModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.models.SimpleModel.SimpleCosmoModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#simplemc.models.LCDMCosmology.LCDMCosmology" title="simplemc.models.LCDMCosmology.LCDMCosmology"><code class="xref py py-class docutils literal notranslate"><span class="pre">simplemc.models.LCDMCosmology.LCDMCosmology</span></code></a></p>
+<dl class="method">
+<dt id="simplemc.models.SimpleModel.SimpleCosmoModel.RHSquared_a">
+<code class="descname">RHSquared_a</code><span class="sig-paren">(</span><em>a</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/models/SimpleModel.html#SimpleCosmoModel.RHSquared_a"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.models.SimpleModel.SimpleCosmoModel.RHSquared_a" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is relative h-squared as a function of the factor scale a
+i.e. H(z)^2/H(z=0)^2.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Factor scale.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="simplemc.models.SimpleModel.SimpleCosmoModel.updateParams">
+<code class="descname">updateParams</code><span class="sig-paren">(</span><em>pars</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/models/SimpleModel.html#SimpleCosmoModel.updateParams"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.models.SimpleModel.SimpleCosmoModel.updateParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update parameters values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pars</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – List of intance of the Parameter class</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="simplemc.models.SimpleModel.SimpleModel">
 <em class="property">class </em><code class="descclassname">simplemc.models.SimpleModel.</code><code class="descname">SimpleModel</code><span class="sig-paren">(</span><em>parameters</em>, <em>function</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/models/SimpleModel.html#SimpleModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.models.SimpleModel.SimpleModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>This is a generic model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – List of Parameter objects</li>
+<li><strong>function</strong> (<em>function</em>) – model or function. It should be in terms of the parameters list.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -1177,7 +1185,7 @@ second derivative matrix. It kinda works, but not very well.</p>
 
 <span class="target" id="module-simplemc.analyzers.GA_deap"></span><dl class="class">
 <dt id="simplemc.analyzers.GA_deap.GA_deap">
-<em class="property">class </em><code class="descclassname">simplemc.analyzers.GA_deap.</code><code class="descname">GA_deap</code><span class="sig-paren">(</span><em>like</em>, <em>model</em>, <em>plot_fitness=False</em>, <em>compute_errors=False</em>, <em>show_contours=False</em>, <em>plot_param1=None</em>, <em>plot_param2=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/analyzers/GA_deap.html#GA_deap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.analyzers.GA_deap.GA_deap" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">simplemc.analyzers.GA_deap.</code><code class="descname">GA_deap</code><span class="sig-paren">(</span><em>like</em>, <em>model</em>, <em>outputname='deap_output'</em>, <em>population=20</em>, <em>crossover=0.7</em>, <em>mutation=0.3</em>, <em>max_generation=20</em>, <em>hof_size=1</em>, <em>crowding_factor=1</em>, <em>plot_fitness=False</em>, <em>compute_errors=False</em>, <em>show_contours=False</em>, <em>plot_param1=None</em>, <em>plot_param2=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/analyzers/GA_deap.html#GA_deap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.analyzers.GA_deap.GA_deap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Genetic algorithms from deap library</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -1197,162 +1205,6 @@ second derivative matrix. It kinda works, but not very well.</p>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-<span class="target" id="module-simplemc.analyzers.SimpleGenetic"></span><dl class="class">
-<dt id="simplemc.analyzers.SimpleGenetic.SimpleGenetic">
-<em class="property">class </em><code class="descclassname">simplemc.analyzers.SimpleGenetic.</code><code class="descname">SimpleGenetic</code><span class="sig-paren">(</span><em>target_function</em>, <em>n_variables</em>, <em>bounds</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/analyzers/SimpleGenetic.html#SimpleGenetic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.analyzers.SimpleGenetic.SimpleGenetic" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>SimpleGenetic use the optimization method from Population class and execute it.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>target_function</strong> – Usually the likelihood function.</li>
-<li><strong>n_variables</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of variables or free parameters.</li>
-<li><strong>bounds</strong> – List with upper and lower bounds for each free parameter.</li>
-<li><strong>n_individuals</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of initial individuals.</li>
-<li><strong>optimization</strong> – Options {“maximize”, “minimize”}. Default: “maximize”.</li>
-<li><strong>n_generations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of generations to evolve the original population.</li>
-<li><strong>method_selection</strong> – Type of selection method {“tournament”, “rank”, “roulette”}. Default: “tournament”</li>
-<li><strong>elitism</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Value of elitism in [0, 1]. Default: 0.001.</li>
-<li><strong>prob_mut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Probability of mutation in [0, 1]. Default: 0.4.</li>
-<li><strong>distribution</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – {“uniform”, “gaussian”, “random”}. Default: uniform.</li>
-<li><strong>media_distribution</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Media value for gaussian distributions.</li>
-<li><strong>sd_distribution</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Standard deviation for gaussian distributions. Default: 1.0.</li>
-<li><strong>min_distribution</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Minimum value for uniform distributions. Default: -1.0.</li>
-<li><strong>max_distribution</strong> – Maximum value for uniform distributions. Default: 1.0.</li>
-<li><strong>max_distribution</strong> – float</li>
-<li><strong>stopping_early</strong> (<em>boolean</em>) – It needs a not None value for “rounds_stopping” and “tolerance_stopping”. Default: True.</li>
-<li><strong>rounds_stopping</strong> – Integer number that indicates the rounds to consider to stopping early with the tolerance_stopping value. Default : 100</li>
-<li><strong>tolerance_stopping</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Value to stopping early criteria. This value is the difference between the best fit for the latest rounds_stopping generations. Default : 0.01.</li>
-<li><strong>outputname</strong> – Name for the output text file. Default: “geneticOutput”.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="simplemc.analyzers.SimpleGenetic.SimpleGenetic.optimize">
-<code class="descname">optimize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/analyzers/SimpleGenetic.html#SimpleGenetic.optimize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.analyzers.SimpleGenetic.SimpleGenetic.optimize" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method generates a Population and then optimize it.</p>
-</dd></dl>
-
-</dd></dl>
-
-<span class="target" id="module-simplemc.analyzers.Population"></span><dl class="class">
-<dt id="simplemc.analyzers.Population.Population">
-<em class="property">class </em><code class="descclassname">simplemc.analyzers.Population.</code><code class="descname">Population</code><span class="sig-paren">(</span><em>n_individuals</em>, <em>n_variables</em>, <em>lower_bounds=None</em>, <em>upper_bounds=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/analyzers/Population.html#Population"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.analyzers.Population.Population" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>It creates several objects of the Individual class and generates a Population.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>n_individuals</strong> – Number of initial individuals.</li>
-<li><strong>n_variables</strong> – Number of variables or free parameters.</li>
-<li><strong>lower_bounds</strong> – List with the lower bounds for each free parameter.</li>
-<li><strong>upper_bounds</strong> – List with the upper bounds for each free parameter.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="simplemc.analyzers.Population.Population.cross_individuals">
-<code class="descname">cross_individuals</code><span class="sig-paren">(</span><em>parental_1</em>, <em>parental_2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/analyzers/Population.html#Population.cross_individuals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.analyzers.Population.Population.cross_individuals" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method to cross two differents individuals.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="simplemc.analyzers.Population.Population.eval_population">
-<code class="descname">eval_population</code><span class="sig-paren">(</span><em>target_function</em>, <em>optimization</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/analyzers/Population.html#Population.eval_population"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.analyzers.Population.Population.eval_population" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>target_function</strong> (<em>method</em>) – Function to optimize. Usually (in simplemc context) the likelihood.</li>
-<li><strong>optimization</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – {“maximize”, “minimize}
-Default: maximize</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="simplemc.analyzers.Population.Population.optimize">
-<code class="descname">optimize</code><span class="sig-paren">(</span><em>target_function</em>, <em>optimization</em>, <em>n_generations=50</em>, <em>method_selection='tournament'</em>, <em>elitism=0.1</em>, <em>prob_mut=0.01</em>, <em>distribution='uniform'</em>, <em>media_distribution=1</em>, <em>sd_distribution=1</em>, <em>min_distribution=-1</em>, <em>max_distribution=1</em>, <em>stopping_early=False</em>, <em>rounds_stopping=3</em>, <em>tolerance_stopping=0.1</em>, <em>outputname='geneticOutput'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/analyzers/Population.html#Population.optimize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.analyzers.Population.Population.optimize" title="Permalink to this definition">¶</a></dt>
-<dd><p>This is the crucial method of the genetic modules.
-Within it, a target function is optimized.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>target_function</strong> (<em>method</em>) – Usually the likelihood function.</li>
-<li><strong>optimization</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Options {“maximize”, “minimize”}. Default is “maximize”</li>
-<li><strong>n_generations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of generations to evolve the original population</li>
-<li><strong>method_selection</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Type of selection method {“tournament”, “rank”, “roulette”}.
-Default: “tournament”</li>
-<li><strong>elitism</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Value of elitism.
-Default: 0.01.</li>
-<li><strong>prob_mut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Probability of mutation.
-Default: 0.4</li>
-<li><strong>distribution</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – {“uniform”, “gaussian”, “random”}
-Default: uniform</li>
-<li><strong>media_distribution</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Media value for gaussian distributions</li>
-<li><strong>sd_distribution</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Standard deviation for gaussian distributions
-Default: 1.0</li>
-<li><strong>min_distribution</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Minimum value for uniform distributions
-Default: -1.0</li>
-<li><strong>max_distribution</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Maximum value for uniform distributions
-Default: 1.0</li>
-<li><strong>stopping_early</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – It needs a not None value for “rounds_stopping” and “tolerance_stopping”.
-Default: True</li>
-<li><strong>rounds_stopping</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Rounds to consider to stopping early with the tolerance_stopping value.</li>
-<li><strong>tolerance_stopping</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Value to stopping early criteria. This value is the difference between the
-best fit for the latest rounds_stopping generations.</li>
-<li><strong>outputname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name for the output text file.
-Default: “geneticOutput”</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="simplemc.analyzers.Population.Population.select_individual">
-<code class="descname">select_individual</code><span class="sig-paren">(</span><em>n</em>, <em>return_indexs=True</em>, <em>method_selection='tournament'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/analyzers/Population.html#Population.select_individual"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simplemc.analyzers.Population.Population.select_individual" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method selects an individual given a selection method.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of individuals.</li>
-<li><strong>return_indexs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Return index of selected individuals.
-Defalult: False</li>
-<li><strong>method_selection</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Method selection.
-Default: ‘tournament’</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Selected individuals.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </dd></dl>
 
 <span class="target" id="module-simplemc.analyzers.neuralike.NeuralManager"></span><dl class="class">

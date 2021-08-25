@@ -38,11 +38,6 @@ SimpleMC contains the following analyzers:
        https://docs.scipy.org/doc/scipy/reference/optimize.minimize-lbfgsb.html
      - Likelihood maximization
 
-   * - genetic
-     - Optimization
-     - Simple genetic algorithm
-     - Likelihood maximization
-
    * - ga_deap
      - Optimization
      - Collection of genetic algorithms from DEAP library

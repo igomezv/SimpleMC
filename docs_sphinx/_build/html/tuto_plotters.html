@@ -37,7 +37,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Toy models" href="tuto_toymodels.html" />
-    <link rel="prev" title="Cosmological calculator" href="tuto_cosmocalc.html" /> 
+    <link rel="prev" title="Model comparison with Bayesian evidence" href="tuto_modelcomparison.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,14 +90,6 @@
 <li class="toctree-l1"><a class="reference internal" href="structure.html"><strong>Structure</strong></a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="tuto_cosmocalc.html">Cosmological calculator</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Plot the outputs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#with-getdist">With getdist:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#with-corner">With Corner:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#with-plotter-class">With Plotter class</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#with-fgivenx">With fgivenx</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="tuto_toymodels.html">Toy models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_priors.html">Set a prior probability density function</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_simple_model.html">How to create a new model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_simple_likelihood.html">How to use an external dataset?</a></li>
@@ -105,6 +97,14 @@
 <li class="toctree-l2"><a class="reference internal" href="tuto_maxlike.html">Maximum Likelihood Estimation (MLE) with optimizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_genetic.html">MLE with genetic algorithms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_modelcomparison.html">Model comparison with Bayesian evidence</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Plot the outputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#with-getdist">With getdist:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#with-corner">With Corner:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#with-simple-plot-class">With Simple_Plot class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#with-fgivenx">With fgivenx</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_toymodels.html">Toy models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_neuralike.html">Speed-up Bayesian inference with neural networks</a></li>
 </ul>
 </li>
@@ -179,24 +179,61 @@
   <div class="section" id="plot-the-outputs">
 <h1>Plot the outputs<a class="headerlink" href="#plot-the-outputs" title="Permalink to this headline">¶</a></h1>
 <p>[Section in process…]</p>
+<p><code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> has the following alternatives to generate figures from the MCMC outputs:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#getdist"><span class="std std-ref">With getdist:</span></a></li>
+<li><a class="reference internal" href="#corner"><span class="std std-ref">With Corner:</span></a></li>
+<li><a class="reference internal" href="#simpleplot"><span class="std std-ref">With Simple_Plot class</span></a></li>
+<li><a class="reference internal" href="#fgivenx"><span class="std std-ref">With fgivenx</span></a></li>
+</ul>
+</div></blockquote>
+<p>In the <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> you can set the option to plot the outputs as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
+...
+
+<span class="nv">model</span> <span class="o">=</span> LCDM
+
+<span class="nv">datasets</span> <span class="o">=</span> SN
+
+<span class="nv">analyzer</span> <span class="o">=</span> mcmc
+
+<span class="p">;</span> You can <span class="k">select</span> only one of the following three options
+
+<span class="nv">getdist</span> <span class="o">=</span> True
+
+<span class="nv">corner</span> <span class="o">=</span> True
+
+<span class="nv">simpleplot</span> <span class="o">=</span> True
+
+<span class="p">;</span>True <span class="k">if</span> you want to display and save the figure
+<span class="p">;</span>False <span class="k">if</span> only want to save the figure in your chainsdir
+
+<span class="nv">showfig</span> <span class="o">=</span> True
+...
+</pre></div>
+</div>
 <div class="section" id="with-getdist">
-<h2>With getdist:<a class="headerlink" href="#with-getdist" title="Permalink to this headline">¶</a></h2>
+<span id="getdist"></span><h2>With getdist:<a class="headerlink" href="#with-getdist" title="Permalink to this headline">¶</a></h2>
 <div class="figure">
 <img alt="_images/LCDM_SN+HD_snest_0.6_getdist.png" src="_images/LCDM_SN+HD_snest_0.6_getdist.png" />
 </div>
 </div>
 <div class="section" id="with-corner">
-<h2>With Corner:<a class="headerlink" href="#with-corner" title="Permalink to this headline">¶</a></h2>
+<span id="corner"></span><h2>With Corner:<a class="headerlink" href="#with-corner" title="Permalink to this headline">¶</a></h2>
 <div class="figure">
 <img alt="_images/LCDM_SN+HD_snest_0.6_corner.png" src="_images/LCDM_SN+HD_snest_0.6_corner.png" />
 </div>
 </div>
-<div class="section" id="with-plotter-class">
-<h2>With Plotter class<a class="headerlink" href="#with-plotter-class" title="Permalink to this headline">¶</a></h2>
-<p>The <strong>Plotter class</strong> reads the chains to draw with the chosen option.</p>
+<div class="section" id="with-simple-plot-class">
+<span id="simpleplot"></span><h2>With Simple_Plot class<a class="headerlink" href="#with-simple-plot-class" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>Simple_Plots class</strong> reads the chains to draw with the chosen option.</p>
+<div class="figure">
+<img alt="_images/simpleplotstriangle.png" src="_images/simpleplotstriangle.png" />
+</div>
 </div>
 <div class="section" id="with-fgivenx">
-<h2>With fgivenx<a class="headerlink" href="#with-fgivenx" title="Permalink to this headline">¶</a></h2>
+<span id="fgivenx"></span><h2>With fgivenx<a class="headerlink" href="#with-fgivenx" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -211,7 +248,7 @@
         <a href="tuto_toymodels.html" class="btn btn-neutral float-right" title="Toy models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="tuto_cosmocalc.html" class="btn btn-neutral float-left" title="Cosmological calculator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="tuto_modelcomparison.html" class="btn btn-neutral float-left" title="Model comparison with Bayesian evidence" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

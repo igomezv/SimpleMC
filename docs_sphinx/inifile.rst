@@ -107,9 +107,10 @@ baseConfig.ini
 ---------------
 
 .. code-block:: bash
-     
+         
     [custom]
     ;directory for chains/output
+    ;it is better if you set an absolute path
     chainsdir = simplemc/chains
 
     ;set model
@@ -126,34 +127,52 @@ baseConfig.ini
     varys8  = False
 
     ;set datasets used. Ex: UnionSN+BBAO+Planck
-    ;data options: HD, BBAO, GBAO11, CBAO, BAO_no6dF, CMASS, LBAO, LaBAO,
+    ;data options: HD, BBAO, GBAO, GBAO_no6dF, CMASS, LBAO, LaBAO,
     ;LxBAO, MGS, Planck, WMAP, PlRd, WRd, PlDa, PlRdx10, CMBW, SN, SNx10, UnionSN,
-    ;RiessH0, 6dFGS, dline
-    datasets = SN+CBAO
+    ;RiessH0, 6dFGS, dline, generic
+    datasets = HD
+
+    ;following four lines is to use external datasets
+    ;fn can be distance_mod, h, fs8
+    ;datasets = generic
+    ;path_to_data = /home/cosmocicatais/panth15.txt
+    ;path_to_cov = /home/cosmocicatais/panth15cov.txt
+    ;fn = distance_mod
 
 
     ;sampler can be {mcmc, nested, emcee}
-    ;or analyzers {maxlike, genetic}
+    ;or analyzers {maxlike, genetic, ga_deap}
     ;
     ;mcmc -> metropolis-hastings
-    ;nested
-        ;engine can be {nestle, dynesty}
-        ;nestedType can be
-            ;none -> Prior mass without bounds
-            ;single -> Ellipsoidal nested sampling
-            ;multi -> multinest
-            ;balls ->  balls centered on each live point
-            ;cube -> cubes centered on each live point
+    ;nested -> nested sampling
     ;emcee
     ;maxlike -> Maximum Likelihood Analyzer
-    ;genetic, ga_deap
-    analyzername = ga_deap
+    ;genetic -> ga_deap (genetic using deap library)
+    analyzername = mcmc
 
 
     ;add derived parameters (True/False) ,
     ;i.e. Omega_Lambda, H0, Age of the Universe
     addDerived = False
 
+    ;mcevidence = True to calculate Bayesian evidence wiht mcevidence
+    ;Only valid to samplers (mcmc, emcee, nested).
+    ;Nested sampling does not need it.
+    mcevidence = True
+
+    ;overwrite = True -> overwrite output files with the same name
+    ;overwrite = False -> if the outputname already exist
+    ;it sends an error and ends the simplemc execution
+    overwrite = True
+
+    ;options to triangle plots for mcmc, nested and emcee;
+    ;if True any of the following options
+    ;.png files will be saved in chainsdir
+    getdist = False
+    corner = True
+    simpleplot = True
+    ;True to display figures; we recommended false
+    showfig = True
 
     ;use neural network to predict likelihoods (True/False),
     ;edit block neuralike to set options
@@ -162,10 +181,10 @@ baseConfig.ini
 
     [mcmc]
     ;Nsamples
-    nsamp   = 50000
+    nsamp   = 500
 
     ;Burn-in
-    skip    = 300
+    skip    = 0
 
     ;temperature at which to sample
     temp    = 2
@@ -174,28 +193,22 @@ baseConfig.ini
     GRstop  = 0.01
 
     ;every number of steps check the GR-criteria
-    checkGR = 500
+    checkGR = 50
 
     ;1 if single cpu , otherwise is giving by the nproc-> mpi -np #
     chainno = 0
 
-    ;use mcevidence to compute Bayesinas evidene after posteriors are produed
-    evidence = False
 
     [nested]
-    ;engine can be nestle or dynesty
-    engine = dynesty
-
-    ;type: for dynesty -> {'single','multi', 'balls', 'cubes'}
-    ;type for nestle -> {'single', 'multi'}
+    ;type for dynesty -> {'single','multi', 'balls', 'cubes'}
     nestedType = multi 
 
     ;it is recommended around nlivepoints=50*ndim, recommended 1024
-    nlivepoints = 350
+    nlivepoints = 50
 
 
     ;recommended 0.01
-    accuracy = 0.02
+    accuracy =5
 
     ;u for flat(uniform) or g for gaussian prior
     priortype = u
@@ -254,63 +267,14 @@ baseConfig.ini
     nproc = 5
 
     [emcee]
-    walkers = 20
-    nsamp = 15000
-
-    burnin = x
+    ;walkers >= 2*dim
+    walkers = 10
+    nsamp = 200
+    burnin = 0
     nproc = 4
 
 
     [maxlike]
-    ;compute errror from Hessian matrix
-    ;False/True
-    compute_errors = True
-
-    ;If withErrors is True
-    ;plot Fisher matrix
-    show_contours = True
-
-    ;If showplot is True, then
-    ;2D plot for the parameters:
-    plot_par1 = h
-    plot_par2 = Om
-
-    ;[DerivedParameters]
-    compute_derived = True
-
-
-    ;genetic parameters
-
-    [genetic]
-    n_individuals = 10
-    n_generations = 500
-    ;selection_method = {tournament, roulette, rank}
-    selection_method = tournament
-    ;mutation probability
-    mut_prob = 0.4
-    ;distribution = {"uniform", "gaussian", "random"}
-    distribution = "uniform"
-    ;media_distribution : media value for gaussian distributions
-    media_distribution = 1.0
-    ;sd_distribution : Standard deviation for gaussian distributions
-    sd_distribution = 1.0
-    ;min_distribution : Minimum value for uniform distributions
-    min_distribution = -1.0
-    ;max_distribution : Maximum value for uniform distributions
-    max_distribution = 1.0
-    ;stopping_early : It needs a value for "rounds_stopping" and "tolerance_stopping".
-    stopping_early = True
-    ;rounds_stopping : Rounds to consider to stopping early with the tolerance_stopping value.
-    rounds_stopping = 100
-    ;tolerance_stopping : Value to stopping early criteria.
-    ;This value is the difference between the best fit for the
-    ;latest rounds_stopping generations.
-    tolerance_stopping = 0.01
-
-    [ga_deap]
-    ;Plot Generation vs Fitness
-    plot_fitness = True
-
     ;compute errror from Hessian matrix
     ;False/True
     compute_errors = False
@@ -323,6 +287,42 @@ baseConfig.ini
     ;2D plot for the parameters:
     plot_par1 = h
     plot_par2 = Om
+
+    ;[DerivedParameters]
+    compute_derived = True
+
+
+    ;genetic parameters
+
+    [ga_deap]
+    ;Population size
+    population = 20
+    ;Crossover probability
+    crossover = 0.7
+    ;Mutation probability
+    mutation = 0.3
+    ;Max generation number
+    max_generation = 50
+    ;Size of the Hall of Fame
+    hof_size = 1
+    ;Crowding factor
+    crowding_factor = 1
+
+    ;Plot Generation vs Fitness
+    plot_fitness = True
+
+    ;compute errror from Hessian matrix
+    ;False/True
+    compute_errors = True
+
+    ;If compute_errors is True
+    ;plot Fisher matrix
+    show_contours = True
+
+    ;If show_contours is True, then
+    ;2D plot for the parameters:
+    plot_param1 = h
+    plot_param2 = Om
 
 
 .. note::

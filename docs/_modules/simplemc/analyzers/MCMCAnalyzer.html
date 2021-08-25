@@ -163,6 +163,7 @@
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">loadtxt</span>
 
 <span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
 
@@ -248,6 +249,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">RunChain</span><span class="p">()</span>
 
+
     <span class="k">def</span> <span class="nf">init_pcov</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mat</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">chol</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">cholesky</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
 
@@ -278,7 +280,7 @@
         <span class="c1">#Uses the last percentage of the chain</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">percen</span>  <span class="o">=</span> <span class="mf">0.4</span>
 
-        <span class="n">gr</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gr</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting chain...&quot;</span><span class="p">)</span>
 
@@ -307,14 +309,14 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">cw</span> <span class="o">+=</span> <span class="mi">1</span>
 
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accepted: </span><span class="si">{:d}</span><span class="s2"> | loglike: </span><span class="si">{:3.4f}</span><span class="s2"> | &quot;</span>
-                  <span class="s2">&quot;Gelman-Rubin: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">co</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cloglike</span><span class="p">,</span> <span class="n">gr</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+                  <span class="s2">&quot;Gelman-Rubin: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">co</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cloglike</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gr</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
             <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">co</span> <span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">co</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">checkgr</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
                 <span class="n">chains</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lpars</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-                    <span class="n">gr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">GRDRun</span><span class="p">(</span><span class="n">chains</span><span class="p">)</span>
-                    <span class="c1">#print(&#39;Gelman-Rubin R-1:&#39;, gr)</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">gr</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">GRcondition</span><span class="p">)):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">gr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">GRDRun</span><span class="p">(</span><span class="n">chains</span><span class="p">)</span>
+                    <span class="c1">#print(&#39;Gelman-Rubin R-1:&#39;, self.gr)</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gr</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">GRcondition</span><span class="p">)):</span>
                         <span class="n">condition</span> <span class="o">=</span> <span class="mi">1</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">closeFiles</span><span class="p">()</span>
                     <span class="k">else</span><span class="p">:</span>
@@ -394,19 +396,21 @@
         <span class="n">formstr</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chain_num</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
-            <span class="n">cfname</span>  <span class="o">=</span> <span class="n">outfile</span> <span class="o">+</span> <span class="s2">&quot;.txt&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cfname</span>  <span class="o">=</span> <span class="n">outfile</span> <span class="o">+</span> <span class="s2">&quot;.txt&quot;</span>
             <span class="n">mlfname</span> <span class="o">=</span> <span class="n">outfile</span> <span class="o">+</span> <span class="s2">&quot;.maxlike&quot;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">cfname</span>  <span class="o">=</span> <span class="n">outfile</span> <span class="o">+</span> <span class="s2">&quot;_</span><span class="si">%i</span><span class="s2">.txt&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chain_num</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cfname</span>  <span class="o">=</span> <span class="n">outfile</span> <span class="o">+</span> <span class="s2">&quot;_</span><span class="si">%i</span><span class="s2">.txt&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chain_num</span><span class="p">)</span>
             <span class="n">mlfname</span> <span class="o">=</span> <span class="n">outfile</span> <span class="o">+</span> <span class="s2">&quot;_</span><span class="si">%i</span><span class="s2">.maxlike&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chain_num</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">fout</span>    <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">cfname</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fout</span>    <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cfname</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mlfout</span>  <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">mlfname</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">formstr</span> <span class="o">=</span> <span class="n">formstr</span></div>
 
 
     <span class="k">def</span> <span class="nf">closeFiles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fout</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">chain</span> <span class="o">=</span> <span class="n">loadtxt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cfname</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="n">chain</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">samples</span> <span class="o">=</span> <span class="n">chain</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mlfout</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 
@@ -492,6 +496,7 @@
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">co</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">nsamp</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of steps achieved&#39;</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">closeFiles</span><span class="p">()</span>
 
         <span class="k">elif</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">co</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">skip</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">swx</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cw</span>
@@ -518,10 +523,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">cpars</span> <span class="o">=</span> <span class="n">ppars</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cloglike</span> <span class="o">=</span> <span class="n">ploglike</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">composite</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">cloglikes</span> <span class="o">=</span> <span class="n">ploglikes</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cloglikes</span> <span class="o">=</span> <span class="n">ploglikes</span>
 
-
-
+    <span class="k">def</span> <span class="nf">get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gr</span></div>
 </pre></div>
 
            </div>

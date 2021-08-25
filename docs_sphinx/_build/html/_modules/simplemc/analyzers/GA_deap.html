@@ -164,7 +164,7 @@
     <span class="kn">from</span> <span class="nn">deap</span> <span class="kn">import</span> <span class="n">base</span><span class="p">,</span> <span class="n">creator</span><span class="p">,</span> <span class="n">tools</span><span class="p">,</span> <span class="n">algorithms</span>
 <span class="k">except</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">warnings</span>
-    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Pleas install DEAP library if you want to use ga_deap genetic algorithms.&quot;</span><span class="p">)</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Please install DEAP library if you want to use ga_deap genetic algorithms.&quot;</span><span class="p">)</span>
 
 <span class="c1"># We import an independent module to implement elitism in the GA.</span>
 <span class="kn">from</span> <span class="nn">simplemc.analyzers</span> <span class="kn">import</span> <span class="n">elitism</span>
@@ -190,11 +190,17 @@
 <span class="sd">        :param show_contours: True if you want to show the contours in a plot.</span>
 <span class="sd">        :param plot_param1: a parameter to plot in x-axis.</span>
 <span class="sd">        :param plot_param2: a parameter to plot in y-axis.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">like</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">plot_fitness</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compute_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> \
-                 <span class="n">show_contours</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plot_param1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot_param2</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">like</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">outputname</span><span class="o">=</span><span class="s1">&#39;deap_output&#39;</span><span class="p">,</span>
+                 <span class="n">population</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">crossover</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+                 <span class="n">mutation</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">max_generation</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">hof_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">crowding_factor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">plot_fitness</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">compute_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_contours</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">plot_param1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot_param2</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">like</span> <span class="o">=</span> <span class="n">like</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">outputname</span> <span class="o">=</span> <span class="n">outputname</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">like</span><span class="o">.</span><span class="n">freeParameters</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vpars</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">error</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">])</span>
@@ -208,12 +214,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">plot_param2</span> <span class="o">=</span> <span class="n">plot_param2</span>
 
         <span class="c1"># Genetic Algorithm constants:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">POPULATION_SIZE</span> <span class="o">=</span> <span class="mi">20</span>    <span class="c1"># 10-20</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">P_CROSSOVER</span> <span class="o">=</span> <span class="mf">0.7</span>       <span class="c1"># probability for crossover</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">P_MUTATION</span> <span class="o">=</span> <span class="mf">0.3</span>        <span class="c1"># (try also 0.5) probability for mutating an individual</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">MAX_GENERATIONS</span> <span class="o">=</span> <span class="mi">20</span>    <span class="c1"># 100- 300</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">HALL_OF_FAME_SIZE</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">CROWDING_FACTOR</span> <span class="o">=</span> <span class="mf">20.0</span>  <span class="c1"># crowding factor for crossover and mutation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">POPULATION_SIZE</span> <span class="o">=</span> <span class="n">population</span>    <span class="c1"># 10-20</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">P_CROSSOVER</span> <span class="o">=</span> <span class="n">crossover</span>       <span class="c1"># probability for crossover</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">P_MUTATION</span> <span class="o">=</span> <span class="n">mutation</span>        <span class="c1"># (try also 0.5) probability for mutating an individual</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MAX_GENERATIONS</span> <span class="o">=</span> <span class="n">max_generation</span>    <span class="c1"># 100- 300</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">HALL_OF_FAME_SIZE</span> <span class="o">=</span> <span class="n">hof_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CROWDING_FACTOR</span> <span class="o">=</span> <span class="n">crowding_factor</span>  <span class="c1"># crowding factor for crossover and mutation</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">42</span>        <span class="c1"># set the random seed</span>
 
@@ -237,15 +243,19 @@
         <span class="c1"># perform the Genetic Algorithm flow with elitism:</span>
         <span class="n">population</span><span class="p">,</span> <span class="n">logbook</span> <span class="o">=</span> <span class="n">elitism</span><span class="o">.</span><span class="n">eaSimpleWithElitism</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">toolbox</span><span class="p">,</span> <span class="n">cxpb</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">P_CROSSOVER</span><span class="p">,</span>\
                                                           <span class="n">mutpb</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">P_MUTATION</span><span class="p">,</span> <span class="n">ngen</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">MAX_GENERATIONS</span><span class="p">,</span>\
-                                                          <span class="n">stats</span><span class="o">=</span><span class="n">stats</span><span class="p">,</span> <span class="n">halloffame</span><span class="o">=</span><span class="n">hof</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                                                          <span class="n">stats</span><span class="o">=</span><span class="n">stats</span><span class="p">,</span> <span class="n">halloffame</span><span class="o">=</span><span class="n">hof</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                          <span class="n">outputname</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">outputname</span><span class="p">)</span>
 
         <span class="c1"># print info for best solution found:</span>
         <span class="n">best</span> <span class="o">=</span> <span class="n">hof</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-- Best Fitness = &quot;</span><span class="p">,</span> <span class="n">best</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Best solutions are:&quot;</span><span class="p">)</span>
         <span class="n">best_params</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">change_prior</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">best</span><span class="p">)]</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">best_params</span><span class="p">):</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-- Best </span><span class="si">%s</span><span class="s2"> = &quot;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Best Fitness: </span><span class="si">{:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">best</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 
 
         <span class="c1">#for i in range(self.HALL_OF_FAME_SIZE):</span>
@@ -279,7 +289,7 @@
             <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
             <span class="n">plot_elipses</span><span class="p">(</span><span class="n">best_params</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cov</span><span class="p">,</span> <span class="n">idx_param1</span><span class="p">,</span> <span class="n">idx_param2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">population</span><span class="p">,</span> <span class="n">logbook</span><span class="p">,</span> <span class="n">hof</span>
+        <span class="k">return</span> <span class="n">population</span><span class="p">,</span> <span class="n">logbook</span><span class="p">,</span> <span class="n">hof</span><span class="p">,</span> <span class="n">res</span>
 
 
 

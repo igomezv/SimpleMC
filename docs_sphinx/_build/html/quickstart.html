@@ -182,6 +182,17 @@
 <span id="id1"></span><h2>ini file<a class="headerlink" href="#ini-file" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> has all the necessary options to <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code>, the mandatory options are in the <code class="docutils literal notranslate"><span class="pre">[custom]</span></code> section, the rest have default values corresponding to specific analyzers and you can modify them accordingly with your needs  (see <a class="reference external" href="inifile.html">Customize inifile</a> or  <a class="reference external" href="inifile.html#baseconfig-ini">baseConfig</a>.ini file for more information).</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">[custom]</span></code> section has the following structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
+
+<span class="nv">chainsdir</span> <span class="o">=</span> chains
+
+<span class="nv">model</span> <span class="o">=</span> LCDM
+
+<span class="nv">datasets</span> <span class="o">=</span> BBAO+HD+SN
+
+<span class="nv">analyzer</span> <span class="o">=</span> mcmc
+</pre></div>
+</div>
 <p>you must choose an existing directory to save the outputs (chains, summary, and .paramnames). The options for model, datasets and analyzer are as follows:</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>

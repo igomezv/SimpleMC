@@ -20,7 +20,7 @@ The ``ini file`` has all the necessary options to ``SimpleMC``, the mandatory op
 
 The ``[custom]`` section has the following structure:
 
-.. code-block::
+.. code-block:: bash
 
         [custom]
 
