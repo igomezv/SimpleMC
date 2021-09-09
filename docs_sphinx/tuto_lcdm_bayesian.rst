@@ -1,5 +1,5 @@
-Bayesian inference to LCDM
-============================
+Bayesian inference
+======================
 
 To perform Bayesian inference for the :math:`\Lambda CDM` model using Type Ia Supernovae and cosmic chronometers, in the ``ini file`` we must set ``LCDM`` and ``SN+HD``:
 
@@ -23,6 +23,8 @@ There are three options to make parameter estimation through Bayesian inference 
   * :ref:`emcee`
 
   * :ref:`nested`
+  
+  * :ref:`notebook`
 
 Once setting the ini file according to the selected sampler, we can run ``SimpleMC`` as in the `python script example <quickstart.html#python-script>`_.
 
@@ -96,3 +98,13 @@ To perform nested sampling we use the ``dynesty`` library. In this case, in the 
 	accuracy = 0.02
 	...
 
+
+..  _notebook:
+
+Notebook example
+-----------------
+
+In the following notebook there is an example of Bayesian inference to the CPL parameterization of Dark Energy with the three samplers available in ``SimpleMC``.
+
+.. raw:: html
+   :file: notebook_samplers.html
