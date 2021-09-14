@@ -104,7 +104,7 @@ To perform nested sampling we use the ``dynesty`` library. In this case, in the 
 Notebook example
 -----------------
 
-In the following notebook there is an example of Bayesian inference to the CPL parameterization of Dark Energy with the three samplers available in ``SimpleMC``.
+In the following notebook there is an example of Bayesian inference to the LCDM model, using SNIa and cosmic chronometers, with the three samplers available in ``SimpleMC``.
 
 .. raw:: html
    :file: notebook_samplers.html

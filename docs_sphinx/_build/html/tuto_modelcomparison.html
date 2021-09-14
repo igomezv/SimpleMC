@@ -100,10 +100,13 @@
 <li class="toctree-l2"><a class="reference internal" href="tuto_priors.html">Set a prior probability density function</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_simple_model.html">How to create a new model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_simple_likelihood.html">How to use an external dataset?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tuto_lcdm_bayesian.html">Bayesian inference to LCDM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuto_lcdm_bayesian.html">Bayesian inference</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_maxlike.html">Maximum Likelihood Estimation (MLE) with optimizer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_genetic.html">MLE with genetic algorithms</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Model comparison with Bayesian evidence</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Model comparison with Bayesian evidence</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#notebook-example">Notebook example</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_plotters.html">Plot the outputs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_toymodels.html">Toy models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tuto_neuralike.html">Speed-up Bayesian inference with neural networks</a></li>
@@ -226,8 +229,14 @@
 <span class="nv">analyzer</span> <span class="o">=</span> mcmc
 <span class="nv">mcevidence</span> <span class="o">=</span> True
 ...
+
+..  _notebook:
 </pre></div>
 </div>
+<div class="section" id="notebook-example">
+<h2>Notebook example<a class="headerlink" href="#notebook-example" title="Permalink to this headline">¶</a></h2>
+<p>In the following notebook, we show an example of Bayesian evidence calculation with nested sampling (dynesty library) in <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code>.</p>
+<script src="https://gist.github.com/igomezv/2906dfa9c6f73e0ab4ec461b55ff0949.js"></script></div>
 </div>
 
 

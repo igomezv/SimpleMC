@@ -124,10 +124,7 @@ Previously, in `Quick start <intro.html#quick-start>`_ and `Customize ini file <
 Datasets combinations
 ---------------------
 
-You can combine any of the datasets, eg. HD+GBAO+LBAO.
+See the notebook to appreciate some examples of datasets combinations.
 
-.. note:: 
-
-   For a CPL model with curvature, we can test different combination of datasets avaliables in *SimpleMC*.
-
-.. figure:: /img/ObsTriangle.png
+.. raw:: html
+   :file: notebook_datasets.html

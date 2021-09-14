@@ -56,3 +56,12 @@ If you want to estimate Bayesian evidence without nested sampling, i.e., using `
   mcevidence = True
   ...
   
+  ..  _notebook:
+
+Notebook example
+-----------------
+
+In the following notebook, we show an example of Bayesian evidence calculation with nested sampling (dynesty library) in ``SimpleMC``.
+
+.. raw:: html
+   :file: notebook_comparison.html

@@ -39,3 +39,13 @@ An example of ``ini file`` to use the simple genetic algorithm from ``DEAP libra
 	plot_par2 = Om
 
 
+..  _notebook:
+
+Notebook example
+-----------------
+
+In the following notebook there is an example of the use of ``ga_deap`` and ``maxlike``.
+
+.. raw:: html
+   :file: notebook_optimizers.html
+

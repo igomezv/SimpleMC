@@ -37,3 +37,14 @@ An example of ``ini file`` to use the ``MaxLikeAnalyzer class`` is as follows:
 
 Lastly, we can run ``SimpleMC`` as in the `example Python script <quickstart.html#python-script>`_ using the ``ini file`` with the ``maxlike`` information.
 
+
+..  _notebook:
+
+Notebook example
+-----------------
+
+In the following notebook there is an example of the use of ``ga_deap`` and ``maxlike``.
+
+.. raw:: html
+   :file: notebook_optimizers.html
+
