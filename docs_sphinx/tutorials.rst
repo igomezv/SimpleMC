@@ -3,6 +3,9 @@ Tutorials
 ===========
 
 [Section in process...]
+
+In this section there are some examples and tutorials about the use of ``SimpleMC``. In some cases, such as those for `maxlike <tuto_maxlike.html>`_, `CosmoCalc <tuto_cosmocalc.html>`_ and `Bayesian inference <tuto_lcdm_bayesian.html>`_, among others, there are useful notebooks to better understand how ``SimpleMC`` works. 
+
     
 .. toctree::
    :maxdepth: 1

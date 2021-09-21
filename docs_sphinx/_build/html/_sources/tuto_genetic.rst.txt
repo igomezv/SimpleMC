@@ -39,7 +39,7 @@ An example of ``ini file`` to use the simple genetic algorithm from ``DEAP libra
 	plot_par2 = Om
 
 
-..  _notebook:
+
 
 Notebook example
 -----------------

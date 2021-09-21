@@ -17,10 +17,9 @@ and the output plot is the following:
 .. figure:: img/cosmocalc.png
 
 
-..  _notebook:
 
 Notebook example
------------------
+------------------
 
 In the following notebook there are some ``CosmoCalc class`` examples.
 

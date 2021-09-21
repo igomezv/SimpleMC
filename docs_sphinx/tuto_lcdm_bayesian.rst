@@ -24,7 +24,7 @@ There are three options to make parameter estimation through Bayesian inference 
 
   * :ref:`nested`
   
-  * :ref:`notebook`
+  * :ref:`notebook_bayesian`
 
 Once setting the ini file according to the selected sampler, we can run ``SimpleMC`` as in the `python script example <quickstart.html#python-script>`_.
 
@@ -99,7 +99,7 @@ To perform nested sampling we use the ``dynesty`` library. In this case, in the 
 	...
 
 
-..  _notebook:
+..  _notebook_bayesian:
 
 Notebook example
 -----------------
