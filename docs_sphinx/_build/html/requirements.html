@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Requirements &mdash; SimpleMC latest documentation</title>
@@ -171,11 +172,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="requirements">
+  <section id="requirements">
 <h1>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h1>
-<p>This code runs both in Python 2x and 3x. However, we highly recommend Python 3x.</p>
+<p>This code runs both in Python 2x and 3x. However, we highly recommend Python 3x. In the github repository, the requirements.txt file contains the basic libraries to run simplemc, but some functions such as graphics or neural networks may not be available. To get the full requirements use <code class="docutils literal notranslate"><span class="pre">requirements_full.txt</span></code>. You can manually install these dependencies with pip3 install -r requirements_full.txt. The dependencies are listed below.</p>
 <p>Imperative libraries are:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo pip install numpy matplotlib scipy
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo pip install numpy matplotlib scipy numdifftools sklearn mpi4py
 </pre></div>
 </div>
 <p>To use genetic algorithms in order to maximize the Likelihood function:</p>
@@ -190,19 +191,19 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install corner getdist
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>All in one copy-paste line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install numpy matplotlib scipy tensorflow corner getdist deap
-</pre></div>
-</div>
-</div>
 <p>To run MCMC analyzer (Metropolis-Hastings) in parallel you need to have <a class="reference external" href="https://www.open-mpi.org/">MPI</a>  in your computer and then install the Python library:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install mpi4py
 </pre></div>
 </div>
 <p>this requirement is not necessary if you want to use nested sampling, emcee or optimization algorithms.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All in one copy-paste line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install numpy matplotlib scipy tensorflow corner getdist deap numdifftools sklearn mpi4py
+</pre></div>
 </div>
+</div>
+</section>
 
 
            </div>
