@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Speed-up Bayesian inference with neural networks &mdash; SimpleMC latest documentation</title>
@@ -183,7 +184,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="speed-up-bayesian-inference-with-neural-networks">
+  <section id="speed-up-bayesian-inference-with-neural-networks">
 <h1>Speed-up Bayesian inference with neural networks<a class="headerlink" href="#speed-up-bayesian-inference-with-neural-networks" title="Permalink to this headline">¶</a></h1>
 <p>[Section in process…], [Beta release]</p>
 <p><code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> can use Artificial Neural Networks (ANNs) to speed-up a Bayesian inference process. Currently, the two available methods only work with one processor and are under continuous development and improvement.</p>
@@ -194,7 +195,7 @@
 </ul>
 </div></blockquote>
 <p>In both cases, we can run <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> as in the <a class="reference external" href="quickstart.html#python-script">example Python script</a> using the <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> with the genetic algorithm information.</p>
-<div class="section" id="modified-pybambi">
+<section id="modified-pybambi">
 <span id="pybambi"></span><h2>Modified pybambi<a class="headerlink" href="#modified-pybambi" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> contains a modified version of <code class="docutils literal notranslate"><span class="pre">pybambi</span></code> that only works with nested sampling. It trains a real-time ANN and, if the accuracy of the predictions is good, the sampling process uses the ANN instead of the analytical expression of the Likelihood function.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
@@ -235,8 +236,8 @@
 <span class="nv">proxy_tolerance</span> <span class="o">=</span> <span class="m">0</span>.3
 </pre></div>
 </div>
-</div>
-<div class="section" id="neuralike">
+</section>
+<section id="neuralike">
 <span id="id1"></span><h2>Neuralike<a class="headerlink" href="#neuralike" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Neuralike</span></code> generate a grid over the parameter space and train an ANN with it and the corresponding likelihood values. Then, if the accuracy of the ANN predictions are consistent, perform Bayesian inference with the ANN instead of the analytical expression of the Likelihood function.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
@@ -261,8 +262,8 @@
 <span class="nv">nproc</span> <span class="o">=</span> <span class="m">5</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

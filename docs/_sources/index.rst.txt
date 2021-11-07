@@ -3,7 +3,7 @@ SimpleMC
 ===========
 
 **[Site under construction]**
-**[Last update 14/09/2021]**
+**[Last update 05/10/2021]**
 
 
 This is the ``SimpleMC`` documentation, a Python package for cosmological parameter estimation and model comparison using Bayesian inference, optimization and machine learning algorithms. ``SimpleMC`` also contains a collection of tools for cosmological data analysis, such as a `cosmological calculator <tuto_cosmocalc.html>`_, `plotting utilities <tuto_plotters.html>`_ and other statistical issues. The cosmological models included in ``SimpleMC`` are Dark Energy models where only expansion history matters.
@@ -13,6 +13,25 @@ You can visit the `GitHub code repository <https://github.com/ja-vazquez/SimpleM
    .. code-block:: bash
 
       git clone https://github.com/ja-vazquez/SimpleMC.git
+
+Then, you can install it:
+
+   .. code-block:: bash
+
+      cd SimpleMC
+      
+      pip3 install -e .
+
+
+On the other hand, you can install ``SimpleMC`` without clonning: 
+
+   .. code-block:: bash
+   	
+   	  pip3 install -e git+https://github.com/ja-vazquez/SimpleMC#egg=simplemc
+   	  
+
+In a few days, the pip install option will be available ``pip3 install simplemc``.
+
 
 Please read the `introduction <intro.html>`_ section where you can see the `requirements <intro.html#requirements>`_  and a simple `quick start <intro.html#quick-start>`_. In the `tutorials section <tutorials.html>`_ you can find several examples of ``SimpleMC`` functions.
 
@@ -40,6 +59,7 @@ Extended index
 Changelog
 ----------
 
+- **0.9.8.1 (06/09/2021)** Setup file and pypy install ready. Data in likelihood modules use relative paths. 
 - **0.9.8 (06/09/2021)** Improvements in postprocessing. Return dictionaries in DriverMC.executer. Correction in the reading of the columns by mcevidence.
 - **0.9.7 (02/09/2021)** Add emcee and mcevidence source codes (modified). Fix output texfile of ga_deap. Delete old genetic algorithm.
 - **0.9.6.8 (12/08/2021)** Summary output to all analyzers. Remove nestle engine. 
@@ -68,9 +88,7 @@ Changelog
 
 TO DO
 ------
-- Generate PyPy module. 
 - Add more DE EoS for comparison, for example, in CPL (owaCDM).
 - Unify pybambi and nerualike. 
 - Neural networks methods with dynesty multiprocessing fails.
-
 
