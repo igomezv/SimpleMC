@@ -15,68 +15,15 @@ Previously, in `Quick start <intro.html#quick-start>`_ and `Customize ini file <
      - cosmic chronometers
      - 31 galaxies from https://arxiv.org/abs/1601.01701.
 
-   * - BBAO
-     - BAO
-     - DR11LOWZ, DR11CMASS, DR11LyaAuto, DR11LyaCross, 
-       SixdFGS, SDSSMGS
-
-   * - GBAO11
-     - BAO
-     - DR11LOWZ, DR11CMASS, SixdFGS, SDSSMGS
-
    * - CBAO
      - BAO
-     - DR12Consensus, DR14LyaAuto, DR14LyaCross, SixdFGS, SDSSMGS(), eBOSS()
-
-   * - GBAO_no6dF
-     - BAO
-     - DR11LOWZ, DR11CMASS
-
-   * - CMASS
-     - BAO
-     - DR11CMASS
-
-   * - LBAO
-     - Lymann alpha BAO
-     -  DR14LyaAuto, DR14LyaCross
-
-   * - LaBAO
-     - BAO 
-     - DR14LyaAuto
-
-   * - LxBAO
-     - BAO
-     - DR14LyaCross
-
-   * - MGS
-     - BAO
-     - SDSSMGS
+     - Recent high-precision Baryon Acoustic Oscillation measurements at different redshifts up to z<2.36. CBAO contains data from SDSS DR12 Galaxy Consensus (   arXiv:1607.03155), BOSS DR14 quasars (eBOSS) (arXiv:1705.06373), Ly-$\alpha$ DR14 cross-correlation (arXiv:1904.03430), Ly-$\alpha$ DR14 auto-correlation (arXiv:1904.03400), Six-Degree Field Galaxy Survey (6dFGS) (arXiv:1106.3366) and  SDSS Main Galaxy Sample (MGS) (arXiv:1409.3242). 
 
    * - Planck
      - Planck point
-     - PlanckLikelihood_15
+     - Compressed Planck Likelihood 15
 
    * - WMAP
-     - Row 2, column 2
-     - WMAP9Likelihood
-
-   * - PlRd
-     - Row 2, column 2
-     - PlanckLikelihood(kill_Da=True)
-
-   * - WRd
-     - Row 2, column 2
-     - WMAP9Likelihood(kill_Da=True)
-
-   * - PlDa
-     - Row 2, column 2
-     - PlanckLikelihood(kill_rd=True)
-
-   * - PlRdx10
-     - Row 2, column 2
-     - 100xPlRd
-
-   * - CMBW
      - Row 2, column 2
      - WMAP9Likelihood
 
@@ -85,7 +32,7 @@ Previously, in `Quick start <intro.html#quick-start>`_ and `Customize ini file <
      - Binned JLA SN-Ia
 
    * - JLA
-     - Row 2, column 2
+     - SN-Ia
      - full JLA compilation
 
    * - UnionSN
@@ -98,15 +45,7 @@ Previously, in `Quick start <intro.html#quick-start>`_ and `Customize ini file <
 
    * - BPantheon
      - SN-Ia
-     - binned Pantheon, 38 points
-
-   * - RiessH0
-     - cosmic chronometers
-     - Row 2, column 3
-
-   * - 6dFGS 
-     - 
-     - SixdFGS
+     - binned Pantheon, 42 points
 
    * - fs8
      - SN-Ia
@@ -115,10 +54,6 @@ Previously, in `Quick start <intro.html#quick-start>`_ and `Customize ini file <
    * - RC
      - rotation curves
      - 
-
-   * - dline
-     - synthetic points 
-     - straight line
 
 
 Datasets combinations
