@@ -1,77 +1,36 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>API &mdash; SimpleMC latest documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="References" href="Citation.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> SimpleMC
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 latest
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -79,18 +38,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">First steps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html"><strong>Structure</strong></a></li>
@@ -101,91 +49,50 @@
 <li class="toctree-l2"><a class="reference internal" href="#likelihood">Likelihood</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-simplemc.cosmo.Parameter">Cosmo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#models">Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#analyzers">Analyzers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#plots">Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-simplemc.analyzers.MaxLikeAnalyzer">Analyzers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-simplemc.plots.Simple_Plots">Plots</a></li>
 </ul>
 </li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">SimpleMC</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>API</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/API.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <section id="api">
-<h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+<h1>API<a class="headerlink" href="#api" title="Permalink to this headline"></a></h1>
 <p>This page details the methods and classes provided by the <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code>.</p>
 <section id="top-level-interface">
-<h2>Top level interface<a class="headerlink" href="#top-level-interface" title="Permalink to this headline">¶</a></h2>
+<h2>Top level interface<a class="headerlink" href="#top-level-interface" title="Permalink to this headline"></a></h2>
 </section>
 <section id="likelihood">
-<h2>Likelihood<a class="headerlink" href="#likelihood" title="Permalink to this headline">¶</a></h2>
+<h2>Likelihood<a class="headerlink" href="#likelihood" title="Permalink to this headline"></a></h2>
 </section>
 <section id="module-simplemc.cosmo.Parameter">
-<span id="cosmo"></span><h2>Cosmo<a class="headerlink" href="#module-simplemc.cosmo.Parameter" title="Permalink to this headline">¶</a></h2>
+<span id="cosmo"></span><h2>Cosmo<a class="headerlink" href="#module-simplemc.cosmo.Parameter" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="simplemc.cosmo.Parameter.Parameter">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">simplemc.cosmo.Parameter.</span></span><span class="sig-name descname"><span class="pre">Parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">err</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ltxname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/cosmo/Parameter.html#Parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.cosmo.Parameter.Parameter" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">simplemc.cosmo.Parameter.</span></span><span class="sig-name descname"><span class="pre">Parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">err</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ltxname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/cosmo/Parameter.html#Parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.cosmo.Parameter.Parameter" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>A simple class for dealing with Parameter.
 Parameter has a name, a value, an error and some bounds
@@ -210,14 +117,130 @@ Default is None, and in this case uses the ‘name’ string.</p></li>
 h_par    = Parameter(‘h’, 0.6821,  0.05,   (0.4, 1.0),    ‘h’)</p>
 </dd></dl>
 
+<span class="target" id="module-simplemc.cosmo.BaseCosmology"></span><dl class="py class">
+<dt class="sig sig-object py" id="simplemc.cosmo.BaseCosmology.BaseCosmology">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">simplemc.cosmo.BaseCosmology.</span></span><span class="sig-name descname"><span class="pre">BaseCosmology</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.6821</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/cosmo/BaseCosmology.html#BaseCosmology"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.cosmo.BaseCosmology.BaseCosmology" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Base Cosmology class doesn’t know about your
+parameterization of the equation of state or densities or anything.
+However, it does know about Hubble’s constant at z=0 OR the prefactor
+c/(H0*rd) which should be fit for in the case of “rd agnostic” fits.
+That is why you should let it declare those parameters based on its settings</p>
+<p>However, to get the angular diameter distance you need to pass it
+its Curvature parameter (Omega_k basically), so you need to update it.</p>
+<p>Also to use fs8 dataset you need to add s8 parameter.</p>
+<p>We use speed of light in km s^-1.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>h</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – Value of the Hubble parameter h = H/100.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="simplemc.cosmo.BaseCosmology.BaseCosmology.RHSquared_a">
+<span class="sig-name descname"><span class="pre">RHSquared_a</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/cosmo/BaseCosmology.html#BaseCosmology.RHSquared_a"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.cosmo.BaseCosmology.BaseCosmology.RHSquared_a" title="Permalink to this definition"></a></dt>
+<dd><p>This is relative h-squared as a function of the factor scale a
+i.e. H(z)^2/H(z=0)^2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – Factor scale.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplemc.cosmo.BaseCosmology.BaseCosmology.updateParams">
+<span class="sig-name descname"><span class="pre">updateParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/cosmo/BaseCosmology.html#BaseCosmology.updateParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.cosmo.BaseCosmology.BaseCosmology.updateParams" title="Permalink to this definition"></a></dt>
+<dd><p>Update parameters values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pars</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – List of intance of the Parameter class</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-simplemc.cosmo.NuDensity"></span><dl class="py class">
+<dt class="sig sig-object py" id="simplemc.cosmo.NuDensity.NuDensity">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">simplemc.cosmo.NuDensity.</span></span><span class="sig-name descname"><span class="pre">NuDensity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TCMB</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nnu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.046</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mnu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degenerate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fact</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/cosmo/NuDensity.html#NuDensity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.cosmo.NuDensity.NuDensity" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Compute Density parameter for neutrinos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TCMB</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – Temperature of the CMB.</p></li>
+<li><p><strong>Nnu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>optional</em>) – Families of neutrinos.
+Default value is ‘Neff=3.046’.</p></li>
+<li><p><strong>mnu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>optional</em>) – Sum of the neutrino masses.
+Default value is ‘mnu=0.06’.</p></li>
+<li><p><strong>degenerate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) – Combinations of massive neutrinos.</p></li>
+<li><p><strong>fact</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em>, </em><em>optional</em>) – The ration contribution: omrad_fac   = 4.48130979e-7.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="simplemc.cosmo.NuDensity.NuDensity.rho">
+<span class="sig-name descname"><span class="pre">rho</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/cosmo/NuDensity.html#NuDensity.rho"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.cosmo.NuDensity.NuDensity.rho" title="Permalink to this definition"></a></dt>
+<dd><p>Neutrinos density
+:param a:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><em>This returns the density at a normalized so that</em></p></li>
+<li><p><em>we get nuh2 at a=0</em></p></li>
+<li><p><em>(1 eV) / (Boltzmann constant * 1 kelvin) = 11 604.5193</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="simplemc.cosmo.NuDensity.NuIntegral">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">simplemc.cosmo.NuDensity.</span></span><span class="sig-name descname"><span class="pre">NuIntegral</span></span><a class="reference internal" href="_modules/simplemc/cosmo/NuDensity.html#NuIntegral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.cosmo.NuDensity.NuIntegral" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>This module calculates the predictions for the evolution
+of neutrino energy densities.
+Here, we compute the integral I(r).
+Initialiazes the nu factor in rho_nu (self.interpolator).</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="simplemc.cosmo.NuDensity.NuIntegral.SevenEights">
+<span class="sig-name descname"><span class="pre">SevenEights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mnuOT</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/cosmo/NuDensity.html#NuIntegral.SevenEights"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.cosmo.NuDensity.NuIntegral.SevenEights" title="Permalink to this definition"></a></dt>
+<dd><p>Given the nu mass, returns the integral on the energy
+density of neutrinos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mnuOT</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – Sum of the neutrino masses.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>The integral given the sum of neutrino masses.</em></p></li>
+<li><p><em>For massless neutrinos I(0)=78.</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="simplemc.cosmo.NuDensity.ZeroNuDensity">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">simplemc.cosmo.NuDensity.</span></span><span class="sig-name descname"><span class="pre">ZeroNuDensity</span></span><a class="reference internal" href="_modules/simplemc/cosmo/NuDensity.html#ZeroNuDensity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.cosmo.NuDensity.ZeroNuDensity" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Fake class that returns zeros if want to disable neutrino contributions.</p>
+</dd></dl>
+
 <span class="target" id="module-simplemc.cosmo.Derivedparam"></span><dl class="py class">
 <dt class="sig sig-object py" id="simplemc.cosmo.Derivedparam.AllDerived">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">simplemc.cosmo.Derivedparam.</span></span><span class="sig-name descname"><span class="pre">AllDerived</span></span><a class="reference internal" href="_modules/simplemc/cosmo/Derivedparam.html#AllDerived"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.cosmo.Derivedparam.AllDerived" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">simplemc.cosmo.Derivedparam.</span></span><span class="sig-name descname"><span class="pre">AllDerived</span></span><a class="reference internal" href="_modules/simplemc/cosmo/Derivedparam.html#AllDerived"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.cosmo.Derivedparam.AllDerived" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Given base parameters, return a list of some Derived ones.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="simplemc.cosmo.Derivedparam.AllDerived.Omh2">
-<span class="sig-name descname"><span class="pre">Omh2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/cosmo/Derivedparam.html#AllDerived.Omh2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.cosmo.Derivedparam.AllDerived.Omh2" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">Omh2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/cosmo/Derivedparam.html#AllDerived.Omh2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.cosmo.Derivedparam.AllDerived.Omh2" title="Permalink to this definition"></a></dt>
 <dd><p>Computes the Omh2 diagnostic at two redshifts
 to test deviations from the LCDM model.
 For LCDM the value is a constant for any combination
@@ -240,14 +263,14 @@ of redshifts.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="simplemc.cosmo.Derivedparam.AllDerived.computeDerived">
-<span class="sig-name descname"><span class="pre">computeDerived</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parname</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/cosmo/Derivedparam.html#AllDerived.computeDerived"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.cosmo.Derivedparam.AllDerived.computeDerived" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">computeDerived</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parname</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/cosmo/Derivedparam.html#AllDerived.computeDerived"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.cosmo.Derivedparam.AllDerived.computeDerived" title="Permalink to this definition"></a></dt>
 <dd><p>Initialize and compute Derived parameters in
 terms of the base ones.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="simplemc.cosmo.Derivedparam.AllDerived.listDerived">
-<span class="sig-name descname"><span class="pre">listDerived</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">like</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/cosmo/Derivedparam.html#AllDerived.listDerived"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.cosmo.Derivedparam.AllDerived.listDerived" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">listDerived</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">like</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/cosmo/Derivedparam.html#AllDerived.listDerived"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.cosmo.Derivedparam.AllDerived.listDerived" title="Permalink to this definition"></a></dt>
 <dd><p>Given the free parameters compute derived ones.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -267,7 +290,7 @@ free-parameters and theory.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="simplemc.cosmo.Derivedparam.Derivedparam">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">simplemc.cosmo.Derivedparam.</span></span><span class="sig-name descname"><span class="pre">Derivedparam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ltxname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/cosmo/Derivedparam.html#Derivedparam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.cosmo.Derivedparam.Derivedparam" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">simplemc.cosmo.Derivedparam.</span></span><span class="sig-name descname"><span class="pre">Derivedparam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ltxname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/cosmo/Derivedparam.html#Derivedparam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.cosmo.Derivedparam.Derivedparam" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Auxiliary class, based on Parameter class.</p>
 <dl class="field-list simple">
@@ -287,62 +310,149 @@ self.H0   = Derivedparam(‘H0’,  function, ‘H_0*’)</p>
 
 </section>
 <section id="models">
-<h2>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h2>
+<h2>Models<a class="headerlink" href="#models" title="Permalink to this headline"></a></h2>
 </section>
-<section id="analyzers">
-<h2>Analyzers<a class="headerlink" href="#analyzers" title="Permalink to this headline">¶</a></h2>
+<section id="module-simplemc.analyzers.MaxLikeAnalyzer">
+<span id="analyzers"></span><h2>Analyzers<a class="headerlink" href="#module-simplemc.analyzers.MaxLikeAnalyzer" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="simplemc.analyzers.MaxLikeAnalyzer.MaxLikeAnalyzer">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">simplemc.analyzers.MaxLikeAnalyzer.</span></span><span class="sig-name descname"><span class="pre">MaxLikeAnalyzer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">like</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_derived</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_contours</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_param1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_param2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/analyzers/MaxLikeAnalyzer.html#MaxLikeAnalyzer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.analyzers.MaxLikeAnalyzer.MaxLikeAnalyzer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>This is an analyzer that takes a Likelihood function
+and then tries to maximize it with L-BFGS-B method and get the errors from the
+second derivative matrix. It kinda works, but not very well.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>like</strong> – likelihood function.</p></li>
+<li><p><strong>model</strong> – theoretical model.</p></li>
+<li><p><strong>compute_errors</strong> (<em>Boolean</em>) – Compute errors.</p></li>
+<li><p><strong>compute_derived</strong> (<em>Boolean</em>) – Compute derivatives.</p></li>
+<li><p><strong>show_contours</strong> (<em>Boolean</em>) – Show contours in plots.</p></li>
+<li><p><strong>plot_param1</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – x-axis parameter to plot.</p></li>
+<li><p><strong>plot_param2</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – y-axis parameter to plot.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <p>We use several nested sampling algorithms included in <code class="docutils literal notranslate"><span class="pre">dynesty</span></code> library. We slightly modify <code class="docutils literal notranslate"><span class="pre">dynesty</span></code> to save the strings in the text file and also to incorporate neural networks. However, its <a class="reference external" href="https://dynesty.readthedocs.io/en/latest/">documentation</a>  is very complete, clear and didactic, so we recommend that you visit it.</p>
 </section>
-<section id="plots">
-<h2>Plots<a class="headerlink" href="#plots" title="Permalink to this headline">¶</a></h2>
+<section id="module-simplemc.plots.Simple_Plots">
+<span id="plots"></span><h2>Plots<a class="headerlink" href="#module-simplemc.plots.Simple_Plots" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="simplemc.plots.Simple_Plots.Simple_plots">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">simplemc.plots.Simple_Plots.</span></span><span class="sig-name descname"><span class="pre">Simple_plots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roots</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/plots/Simple_Plots.html#Simple_plots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.plots.Simple_Plots.Simple_plots" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">simplemc.tools.cosmich.cosmochain</span></code></p>
+<p>Collection of plotters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dir_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Name of the directory with the mcmc chains text files.</p></li>
+<li><p><strong>roots</strong> – root name of the file.</p></li>
+<li><p><strong>label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – labels to each parameter.</p></li>
+<li><p><strong>kwargs</strong> – <a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs to plots. colors: list of colours, nchains: number of chains, skip: (int) burn-in</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="simplemc.plots.Simple_Plots.Simple_plots.Plots1D">
+<span class="sig-name descname"><span class="pre">Plots1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/plots/Simple_Plots.html#Simple_plots.Plots1D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.plots.Simple_Plots.Simple_plots.Plots1D" title="Permalink to this definition"></a></dt>
+<dd><p>1D posterior plots.
+:param params: parameters to plot.
+:type params: list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplemc.plots.Simple_Plots.Simple_plots.Plots2D">
+<span class="sig-name descname"><span class="pre">Plots2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params_pair</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/plots/Simple_Plots.html#Simple_plots.Plots2D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.plots.Simple_Plots.Simple_plots.Plots2D" title="Permalink to this definition"></a></dt>
+<dd><p>2D posterior plots between two parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params_pair</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a>) – pair of parameters to 2D plots.</p></li>
+<li><p><strong>kwargs</strong> – pbest: boolean, solid: boolean.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplemc.plots.Simple_Plots.Simple_plots.cornerPlotter">
+<span class="sig-name descname"><span class="pre">cornerPlotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'g'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_titles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_contours</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/plots/Simple_Plots.html#Simple_plots.cornerPlotter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.plots.Simple_Plots.Simple_plots.cornerPlotter" title="Permalink to this definition"></a></dt>
+<dd><p>Triangle plot using corner library.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> – list of parameters</p></li>
+<li><p><strong>color</strong> – color, eg. ‘c’, ‘b’, etc.</p></li>
+<li><p><strong>show_titles</strong> – True if you want to show tittles.</p></li>
+<li><p><strong>fill_contours</strong> – True if you want to fill the contours.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplemc.plots.Simple_Plots.Simple_plots.fgivenx">
+<span class="sig-name descname"><span class="pre">fgivenx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/plots/Simple_Plots.html#Simple_plots.fgivenx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.plots.Simple_Plots.Simple_plots.fgivenx" title="Permalink to this definition"></a></dt>
+<dd><p>Plots with fgivenx library.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> – list of parameters.</p></li>
+<li><p><strong>z</strong> – independent variable.</p></li>
+<li><p><strong>func</strong> – funtion of the independent variable.</p></li>
+<li><p><strong>labels</strong> – labels for each parameter.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simplemc.plots.Simple_Plots.Simple_plots.triangle">
+<span class="sig-name descname"><span class="pre">triangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simplemc/plots/Simple_Plots.html#Simple_plots.triangle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simplemc.plots.Simple_Plots.Simple_plots.triangle" title="Permalink to this definition"></a></dt>
+<dd><p>Triangle plots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>parlist</strong> – list of parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="Citation.html" class="btn btn-neutral float-left" title="References" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, A Slosar, JA Vazquez, I Gomez-Vargas.
-
-    </p>
+    <p>&#169; Copyright 2021, A Slosar, JA Vazquez, I Gomez-Vargas.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

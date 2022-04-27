@@ -8,52 +8,77 @@ Previously, in `Quick start <intro.html#quick-start>`_ and `Customize ini file <
    :header-rows: 1
 
    * - Dataset key
-     - Type of observation
      - Description
+     - Reference
 
    * - HD
-     - cosmic chronometers
-     - 31 galaxies from https://arxiv.org/abs/1601.01701.
+     - 31 cosmic chronometers
+     - arxiv:1601.01701
 
    * - CBAO
-     - BAO
-     - Recent high-precision Baryon Acoustic Oscillation measurements at different redshifts up to z<2.36. CBAO contains data from SDSS DR12 Galaxy Consensus (   arXiv:1607.03155), BOSS DR14 quasars (eBOSS) (arXiv:1705.06373), Ly-$\alpha$ DR14 cross-correlation (arXiv:1904.03430), Ly-$\alpha$ DR14 auto-correlation (arXiv:1904.03400), Six-Degree Field Galaxy Survey (6dFGS) (arXiv:1106.3366) and  SDSS Main Galaxy Sample (MGS) (arXiv:1409.3242). 
+     - Recent BAO
+     - see the folowing six references
+
+   * - DR12Consensus
+     - SDSS DR12 Galaxy Consensus 
+     - arXiv:1607.03155
+
+   * - eBOSS
+     - BOSS DR14 quasars
+     - arXiv:1705.06373 
+
+   * - DR14LyaAuto
+     - Ly-alpha DR14 auto-correlation 
+     - arXiv:1904.03400
+
+   * - DR14LyaCross
+     - Ly-alpha DR14cross-correlation 
+     - arXiv:1904.03430
+
+   * - 6dFGS
+     - Six-Degree Field Galaxy Survey  
+     - arXiv:1106.3366
+
+   * - SDSSMGS 
+     - Main Galaxy Sample
+     - arXiv:1409.3242
+
+   * - BBAO 
+     - Older BAOs than CBAO
+     - various, see the code
 
    * - Planck
-     - Planck point
      - Compressed Planck Likelihood 15
-
-   * - WMAP
-     - Row 2, column 2
-     - WMAP9Likelihood
-
-   * - SN
-     - SN-Ia
-     - Binned JLA SN-Ia
+     - arXiv:1411.1074
 
    * - JLA
-     - SN-Ia
-     - full JLA compilation
+     - full JLA SNeIa compilation
+     - arXiv:1401.4064
+   
+   * - SN
+     - Binned 31 points from JLA
+     - BarXiv:1401.4064
 
    * - UnionSN
-     - SN-Ia
-     - Row 2, column 3
+     - SN-Ia Union 2.0 compilation
+     - arXiv:1105.3470
 
    * - Pantheon
-     - SN-Ia
-     - 1048 SN from Pantheon compilation
+     - 1048 SNIa from Pantheon compilation
+     - arXiv:1710.00845
 
    * - BPantheon
-     - SN-Ia
-     - binned Pantheon, 42 points
+     - 42 binned points from Pantheon SN-Ia
+     - arXiv:1710.00845
 
    * - fs8
-     - SN-Ia
-     - binned Pantheon, 38 points
+     - 22 growth rate measurements
+     - arXiv:1806.10822 
 
    * - RC
-     - rotation curves
-     - 
+     - rotation curves NGC2403
+     - arXiv:1512.01367v1
+
 
 
 Datasets combinations

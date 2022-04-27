@@ -1,78 +1,37 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Speed-up Bayesian inference with neural networks &mdash; SimpleMC latest documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="References" href="Citation.html" />
     <link rel="prev" title="Toy models" href="tuto_toymodels.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> SimpleMC
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 latest
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -80,18 +39,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">First steps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html"><strong>Structure</strong></a></li>
@@ -117,75 +65,33 @@
 <li class="toctree-l1"><a class="reference internal" href="API.html">API</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">SimpleMC</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
           <li><a href="tutorials.html">Tutorials</a> &raquo;</li>
-        
       <li>Speed-up Bayesian inference with neural networks</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/tuto_neuralike.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <section id="speed-up-bayesian-inference-with-neural-networks">
-<h1>Speed-up Bayesian inference with neural networks<a class="headerlink" href="#speed-up-bayesian-inference-with-neural-networks" title="Permalink to this headline">¶</a></h1>
+<h1>Speed-up Bayesian inference with neural networks<a class="headerlink" href="#speed-up-bayesian-inference-with-neural-networks" title="Permalink to this headline"></a></h1>
 <p>[Section in process…], [Beta release]</p>
 <p><code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> can use Artificial Neural Networks (ANNs) to speed-up a Bayesian inference process. Currently, the two available methods only work with one processor and are under continuous development and improvement.</p>
 <blockquote>
@@ -196,7 +102,7 @@
 </div></blockquote>
 <p>In both cases, we can run <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> as in the <a class="reference external" href="quickstart.html#python-script">example Python script</a> using the <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> with the genetic algorithm information.</p>
 <section id="modified-pybambi">
-<span id="pybambi"></span><h2>Modified pybambi<a class="headerlink" href="#modified-pybambi" title="Permalink to this headline">¶</a></h2>
+<span id="pybambi"></span><h2>Modified pybambi<a class="headerlink" href="#modified-pybambi" title="Permalink to this headline"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> contains a modified version of <code class="docutils literal notranslate"><span class="pre">pybambi</span></code> that only works with nested sampling. It trains a real-time ANN and, if the accuracy of the predictions is good, the sampling process uses the ANN instead of the analytical expression of the Likelihood function.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
 ...
@@ -238,7 +144,7 @@
 </div>
 </section>
 <section id="neuralike">
-<span id="id1"></span><h2>Neuralike<a class="headerlink" href="#neuralike" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2>Neuralike<a class="headerlink" href="#neuralike" title="Permalink to this headline"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Neuralike</span></code> generate a grid over the parameter space and train an ANN with it and the corresponding likelihood values. Then, if the accuracy of the ANN predictions are consistent, perform Bayesian inference with the ANN instead of the analytical expression of the Likelihood function.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
 ...
@@ -267,50 +173,33 @@
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="Citation.html" class="btn btn-neutral float-right" title="References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="tuto_toymodels.html" class="btn btn-neutral float-left" title="Toy models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Citation.html" class="btn btn-neutral float-right" title="References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, A Slosar, JA Vazquez, I Gomez-Vargas.
-
-    </p>
+    <p>&#169; Copyright 2021, A Slosar, JA Vazquez, I Gomez-Vargas.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

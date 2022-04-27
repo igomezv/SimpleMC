@@ -1,79 +1,38 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Bayesian inference &mdash; SimpleMC latest documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Maximum Likelihood Estimation (MLE) with optimizer" href="tuto_maxlike.html" />
     <link rel="prev" title="How to use an external dataset?" href="tuto_simple_likelihood.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> SimpleMC
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 latest
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -81,18 +40,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">First steps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structure.html"><strong>Structure</strong></a></li>
@@ -120,75 +68,33 @@
 <li class="toctree-l1"><a class="reference internal" href="API.html">API</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">SimpleMC</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
           <li><a href="tutorials.html">Tutorials</a> &raquo;</li>
-        
       <li>Bayesian inference</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/tuto_lcdm_bayesian.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <section id="bayesian-inference">
-<h1>Bayesian inference<a class="headerlink" href="#bayesian-inference" title="Permalink to this headline">¶</a></h1>
+<h1>Bayesian inference<a class="headerlink" href="#bayesian-inference" title="Permalink to this headline"></a></h1>
 <p>To perform Bayesian inference for the <span class="math notranslate nohighlight">\(\Lambda CDM\)</span> model using Type Ia Supernovae and cosmic chronometers, in the <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> we must set <code class="docutils literal notranslate"><span class="pre">LCDM</span></code> and <code class="docutils literal notranslate"><span class="pre">SN+HD</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
 ...
@@ -212,7 +118,7 @@
 <p>Once setting the ini file according to the selected sampler, we can run <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> as in the <a class="reference external" href="quickstart.html#python-script">python script example</a>.</p>
 <p>In both cases, the output is a summary with the parameter estimation and an output file with the Markov Chain (see the <a class="reference external" href="quickstart.html#analyze-outputs">section of outputs for details</a>).</p>
 <section id="with-metropolis-hastings-algorithm">
-<span id="mcmc"></span><h2>With Metropolis-Hastings algorithm<a class="headerlink" href="#with-metropolis-hastings-algorithm" title="Permalink to this headline">¶</a></h2>
+<span id="mcmc"></span><h2>With Metropolis-Hastings algorithm<a class="headerlink" href="#with-metropolis-hastings-algorithm" title="Permalink to this headline"></a></h2>
 <p>The model keyword for using the Metropolis-Hastings algorithm is <code class="docutils literal notranslate"><span class="pre">mcmc</span></code> as the analyzer. The basic keys in the <code class="docutils literal notranslate"><span class="pre">[mcmc]</span></code> section are the number of samples <code class="docutils literal notranslate"><span class="pre">nsamp</span></code>, the burn-in steps <code class="docutils literal notranslate"><span class="pre">skip</span></code> and the Gelman-Rubin stopping criterion <code class="docutils literal notranslate"><span class="pre">GRstop</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
 ...
@@ -229,7 +135,7 @@
 </div>
 </section>
 <section id="with-emcee-algorithm">
-<span id="emcee"></span><h2>With EMCEE algorithm<a class="headerlink" href="#with-emcee-algorithm" title="Permalink to this headline">¶</a></h2>
+<span id="emcee"></span><h2>With EMCEE algorithm<a class="headerlink" href="#with-emcee-algorithm" title="Permalink to this headline"></a></h2>
 <p>To use the EMCEE algorithm we use <code class="docutils literal notranslate"><span class="pre">emcee</span></code> library. The basic keys in the <code class="docutils literal notranslate"><span class="pre">[emcee]</span></code> section of the <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> are the number of walkers of the ensemble <code class="docutils literal notranslate"><span class="pre">walkers</span></code>, the number of samples for each walker <code class="docutils literal notranslate"><span class="pre">[nsamp]</span></code> and the burn-in steps <code class="docutils literal notranslate"><span class="pre">burnin</span></code>.</p>
 <p>The number of walkers must be at least twice the number of free parameters.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
@@ -247,7 +153,7 @@
 </div>
 </section>
 <section id="with-nested-sampling">
-<span id="nested"></span><h2>With nested sampling<a class="headerlink" href="#with-nested-sampling" title="Permalink to this headline">¶</a></h2>
+<span id="nested"></span><h2>With nested sampling<a class="headerlink" href="#with-nested-sampling" title="Permalink to this headline"></a></h2>
 <p>To perform nested sampling we use the <code class="docutils literal notranslate"><span class="pre">dynesty</span></code> library. In this case, in the <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> the most important keys in the <code class="docutils literal notranslate"><span class="pre">[nested]</span></code> section are the number of live points <code class="docutils literal notranslate"><span class="pre">nlivepoints</span></code> and the difference between the Bayesian evidence of two consecutive steps (<code class="docutils literal notranslate"><span class="pre">accuracy</span></code>).</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>custom<span class="o">]</span>
 ...
@@ -263,57 +169,40 @@
 </div>
 </section>
 <section id="notebook-example">
-<span id="notebook-bayesian"></span><h2>Notebook example<a class="headerlink" href="#notebook-example" title="Permalink to this headline">¶</a></h2>
+<span id="notebook-bayesian"></span><h2>Notebook example<a class="headerlink" href="#notebook-example" title="Permalink to this headline"></a></h2>
 <p>In the following notebook there is an example of Bayesian inference to the LCDM model, using SNIa and cosmic chronometers, with the three samplers available in <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code>.</p>
 <script src="https://gist.github.com/igomezv/baec759224cbcf606b1d7b55fd6f6614.js"></script></section>
 </section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="tuto_maxlike.html" class="btn btn-neutral float-right" title="Maximum Likelihood Estimation (MLE) with optimizer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="tuto_simple_likelihood.html" class="btn btn-neutral float-left" title="How to use an external dataset?" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tuto_maxlike.html" class="btn btn-neutral float-right" title="Maximum Likelihood Estimation (MLE) with optimizer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, A Slosar, JA Vazquez, I Gomez-Vargas.
-
-    </p>
+    <p>&#169; Copyright 2021, A Slosar, JA Vazquez, I Gomez-Vargas.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

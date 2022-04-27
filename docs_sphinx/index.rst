@@ -3,7 +3,7 @@ SimpleMC
 ===========
 
 **[Site under construction]**
-**[Last update 05/10/2021]**
+**[Last update 27/04/2022]**
 
 
 This is the ``SimpleMC`` documentation, a Python package for cosmological parameter estimation and model comparison using Bayesian inference, optimization and machine learning algorithms. ``SimpleMC`` also contains a collection of tools for cosmological data analysis, such as a `cosmological calculator <tuto_cosmocalc.html>`_, `plotting utilities <tuto_plotters.html>`_ and other statistical issues. The cosmological models included in ``SimpleMC`` are Dark Energy models where only expansion history matters.
@@ -59,6 +59,11 @@ Extended index
 Changelog
 ----------
 
+- **0.9.8.6 (27/04/2022)** Fix mpi4py import in MCMCAnalyzer and allow to work it with only 1 processor. 
+- **0.9.8.5 (23/02/2022)** Improving postprocessing. 
+- **0.9.8.4 (12/01/2022)** Unifying binned and full Pantheon likelihoods. Added covariance matrix in postprocessing. Added AIC information criterion. Saving output of individuals from GADeap. 
+- **0.9.8.3 (17/12/2021)** Fix binned Pantheon data and likelihood. Save maxloglikes in postprocessing. Reordering optimizers. 
+- **0.9.8.2 (04/11/2021)** Update paths of datasets, setup and requirements.
 - **0.9.8.1 (06/09/2021)** Setup file and pypy install ready. Data in likelihood modules use relative paths. 
 - **0.9.8 (06/09/2021)** Improvements in postprocessing. Return dictionaries in DriverMC.executer. Correction in the reading of the columns by mcevidence.
 - **0.9.7 (02/09/2021)** Add emcee and mcevidence source codes (modified). Fix output texfile of ga_deap. Delete old genetic algorithm.

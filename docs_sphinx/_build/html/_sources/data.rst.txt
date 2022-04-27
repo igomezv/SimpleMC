@@ -8,117 +8,77 @@ Previously, in `Quick start <intro.html#quick-start>`_ and `Customize ini file <
    :header-rows: 1
 
    * - Dataset key
-     - Type of observation
      - Description
+     - Reference
 
    * - HD
-     - cosmic chronometers
-     - 31 galaxies from https://arxiv.org/abs/1601.01701.
-
-   * - BBAO
-     - BAO
-     - DR11LOWZ, DR11CMASS, DR11LyaAuto, DR11LyaCross, 
-       SixdFGS, SDSSMGS
-
-   * - GBAO11
-     - BAO
-     - DR11LOWZ, DR11CMASS, SixdFGS, SDSSMGS
+     - 31 cosmic chronometers
+     - arxiv:1601.01701
 
    * - CBAO
-     - BAO
-     - DR12Consensus, DR14LyaAuto, DR14LyaCross, SixdFGS, SDSSMGS(), eBOSS()
+     - Recent BAO
+     - see the folowing six references
 
-   * - GBAO_no6dF
-     - BAO
-     - DR11LOWZ, DR11CMASS
+   * - DR12Consensus
+     - SDSS DR12 Galaxy Consensus 
+     - arXiv:1607.03155
 
-   * - CMASS
-     - BAO
-     - DR11CMASS
+   * - eBOSS
+     - BOSS DR14 quasars
+     - arXiv:1705.06373 
 
-   * - LBAO
-     - Lymann alpha BAO
-     -  DR14LyaAuto, DR14LyaCross
+   * - DR14LyaAuto
+     - Ly-alpha DR14 auto-correlation 
+     - arXiv:1904.03400
 
-   * - LaBAO
-     - BAO 
-     - DR14LyaAuto
+   * - DR14LyaCross
+     - Ly-alpha DR14cross-correlation 
+     - arXiv:1904.03430
 
-   * - LxBAO
-     - BAO
-     - DR14LyaCross
+   * - 6dFGS
+     - Six-Degree Field Galaxy Survey  
+     - arXiv:1106.3366
 
-   * - MGS
-     - BAO
-     - SDSSMGS
+   * - SDSSMGS 
+     - Main Galaxy Sample
+     - arXiv:1409.3242
+
+   * - BBAO 
+     - Older BAOs than CBAO
+     - various, see the code
 
    * - Planck
-     - Planck point
-     - PlanckLikelihood_15
-
-   * - WMAP
-     - Row 2, column 2
-     - WMAP9Likelihood
-
-   * - PlRd
-     - Row 2, column 2
-     - PlanckLikelihood(kill_Da=True)
-
-   * - WRd
-     - Row 2, column 2
-     - WMAP9Likelihood(kill_Da=True)
-
-   * - PlDa
-     - Row 2, column 2
-     - PlanckLikelihood(kill_rd=True)
-
-   * - PlRdx10
-     - Row 2, column 2
-     - 100xPlRd
-
-   * - CMBW
-     - Row 2, column 2
-     - WMAP9Likelihood
-
-   * - SN
-     - SN-Ia
-     - Binned JLA SN-Ia
+     - Compressed Planck Likelihood 15
+     - arXiv:1411.1074
 
    * - JLA
-     - Row 2, column 2
-     - full JLA compilation
+     - full JLA SNeIa compilation
+     - arXiv:1401.4064
+   
+   * - SN
+     - Binned 31 points from JLA
+     - BarXiv:1401.4064
 
    * - UnionSN
-     - SN-Ia
-     - Row 2, column 3
+     - SN-Ia Union 2.0 compilation
+     - arXiv:1105.3470
 
    * - Pantheon
-     - SN-Ia
-     - 1048 SN from Pantheon compilation
+     - 1048 SNIa from Pantheon compilation
+     - arXiv:1710.00845
 
    * - BPantheon
-     - SN-Ia
-     - binned Pantheon, 38 points
-
-   * - RiessH0
-     - cosmic chronometers
-     - Row 2, column 3
-
-   * - 6dFGS 
-     - 
-     - SixdFGS
+     - 42 binned points from Pantheon SN-Ia
+     - arXiv:1710.00845
 
    * - fs8
-     - SN-Ia
-     - binned Pantheon, 38 points
+     - 22 growth rate measurements
+     - arXiv:1806.10822 
 
    * - RC
-     - rotation curves
-     - 
+     - rotation curves NGC2403
+     - arXiv:1512.01367v1
 
-   * - dline
-     - synthetic points 
-     - straight line
 
 
 Datasets combinations
