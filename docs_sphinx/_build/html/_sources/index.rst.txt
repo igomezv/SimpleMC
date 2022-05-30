@@ -8,7 +8,11 @@ SimpleMC
 
 This is the ``SimpleMC`` documentation, a Python package for cosmological parameter estimation and model comparison using Bayesian inference, optimization and machine learning algorithms. ``SimpleMC`` also contains a collection of tools for cosmological data analysis, such as a `cosmological calculator <tuto_cosmocalc.html>`_, `plotting utilities <tuto_plotters.html>`_ and other statistical issues. The cosmological models included in ``SimpleMC`` are Dark Energy models where only expansion history matters.
 
-You can visit the `GitHub code repository <https://github.com/ja-vazquez/SimpleMC.git>`_, download the `source code here <https://github.com/ja-vazquez/SimpleMC/archive/refs/heads/master.zip>`_ or clone it as follows:
+There are 3 options to install, or use, ``SimpleMC``: 
+
+1) You can use ``SimpleMC`` in Google Colab, please see the Section `Using Google Colab in Requirements <requirements.html#using-google-colab>`_.
+
+2) On the other hand, you can visit the `GitHub code repository <https://github.com/ja-vazquez/SimpleMC.git>`_, download the `source code here <https://github.com/ja-vazquez/SimpleMC/archive/refs/heads/master.zip>`_ or clone it as follows:
 
    .. code-block:: bash
 
@@ -23,7 +27,7 @@ Then, you can install it:
       pip3 install -e .
 
 
-On the other hand, you can install ``SimpleMC`` without clonning: 
+3) Also, you can install ``SimpleMC`` without clonning: 
 
    .. code-block:: bash
    	
