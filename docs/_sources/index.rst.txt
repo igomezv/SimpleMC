@@ -3,7 +3,7 @@ SimpleMC
 ===========
 
 **[Site under construction]**
-**[Last update 27/04/2022]**
+**[Last update 15/08/2022]**
 
 
 This is the ``SimpleMC`` documentation, a Python package for cosmological parameter estimation and model comparison using Bayesian inference, optimization and machine learning algorithms. ``SimpleMC`` also contains a collection of tools for cosmological data analysis, such as a `cosmological calculator <tuto_cosmocalc.html>`_, `plotting utilities <tuto_plotters.html>`_ and other statistical issues. The cosmological models included in ``SimpleMC`` are Dark Energy models where only expansion history matters.
@@ -63,6 +63,7 @@ Extended index
 Changelog
 ----------
 
+- **0.9.8.6 (24/05/2022)** Fix MCMCAnalyzer and update requirements.
 - **0.9.8.6 (27/04/2022)** Fix mpi4py import in MCMCAnalyzer and allow to work it with only 1 processor. 
 - **0.9.8.5 (23/02/2022)** Improving postprocessing. 
 - **0.9.8.4 (12/01/2022)** Unifying binned and full Pantheon likelihoods. Added covariance matrix in postprocessing. Added AIC information criterion. Saving output of individuals from GADeap. 
@@ -97,7 +98,5 @@ Changelog
 
 TO DO
 ------
-- Add more DE EoS for comparison, for example, in CPL (owaCDM).
-- Unify pybambi and nerualike. 
-- Neural networks methods with dynesty multiprocessing fails.
+- Add nerualike. 
 

@@ -26,7 +26,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 
 
 project = 'SimpleMC'
-copyright = '2021, A Slosar, JA Vazquez, I Gomez-Vargas'
+copyright = '2022, A Slosar, JA Vazquez, I Gomez-Vargas'
 author = 'A Slosar, JA Vazquez, I Gomez-Vargas'
 
 # The short X.Y version

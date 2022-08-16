@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>simplemc.PostProcessing &mdash; SimpleMC latest documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> SimpleMC
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">First steps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../structure.html"><strong>Structure</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Citation.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../API.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SimpleMC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>simplemc.PostProcessing</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for simplemc.PostProcessing</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">simplemc.cosmo.Derivedparam</span> <span class="k">import</span> <span class="n">AllDerived</span>
+<span class="kn">from</span> <span class="nn">simplemc.analyzers.dynesty</span> <span class="k">import</span> <span class="n">utils</span> <span class="k">as</span> <span class="n">dyfunc</span>
+<span class="kn">from</span> <span class="nn">simplemc</span> <span class="k">import</span> <span class="n">logger</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">.analyzers</span> <span class="k">import</span> <span class="n">MCEvidence</span>
+
+<div class="viewcode-block" id="PostProcessing"><a class="viewcode-back" href="../../API.html#simplemc.PostProcessing.PostProcessing">[docs]</a><span class="k">class</span> <span class="nc">PostProcessing</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class makes postprocessing such as generate a summary with some statistics.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ---------</span>
+<span class="sd">    list_result : list</span>
+<span class="sd">        List with results from sampling.</span>
+<span class="sd">    paramList : list</span>
+<span class="sd">        List with Parameter objects.</span>
+<span class="sd">    filename : str.</span>
+<span class="sd">        File name.</span>
+<span class="sd">    skip : float</span>
+<span class="sd">        Burn-in.</span>
+<span class="sd">    addDerived : bool</span>
+<span class="sd">        Derived parameters?</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dict_result</span><span class="p">,</span> <span class="n">paramList</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span>
+                 <span class="n">skip</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">addDerived</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dict_result</span> <span class="o">=</span> <span class="n">dict_result</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">analyzername</span> <span class="o">=</span> <span class="n">dict_result</span><span class="p">[</span><span class="s1">&#39;analyzer&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">result</span> <span class="o">=</span> <span class="n">dict_result</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">dict_result</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">paramList</span> <span class="o">=</span> <span class="n">paramList</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">paramList</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">skip</span> <span class="o">=</span> <span class="n">skip</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">derived</span> <span class="o">=</span> <span class="n">addDerived</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">addDerived</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">AD</span> <span class="o">=</span> <span class="n">AllDerived</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">analyzername</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;mcmc&#39;</span><span class="p">,</span> <span class="s1">&#39;nested&#39;</span><span class="p">,</span> <span class="s1">&#39;emcee&#39;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">maxlogl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;loglikes&#39;</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">maxlogl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;maxlike&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">writeSummary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;_Summary&quot;</span> <span class="o">+</span> <span class="s2">&quot;.txt&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;SUMMARY</span><span class="se">\n</span><span class="s1">-------</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dict_result</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">]:</span>
+                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">: </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dict_result</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
+
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;param_fit&#39;</span><span class="p">,</span> <span class="s1">&#39;samples&#39;</span><span class="p">,</span> <span class="s1">&#39;cov&#39;</span><span class="p">,</span> <span class="s1">&#39;logwt&#39;</span><span class="p">,</span> <span class="s1">&#39;logzerr&#39;</span><span class="p">,</span> <span class="s1">&#39;weights&#39;</span><span class="p">,</span> <span class="s1">&#39;loglikes&#39;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="nb">float</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;logz&#39;</span><span class="p">:</span>
+                        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">: </span><span class="si">{:.4f}</span><span class="s1"> +/- </span><span class="si">{:.4f}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;logzerr&#39;</span><span class="p">]))</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">: </span><span class="si">{:.4f}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">: </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">analyzername</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;mcmc&#39;</span><span class="p">,</span> <span class="s1">&#39;nested&#39;</span><span class="p">,</span> <span class="s1">&#39;emcee&#39;</span><span class="p">]:</span>
+            <span class="n">loglikes</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;loglikes&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;samples&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">]</span>
+            <span class="n">means</span><span class="p">,</span> <span class="n">cov_dy</span> <span class="o">=</span> <span class="n">dyfunc</span><span class="o">.</span><span class="n">mean_and_cov</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+            <span class="n">stdevs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">cov_dy</span><span class="p">))</span>
+            <span class="n">param_fits</span> <span class="o">=</span> <span class="n">means</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Covariance matrix saved in .covmat file</span><span class="se">\n</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cov_dy</span><span class="p">))</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;.covmat&quot;</span><span class="p">,</span> <span class="n">cov_dy</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="kn">from</span> <span class="nn">getdist</span> <span class="k">import</span> <span class="n">mcsamples</span>
+                <span class="n">getdistsamples</span> <span class="o">=</span> <span class="n">mcsamples</span><span class="o">.</span><span class="n">loadMCSamples</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+                <span class="n">cov_getdist</span> <span class="o">=</span> <span class="n">getdistsamples</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paramList</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">getdist cov</span><span class="se">\n</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cov_getdist</span><span class="p">))</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">stdevs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;cov&#39;</span><span class="p">]))</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">stdevs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+            <span class="n">param_fits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;param_fit&#39;</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">parname</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paramList</span><span class="p">):</span>
+            <span class="n">param_fit</span> <span class="o">=</span> <span class="n">param_fits</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">std</span> <span class="o">=</span> <span class="n">stdevs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{:.4f}</span><span class="s2"> +/- </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parname</span><span class="p">,</span> <span class="n">param_fit</span><span class="p">,</span> <span class="n">std</span><span class="p">))</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{:.4f}</span><span class="s2"> +/- </span><span class="si">{:.4f}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parname</span><span class="p">,</span> <span class="n">param_fit</span><span class="p">,</span> <span class="n">std</span><span class="p">))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Information criterions:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">AIC: </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">aic_criterion</span><span class="p">()))</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Elapsed time: </span><span class="si">{:.3f}</span><span class="s2"> minutes = </span><span class="si">{:.3f}</span><span class="s2"> seconds&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">/</span> <span class="mi">60</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">))</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Elapsed time: </span><span class="si">{:.3f}</span><span class="s1"> minutes = </span><span class="si">{:.3f}</span><span class="s1"> seconds </span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">/</span> <span class="mi">60</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">))</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">writeMaxlike</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;.maxlike&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="n">maxlogl_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;loglikes&#39;</span><span class="p">])</span>
+
+        <span class="n">maxsamp</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;samples&#39;</span><span class="p">][</span><span class="n">maxlogl_idx</span><span class="p">])</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;]&#39;</span><span class="p">)</span>
+
+        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# -maxlogL</span><span class="se">\n</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">maxlogl</span><span class="p">,</span> <span class="n">maxsamp</span><span class="p">))</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">mcevidence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">analyzername</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;mcmc&#39;</span><span class="p">,</span> <span class="s1">&#39;nested&#39;</span><span class="p">,</span> <span class="s1">&#39;emcee&#39;</span><span class="p">]:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s1">&#39;MCEvidence only work on Bayesian samplers (mcmc, nested, &#39;</span>
+                     <span class="s1">&#39;emcee) not in optimizers&#39;</span><span class="p">)</span>
+
+        <span class="n">mcev</span> <span class="o">=</span> <span class="n">MCEvidence</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">),</span> <span class="n">kmax</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+        <span class="n">mcevres</span> <span class="o">=</span> <span class="n">mcev</span><span class="o">.</span><span class="n">evidence</span><span class="p">(</span><span class="n">covtype</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+
+        <span class="n">burn_frac</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">mcevres</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;MCEvidence failed to calculate Bayesian evidence,</span><span class="se">\n</span><span class="s2">&quot;</span>
+                        <span class="s2">&quot; it is trying again.&quot;</span><span class="p">)</span>
+            <span class="n">valid</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">valid</span><span class="p">:</span>
+                <span class="n">burn_frac</span> <span class="o">+=</span> <span class="mf">0.1</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Burn-in: </span><span class="si">{}</span><span class="s2">%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">burn_frac</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+                <span class="n">mcev</span> <span class="o">=</span> <span class="n">MCEvidence</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">),</span>
+                                  <span class="n">burnlen</span><span class="o">=</span><span class="n">burn_frac</span><span class="p">,</span> <span class="n">kmax</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">dims</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+
+                <span class="n">mcevres</span> <span class="o">=</span> <span class="n">mcev</span><span class="o">.</span><span class="n">evidence</span><span class="p">(</span><span class="n">covtype</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">mcevres</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+                    <span class="n">valid</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">if</span> <span class="n">burn_frac</span> <span class="o">&gt;</span> <span class="mf">0.8</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MCEvidence can&#39;t estimate the evidence to your samples&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">log-Evidence with mcevidence: </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span> \
+                   <span class="s1">&#39;Burn-in fraction: </span><span class="si">{:.1}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mcevres</span><span class="p">,</span> <span class="n">burn_frac</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">aic_criterion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">aic</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">maxlogl</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paramList</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">aic</span>
+
+    <span class="k">def</span> <span class="nf">bic_criterion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<div class="viewcode-block" id="PostProcessing.plot"><a class="viewcode-back" href="../../API.html#simplemc.PostProcessing.PostProcessing.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chainsdir</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Simple connection with the plotters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        show : bool</span>
+<span class="sd">            Default False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">.plots.SimplePlotter</span> <span class="k">import</span> <span class="n">SimplePlotter</span>
+        <span class="n">figure</span> <span class="o">=</span> <span class="n">SimplePlotter</span><span class="p">(</span><span class="n">chainsdir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">paramList</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="n">show</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">figure</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, A Slosar, JA Vazquez, I Gomez-Vargas.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
