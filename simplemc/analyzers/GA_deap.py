@@ -1,8 +1,12 @@
 
+#TODO make processes a variable
+#TODO check/change select, mate, mutate
 
 import scipy as sp
 import numpy as np
 import matplotlib.pyplot as plt
+import multiprocessing
+
 from simplemc.plots.Plot_elipses import plot_elipses
 
 try:
@@ -19,7 +23,6 @@ import scipy.linalg as la
 
 import random
 import sys
-
 try:
     import numdifftools as nd
 except:
@@ -52,6 +55,7 @@ class GA_deap:
         self.sigma = sp.array([p.error for p in self.params])
         self.bounds = [p.bounds for p in self.params]
         print("Minimizing...", self.vpars, "with bounds", self.bounds)
+        self.cov = None
 
         self.plot_fitness = plot_fitness
         self.compute_errors = compute_errors
@@ -72,15 +76,31 @@ class GA_deap:
         self.DIMENSIONS = len(self.params)        # number of dimensions
         self.BOUND_LOW, self.BOUND_UP = 0.0, 1.0  # boundaries for all dimensions
 
+        self.sharing = False
+        if self.sharing:
+            # sharing constants:
+            DISTANCE_THRESHOLD = 0.1
+            SHARING_EXTENT = 5.0
+
+
+
     def main(self):
         toolbox = self.GA()
+        
+        # using multiprocess
+        pool = multiprocessing.Pool(processes = 3)
+        toolbox.register("map", pool.map)
 
         # create initial population (generation 0):
         population = toolbox.populationCreator(n=self.POPULATION_SIZE)
 
         # prepare the statistics object:
         stats = tools.Statistics(lambda ind: ind.fitness.values)
-        stats.register("min", np.min)
+        
+        if self.sharing:
+            stats.register("max", np.max)
+        else:
+            stats.register("min", np.min)
         stats.register("avg", np.mean)
 
         # define the hall-of-fame object:
@@ -90,7 +110,7 @@ class GA_deap:
         population, logbook, gens = elitism.eaSimpleWithElitism(population, toolbox, cxpb=self.P_CROSSOVER,\
                                                               mutpb=self.P_MUTATION, ngen=self.MAX_GENERATIONS,\
                                                               stats=stats, halloffame=hof, verbose=True,
-                                                              outputname=self.outputname)
+                                                              outputname=self.outputname, bounds=self.bounds)
 
         # print info for best solution found:
         best = hof.items[0]
@@ -110,11 +130,19 @@ class GA_deap:
         if self.plot_fitness:
             self.plotting(population, logbook, hof)
 
-        hess = nd.Hessian(self.negloglike2)(best_params)
+        hess = nd.Hessian(self.negloglike2, step=self.sigma*0.01)(best_params)
         eigvl, eigvc = la.eig(hess)
-        print('Hessian', hess, eigvl, )
+        print('Hessian', hess, eigvl)
         self.cov = la.inv(hess)
         print('Covariance matrix \n', self.cov)
+
+        with open('{}.maxlike'.format(self.outputname), 'w') as f:
+            np.savetxt(f, best_params, fmt='%.4e', delimiter=',')
+
+        with open('{}.cov'.format(self.outputname), 'w') as f:
+            np.savetxt(f, self.cov, fmt='%.4e', delimiter=',')
+
+        
         # if self.compute_errors:
 
             # set errors:
@@ -125,18 +153,22 @@ class GA_deap:
 
         if self.show_contours and self.compute_errors:
             param_names = [par.name for par in self.params]
+            param_Ltx_names = [par.Ltxname for par in self.params]
             if (self.plot_param1 in param_names) and (self.plot_param2 in param_names):
                 idx_param1 = param_names.index(self.plot_param1)
                 idx_param2 = param_names.index(self.plot_param2)
+                param_Ltx1 = param_Ltx_names[idx_param1]
+                param_Ltx2 = param_Ltx_names[idx_param2]
             else:
                 sys.exit('\n Not a base parameter, derived-errors still on construction')
 
-            fig = plt.figure(figsize=(6,6))
+            fig = plt.figure(figsize=(6, 6))
             ax = fig.add_subplot(111)
-            plot_elipses(best_params, self.cov, idx_param1, idx_param2, ax=ax)
+            plot_elipses(best_params, self.cov, idx_param1, idx_param2, param_Ltx1, param_Ltx2, ax=ax)
             plt.show()
+
         return {'population': len(population), 'no_generations': gens, 'param_fit': best_params,
-                'best_fitness': best.fitness.values[0], 'cov': self.cov}
+                'best_fitness': best.fitness.values[0], 'cov': self.cov, 'maxlike': best.fitness.values[0]}
 
 
 
@@ -145,15 +177,56 @@ class GA_deap:
     def randomFloat(self, low, up):
         return [random.uniform(l, u) for l, u in zip([low]*self.DIMENSIONS, [up]*self.DIMENSIONS)]
 
+
+    # wraps the tools.selTournament() with fitness sharing
+    # same signature as tools.selTournament()
+    def selTournamentWithSharing(self, individuals, k, tournsize, fit_attr="fitness"):
+
+        # get orig fitnesses:
+        origFitnesses = [ind.fitness.values[0] for ind in individuals]
+
+        # apply sharing to each individual:
+        for i in range(len(individuals)):
+            sharingSum = 1
+
+            # iterate over all other individuals
+            for j in range(len(individuals)):
+                if i != j:
+                    # calculate eucledean distance between individuals:
+                    distance = math.sqrt(
+                        ((individuals[i][0] - individuals[j][0]) ** 2) + ((individuals[i][1] - individuals[j][1]) ** 2))
+
+                    if distance < DISTANCE_THRESHOLD:
+                        sharingSum += (1 - distance / (SHARING_EXTENT * DISTANCE_THRESHOLD))
+
+            # reduce fitness accordingly:
+            individuals[i].fitness.values = origFitnesses[i] / sharingSum,
+
+        # apply original tools.selTournament() using modified fitness:
+        selected = tools.selTournament(individuals, k, tournsize, fit_attr)
+
+        # retrieve original fitness:
+        for i, ind in enumerate(individuals):
+            ind.fitness.values = origFitnesses[i],
+
+        return selected
+
+
+
+
     def GA(self):
         random.seed(self.RANDOM_SEED)
         toolbox = base.Toolbox()
 
-        # define a single objective, minimizing fitness strategy:
-        creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
+        if  self.sharing:
+            creator.create("FitnessMax", base.Fitness, weights=(1.0,))
+            creator.create("Individual", list, fitness=creator.FitnessMax)
+        else:
+            # define a single objective, minimizing fitness strategy:
+            creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
+            # create the Individual class based on list:
+            creator.create("Individual", list, fitness=creator.FitnessMin)
 
-        # create the Individual class based on list:
-        creator.create("Individual", list, fitness=creator.FitnessMin)
 
         # create an operator that randomly returns a float in the desired range and dimension:
         toolbox.register("attrFloat", self.randomFloat, self.BOUND_LOW, self.BOUND_UP)
@@ -169,12 +242,16 @@ class GA_deap:
         ## -----
 
         # genetic operators:
-        toolbox.register("select", tools.selTournament, tournsize=2)
+        if self.sharing:
+            toolbox.register("select", selTournamentWithSharing, tournsize=2)
+        else:
+            toolbox.register("select", tools.selTournament, tournsize=2)
+        
         toolbox.register("mate", tools.cxSimulatedBinaryBounded, low=self.BOUND_LOW, \
                          up=self.BOUND_UP, eta=self.CROWDING_FACTOR)
         toolbox.register("mutate", tools.mutPolynomialBounded, low=self.BOUND_LOW, \
                          up=self.BOUND_UP, eta=self.CROWDING_FACTOR, indpb=1.0/self.DIMENSIONS)
-
+                                                                    #indpb probability of each attribute to be mutated.
         return toolbox
 
 
@@ -184,16 +261,16 @@ class GA_deap:
         # extract statistics
         gen, avg, min_, max_ = log.select("gen", "avg", "min", "max")
 
-        plt.figure(figsize=(10, 7))
+        plt.figure(figsize=(6, 6))
 
         plt.plot(gen, min_, label="minimum")
 
         plt.title("Fitness Evolution")
-        plt.xlabel("Generation")
-        plt.ylabel("Fitness")
+        plt.xlabel("Generation", fontsize=20)
+        plt.ylabel("Fitness", fontsize=20)
         plt.legend(loc="upper right")
-        #plt.savefig('GA_wwCDM_150.pdf')
-        plt.show()
+        #plt.savefig('GA_fitness.pdf')
+        #plt.show()
 
 
 
@@ -203,6 +280,9 @@ class GA_deap:
             pars.setValue(new_par)
         self.like.updateParams(self.params)
         loglike = self.like.loglike_wprior()
+
+        if self.sharing:
+            loglike = -loglike
 
         if sp.isnan(loglike):
             print('-1-'*10,loglike,'--'*10)
@@ -217,6 +297,9 @@ class GA_deap:
             pars.setValue(x[i])
         self.like.updateParams(self.params)
         loglike = self.like.loglike_wprior()
+
+        if self.sharing:
+            loglike = -loglike
 
         if sp.isnan(loglike):
             return self.lastval+10

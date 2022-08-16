@@ -1,15 +1,9 @@
-# Requirements of Python3 for SimpleMC 2.0, keras and tensorflow are optional.
+# Requirements of Python3 for SimpleMC 2.0.
 # pip3 install -r requirements.txt
 numpy
 scipy
-corner
-pandas
+sklearn
 numdifftools
-nestle
-emcee
-GetDist
-fgivenx
 matplotlib
-tensorflow
-Keras
+deap
 mpi4py
