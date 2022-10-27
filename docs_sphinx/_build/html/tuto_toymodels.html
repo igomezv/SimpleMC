@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Toy models &mdash; SimpleMC latest documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <title>Toy models &mdash; SimpleMC latest documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -85,7 +86,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="toy-models">
+  <section id="toy-models">
 <h1>Toy models<a class="headerlink" href="#toy-models" title="Permalink to this headline"></a></h1>
 <p>[Section in process…]</p>
 <p>In the directory <strong>simplemc</strong> you can run a set of toy models in order to test the nested samplers.</p>
@@ -95,18 +96,18 @@
 </div>
 <p>where sampler is one of the nested samplers avaiable in SuperMC and toymodel is one of {egg, ring, square, gauss, shells, square}.</p>
 <p>For example, in the SimpleMC directory, you can run:</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>python examples/toyModels.py egg mnest <span class="m">50</span> <span class="m">0</span>.5
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>python examples/toyModels.py egg mnest <span class="m">50</span> <span class="m">0</span>.5
 </pre></div>
-</td></tr></table></div>
+</div>
 <p>As output you will obtain a text file with the samples, a summary and a plot.</p>
-<div class="figure">
+<figure class="align-default">
 <img alt="_images/egg_mnest_50_0.6_2D.png" src="_images/egg_mnest_50_0.6_2D.png" />
-</div>
+</figure>
 <p><strong>Other toy models:</strong></p>
-<div class="figure">
+<figure class="align-default">
 <img alt="_images/toymodels.png" src="_images/toymodels.png" />
-</div>
-</div>
+</figure>
+</section>
 
 
            </div>

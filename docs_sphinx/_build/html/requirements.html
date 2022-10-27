@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Requirements &mdash; SimpleMC latest documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <title>Requirements &mdash; SimpleMC latest documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -81,16 +82,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="requirements">
+  <section id="requirements">
 <h1>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline"></a></h1>
 <p>This code runs both in Python 2x and 3x. However, we highly recommend Python 3x. In the github repository, the requirements.txt file contains the basic libraries to run simplemc, but some functions such as graphics or neural networks may not be available. To get the full requirements use <code class="docutils literal notranslate"><span class="pre">requirements_full.txt</span></code>. You can manually install these dependencies with pip3 install -r requirements_full.txt. The dependencies are listed below.</p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference internal" href="#installing-dependencies-in-python"><span class="std std-ref">Installing dependencies in python</span></a></li>
-<li><a class="reference internal" href="#using-google-colab"><span class="std std-ref">Using Google Colab</span></a></li>
+<li><p><a class="reference internal" href="#installing-dependencies-in-python"><span class="std std-ref">Installing dependencies in python</span></a></p></li>
+<li><p><a class="reference internal" href="#using-google-colab"><span class="std std-ref">Using Google Colab</span></a></p></li>
 </ul>
 </div></blockquote>
-<div class="section" id="installing-dependencies-in-python">
+<section id="installing-dependencies-in-python">
 <span id="id1"></span><h2>Installing dependencies in python<a class="headerlink" href="#installing-dependencies-in-python" title="Permalink to this headline"></a></h2>
 <p>Imperative libraries are:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo pip install numpy matplotlib scipy numdifftools sklearn mpi4py
@@ -110,14 +111,14 @@
 </div>
 <p>this requirement is not necessary if you want to use nested sampling, emcee or optimization algorithms.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>All in one copy-paste line:</p>
-<div class="last highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install numpy matplotlib scipy corner getdist deap numdifftools sklearn mpi4py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install numpy matplotlib scipy corner getdist deap numdifftools sklearn mpi4py
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="using-google-colab">
+</section>
+<section id="using-google-colab">
 <span id="id2"></span><h2>Using Google Colab<a class="headerlink" href="#using-google-colab" title="Permalink to this headline"></a></h2>
 <p>For easy and immediate use, we recommend using Google Colab. Within it, it is necessary to install some libraries and simplemc in the first cells.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%pip install getdist corner fgivenx deap numdifftools
@@ -126,8 +127,8 @@
 </pre></div>
 </div>
 <p>Once installed, you may get an error. So restart the kernel, rerun and that’s it, the problem will be solved. Then, you can follow any example of the  <a class="reference external" href="tutorials.html">Tutorials section</a> .</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

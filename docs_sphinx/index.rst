@@ -3,10 +3,10 @@ SimpleMC
 ===========
 
 **[Site under construction]**
-**[Last update 15/08/2022]**
+**[Last update 27/10/2022]**
 
 
-This is the ``SimpleMC`` documentation, a Python package for cosmological parameter estimation and model comparison using Bayesian inference, optimization and machine learning algorithms. ``SimpleMC`` also contains a collection of tools for cosmological data analysis, such as a `cosmological calculator <tuto_cosmocalc.html>`_, `plotting utilities <tuto_plotters.html>`_ and other statistical issues. The cosmological models included in ``SimpleMC`` are Dark Energy models where only expansion history matters.
+This is the ``SimpleMC`` documentation, a Python package for cosmological parameter estimation and model comparison using Bayesian inference, optimization and machine learning algorithms. ``SimpleMC`` also contains a collection of tools for cosmological data analysis, such as a `cosmological calculator <tuto_cosmocalc.html>`_, `plotting utilities <tuto_plotters.html>`_ and other statistical issues. The cosmological models included in ``SimpleMC`` are Dark Energy models where only expansion history matters. In the `simplemc_workshop <thttps://github.com/igomezv/simplemc_workshop>`_ repository, there are some slides about ``SimpleMC`` (in spanish) and an example of a jupyter-notebook using ``SimpleMC`` in Google Colab.
 
 There are 3 options to install, or use, ``SimpleMC``: 
 
@@ -98,5 +98,7 @@ Changelog
 
 TO DO
 ------
-- Add nerualike. 
+- Add nerualike to the main branch. 
+- Fix github issues.
+- Add Planck-18 and Pantheon ++.
 

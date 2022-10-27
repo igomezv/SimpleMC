@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maximum Likelihood Estimation (MLE) with optimizer &mdash; SimpleMC latest documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <title>Maximum Likelihood Estimation (MLE) with optimizer &mdash; SimpleMC latest documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -88,7 +89,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="maximum-likelihood-estimation-mle-with-optimizer">
+  <section id="maximum-likelihood-estimation-mle-with-optimizer">
 <h1>Maximum Likelihood Estimation (MLE) with optimizer<a class="headerlink" href="#maximum-likelihood-estimation-mle-with-optimizer" title="Permalink to this headline"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> through the <code class="docutils literal notranslate"><span class="pre">MaxLikeAnalyzer</span> <span class="pre">class</span></code> uses the L-BFGS-B algorithm from <code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize</span></code> and tries to maximize the Likelihood function based on a cosmological model and selected datasets. It then obtains the errors of the Hessian.</p>
 <p>An example of <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> to use the <code class="docutils literal notranslate"><span class="pre">MaxLikeAnalyzer</span> <span class="pre">class</span></code> is as follows:</p>
@@ -121,11 +122,11 @@
 </pre></div>
 </div>
 <p>Lastly, we can run <code class="docutils literal notranslate"><span class="pre">SimpleMC</span></code> as in the <a class="reference external" href="quickstart.html#python-script">example Python script</a> using the <code class="docutils literal notranslate"><span class="pre">ini</span> <span class="pre">file</span></code> with the <code class="docutils literal notranslate"><span class="pre">maxlike</span></code> information.</p>
-<div class="section" id="notebook-example">
+<section id="notebook-example">
 <span id="notebook"></span><h2>Notebook example<a class="headerlink" href="#notebook-example" title="Permalink to this headline"></a></h2>
 <p>In the following notebook there is an example of the use of <code class="docutils literal notranslate"><span class="pre">ga_deap</span></code> and <code class="docutils literal notranslate"><span class="pre">maxlike</span></code>.</p>
-<script src="https://gist.github.com/igomezv/7cdb1a2b6f08cea51b61e76b684cd124.js"></script></div>
-</div>
+<script src="https://gist.github.com/igomezv/7cdb1a2b6f08cea51b61e76b684cd124.js"></script></section>
+</section>
 
 
            </div>
