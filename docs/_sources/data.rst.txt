@@ -55,8 +55,12 @@ Previously, in `Quick start <intro.html#quick-start>`_ and `Customize ini file <
      - Older BAOs than CBAO
      - various, see the code
 
-   * - Planck
+   * - Planck_15
      - Compressed Planck Likelihood 15
+     - arXiv:1907.12875
+     
+   * - Planck
+     - Compressed Planck Likelihood 13
      - arXiv:1411.1074
 
    * - JLA
