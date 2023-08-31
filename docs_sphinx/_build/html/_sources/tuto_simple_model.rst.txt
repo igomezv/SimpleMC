@@ -59,7 +59,7 @@ Use SimpleMC as usually, but with ``model = simple``
 Simple cosmological model based on LCDM
 -----------------------------------------
 
-Now we use ``model = simple_cosmo`` and we can use the LCDM parameters in the expresion of the model (Ocb, Omrad, Om, Ombh2, h and NuContrib) and add extra parameters. This expression must be in terms of a (scale factor) and definied in a string. For example:
+Now we use ``model = simple_cosmo`` and we can use the LCDM parameters in the expresion of the model such as Omrad, Om, Ombh2, h, Ocb, mnu and NuContrib (see paramDefs.py for the default values) and add extra parameters. This expression must be in terms of a (scale factor) and definied in a string. For example:
 
 .. code-block:: python
 
