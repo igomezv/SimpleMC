@@ -57,7 +57,7 @@ Previously, in `Quick start <intro.html#quick-start>`_ and `Customize ini file <
 
    * - Planck_15
      - Compressed Planck Likelihood 15
-     - arXiv:1907.12875
+     - arXiv:1502.01589
      
    * - Planck
      - Compressed Planck Likelihood 13
