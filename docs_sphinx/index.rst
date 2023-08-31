@@ -102,6 +102,5 @@ Changelog
 TO DO
 ------
 - Add nerualike to the main branch. 
-- Fix github issues.
-- Add Planck-18 and Pantheon ++.
+- Add Planck-18.
 
