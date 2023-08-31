@@ -14,9 +14,17 @@ Previously, in `Quick start <intro.html#quick-start>`_ and `Customize ini file <
    * - HD
      - 31 cosmic chronometers
      - arxiv:1601.01701
+     
+   * - HD23
+     - Cosmic chronometers with covariance matrix (2020)
+     - arxiv:2003.07362
 
-   * - CBAO
-     - Recent BAO
+   * - DR16BAO
+     - Recent BAO (at 2023, with DR16)
+     - arxiv.org:2007.08991
+  
+   * - CBAO 
+     - Recent BAO (2019)
      - see the folowing six references
 
    * - DR12Consensus
@@ -66,6 +74,10 @@ Previously, in `Quick start <intro.html#quick-start>`_ and `Customize ini file <
    * - Pantheon
      - 1048 SNIa from Pantheon compilation
      - arXiv:1710.00845
+     
+   * - PantheonPlus
+     - 1550 SNIa from Pantheon+ compilation
+     - arXiv:2202.04077
 
    * - BPantheon
      - 42 binned points from Pantheon SN-Ia

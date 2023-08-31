@@ -63,6 +63,9 @@ Extended index
 Changelog
 ----------
 
+- **0.9.8.9 (28/06/2023)** New cosmic chronometers added (HD23).
+- **0.9.8.8 (28/06/2023)** New BAO data added (DR16BAO).
+- **0.9.8.7 (27/06/2023)** Pantheon Plus added (PantheonPlus).
 - **0.9.8.6 (24/05/2022)** Fix MCMCAnalyzer and update requirements.
 - **0.9.8.6 (27/04/2022)** Fix mpi4py import in MCMCAnalyzer and allow to work it with only 1 processor. 
 - **0.9.8.5 (23/02/2022)** Improving postprocessing. 

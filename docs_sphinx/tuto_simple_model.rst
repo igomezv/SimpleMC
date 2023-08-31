@@ -68,9 +68,11 @@ Now we use ``model = simple_cosmo`` and we can use the LCDM parameters in the ex
 
     Oextra = Parameter('Oextra', 0.1, 0.001, (0, 0.2), '\Omega_{extra}')
 
-    cosmo_model = 'Ocb/a**3+Omrad/a**4+NuContrib+(1.0-Om-Oextra)'
+    cosmo_model = 'Om/a**3+Omrad/a**4+(1.0-Om-Oextra)'
 
     analyzer = DriverMC(model='simple_cosmo', datasets='SN', analyzername='mcmc',
                         custom_parameters=parameterlist, custom_function=cosmo_model)
+                   
+It is important to note that the name of the Parameter instances must be the same as the string names of the Parameter class (first argument of the Parameter class).
 
 
