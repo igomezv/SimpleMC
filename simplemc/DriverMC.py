@@ -5,7 +5,7 @@ from .cosmo.Derivedparam import AllDerived
 from .setup_logger import logger
 from .runbase import ParseDataset, ParseModel
 from .PostProcessing import PostProcessing
-from scipy.special import ndtri
+from scipy.stats import truncnorm
 import numpy as np
 import sys, os
 import time
@@ -128,6 +128,7 @@ class DriverMC:
         self.pars_info  = self.L.freeParameters()
         self.bounds     = [p.bounds for p in self.pars_info]
         self.means      = [p.value  for p in self.pars_info]
+        self.errors     = [p.error  for p in self.pars_info]
         self.paramsList = [p.name   for p in self.pars_info]
         self.dims       = len(self.paramsList)
 
@@ -723,12 +724,15 @@ class DriverMC:
         """
         priors = []
         n = self.nsigma
-
+        # if the prior is gaussian
         if self.priortype == 'g':
             for c, bound in enumerate(self.bounds):
                 mu = self.means[c]
-                sigma = (bound[1]-bound[0])/n
-                priors.append(mu+sigma*(ndtri(theta[c])))
+                sigma = self.errors[c]
+                a, b = (bound[0] - mu) / sigma, (bound[1] - mu) / sigma  # truncation in std units
+                prior_val = truncnorm.ppf(theta[c], a, b, loc=mu, scale=sigma)
+                priors.append(prior_val)
+        # if the prior is uniform        
         else:
             for c, bound in enumerate(self.bounds):
                # When theta 0-> append bound[0], if theta 1-> append bound[1]
