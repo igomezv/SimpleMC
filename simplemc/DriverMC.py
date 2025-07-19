@@ -5,7 +5,7 @@ from .cosmo.Derivedparam import AllDerived
 from .setup_logger import logger
 from .runbase import ParseDataset, ParseModel
 from .PostProcessing import PostProcessing
-from scipy.stats import truncnorm
+from scipy.special import ndtri
 import numpy as np
 import sys, os
 import time
@@ -726,11 +726,14 @@ class DriverMC:
         n = self.nsigma
         # if the prior is gaussian
         if self.priortype == 'g':
-            for c, bound in enumerate(self.bounds):
+            for c in range(len(theta)):
                 mu = self.means[c]
                 sigma = self.errors[c]
-                a, b = (bound[0] - mu) / sigma, (bound[1] - mu) / sigma  # truncation in std units
-                prior_val = truncnorm.ppf(theta[c], a, b, loc=mu, scale=sigma)
+                if sigma == 0:
+                    raise ValueError(f"Standard deviation (err) is zero for parameter {c}. "
+                                     "Cannot define a Gaussian prior with err = 0.")
+                bound = self.bounds[c]
+                prior_val = mu + sigma * ndtri(theta[c])
                 priors.append(prior_val)
         # if the prior is uniform        
         else:
