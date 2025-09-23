@@ -17,6 +17,7 @@ from .models import DGPCDMCosmology
 from .models import AnisotropicCosmology
 from .models import GraduatedCosmology
 from .models import QuintomCosmology
+from .models import QuintomDarkEnergy
 from .models import RotationCurves
 from .models import ChaplyginCosmology
 from .models import HolographicCosmology
@@ -64,7 +65,7 @@ from .likelihoods.RotationCurvesLikelihood import RotationCurvesLike
 # String parser Aux routines
 model_list = "LCDOM, LCDMasslessnu, nuLCDM, NeffLCDM, noradLCDM, nuoLCDM, nuwLCDM, oLCDM, wCDM, waCDM, owCDM,"\
     "owaCDM, JordiCDM, WeirdCDM, TLight, Spline, PolyCDM, fPolyCDM, Decay, Decay01, Decay05,"\
-    "EarlyDE, EarlyDE_rd_DE, SlowRDE"
+    "EarlyDE, EarlyDE_rd_DE, SlowRDE, Quintom_DE"
 
 
 def ParseModel(model, **kwargs):
@@ -171,6 +172,8 @@ def ParseModel(model, **kwargs):
         T = QuintomCosmology(vary_mquin=True, vary_mphan=True)
     elif model == 'Quintom_couple':
         T = QuintomCosmology(vary_mquin=True, vary_mphan=True, vary_coupling=True)
+    elif model == 'Quintom_DE':
+        T = QuintomDarkEnergy()
     elif model == "Rotation":
         T = RotationCurves()
     elif model == "Chaplygin_s":

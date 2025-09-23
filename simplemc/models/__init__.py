@@ -19,6 +19,7 @@ from .OzcosCosmology import OzcosCosmology
 from .PhiCDMCosmology import PhiCosmology
 from .PolyCDMCosmology import PolyCDMCosmology
 from .QuintomCosmology import QuintomCosmology
+from .QuintomDarkEnergy import QuintomDarkEnergy
 from .RatraCosmology import SureshCosmology
 from .RotationCurves import RotationCurves
 from .SimpleModel import SimpleModel

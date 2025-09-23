@@ -99,6 +99,12 @@ mphan_par = Parameter("mphan", 0.8, 0.2, (0, 3.0), "m_{\psi}")
 iniphi_par = Parameter("iniphi", 0.5, 0.1, (0, 1.5), "\phi_0")
 coupling_par = Parameter("beta",  1.0, 0.5, (-10, 10), "\\beta")
 
+# Quintom Dark energy.
+alphaphi_par = Parameter("alphaphi", 1.7, 0.2, (0.5, 4.0), "\\alpha_{\phi}")
+alphapsi_par = Parameter("alphapsi", 0.8, 0.2, (0.5, 3.0), "\\alpha_{\psi}")
+# using iniphi_par and coupling_par from above QuintomCosmology.
+
+
 # Fourier series expansion for w(z) [arXiv: 1901.08679].
 a0_par = Parameter("a0", -2., 0.1, (-3.0, -1.0), "a_0")
 a1_par = Parameter("a1", 0.0, 0.1, (-1.5, 1.5), "a_1")
